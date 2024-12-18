@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use App\Http\Livewire\BeneficiarioSearch;
 
+use App\Services\ManifestService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(ManifestService::class, function ($app) {
+            return new ManifestService();
+        });
     }
 
     /**
@@ -24,8 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrap();
+        Paginator::useBootstrapFive();
         Livewire::component('beneficiario-search', BeneficiarioSearch::class);
-
     }
 }

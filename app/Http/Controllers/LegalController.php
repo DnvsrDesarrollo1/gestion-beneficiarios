@@ -71,6 +71,7 @@ class LegalController extends Controller
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'departamento' => 'required',
             'proyecto' => 'required',
+            'nro' => 'required',
             'nombre_apellidos' => 'required',
             'cedula_identidad' => 'required',
             'manzano' => 'required',
@@ -80,6 +81,16 @@ class LegalController extends Controller
             'observaciones1' => 'required',
             'levantam_grav_dev_documentos' => 'required',
             'observado_ley850' => 'required',
+            'notificación_intención' => 'required',
+            'notificación_res_contractual' => 'required',
+            'elab_minut_res_contrc_testim' => 'required',
+            'folio_nombre_aevivienda' => 'required',
+            'observaciones2' => 'required',
+            'inicio_reasignación_sustitución' => 'required',
+            'nuevo_beneficiario' => 'required',
+            'ci_nuevo_benef' => 'required',
+            'minuta_testimonio_folio' => 'required',
+            'observaciones3' => 'required',
         ]);
 
         if ($validator->fails()) {

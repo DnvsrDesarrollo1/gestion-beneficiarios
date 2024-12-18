@@ -13,6 +13,7 @@ class Legal extends Model
     protected $fillable = [
         'departamento',
         'proyecto',
+        'nro',
         'nombre_apellidos',
         'cedula_identidad',
         'manzano',
@@ -22,6 +23,16 @@ class Legal extends Model
         'observaciones1',
         'levantam_grav_dev_documentos',
         'observado_ley850',
+        'notificación_intención',
+        'notificación_res_contractual',
+        'elab_minut_res_contrc_testim',
+        'folio_nombre_aevivienda',
+        'observaciones2',
+        'inicio_reasignación_sustitución',
+        'nuevo_beneficiario',
+        'ci_nuevo_benef',
+        'minuta_testimonio_folio',
+        'observaciones3',
         'user_id'
     ];
 
@@ -39,5 +50,4 @@ class Legal extends Model
     {
         return $this->hasOne(Credit::class, 'unid_hab_id', 'unid_hab_id');
     }
-
 }

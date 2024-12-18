@@ -40,12 +40,12 @@
                             <td>{{ $beneficiario->proceso_estado_benef_final }}</td>
                             <td>{{ $beneficiario->observacion_benef_final }}</td>
                             <td>
-                                {{ $beneficiario->credit->codigo_credito ? "Cartera Activa" : "Cartera Pendiente" }}
+                                {{ $beneficiario->credit ? "Cartera Activa" : "Cartera Pendiente" }}
                             </td>
                             <td>
                                 <a target="_blank"
                                     href="{{ route('home.show', $beneficiario->unid_hab_id) }}"
-                                    class="d-block btn btn-outline-primary">Revisar</a>
+                                    class="d-block btn btn-primary">Revisar</a>
                             </td>
                         </tr>
                     @endforeach

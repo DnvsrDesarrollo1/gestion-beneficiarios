@@ -6,9 +6,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Panel General de Beneficiarios</h1>
-        <p>Aqui podrá ver y administrar a los beneficiarios, tanto en Creditos / Social y Legal.</p>
+        <h2>Panel General de Beneficiarios</h2>
 
-        @livewire('beneficiario-search')
+        <div class="overflow-hidden">
+            @livewire('beneficiario-search')
+        </div>
     </div>
 @endsection

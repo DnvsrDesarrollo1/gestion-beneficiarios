@@ -19,7 +19,7 @@
                                 <span class="fw-bold">Cartera</span>
                             </div>
                             <div class="card-body">
-                                @if ($beneficiario->credit->codigo_credito <> '')
+                                @if ($beneficiario->credit)
                                 <table class="table table-bordered">
                                     <tbody class="text-start">
                                         <tr>
@@ -36,8 +36,8 @@
                                         </tr>
                                         <tr>
                                             <td>Tasas:</td>
-                                            <td>Interes: {{ $beneficiario->credit->tasa_interes * 100 }}% <br>Seg. Desgrv:
-                                                {{ $beneficiario->credit->tasa_seguro_desgravamen * 100 }}%</td>
+                                            <td>Interes: {{ $beneficiario->credit->tasa_interes * 100 }}%<br>
+                                                Seg. Desgrv: {{ $beneficiario->credit->tasa_seguro_desgravamen * 100 }}%</td>
                                         </tr>
                                         <tr>
                                             <td>Saldo:</td>
@@ -46,11 +46,11 @@
                                     </tbody>
                                 </table>
                                 @else
-                                <span>NO CUENTA CON CARTERA ACTIVA</span>
+                                <span>ACTIVACION PENDIENTE</span>
                                 @endif
                             </div>
                             <div class="card-footer text-muted">
-                                <a target="_blank" class="btn btn-outline-primary"
+                                <a target="_blank" class="btn btn-primary"
                                     href="{{ route('credits.edit', $beneficiario->unid_hab_id) }}">
                                     Editar Perfil Crediticio
                                 </a>
@@ -97,7 +97,7 @@
                                 </table>
                             </div>
                             <div class="card-footer text-muted">
-                                <a target="_blank" class="btn btn-outline-primary"
+                                <a target="_blank" class="btn btn-primary"
                                     href="{{ route('socials.edit', $beneficiario->unid_hab_id) }}">
                                     Editar Perfil Social
                                 </a>
@@ -113,7 +113,7 @@
                                 <span class="fw-bold">Legal</span>
                             </div>
                             <div class="card-body">
-                                @if ($beneficiario->legal->nro_folio_real <> '')
+                                @if ($beneficiario->legal)
                                 <table class="table table-bordered">
                                     <tbody class="text-start">
                                         <tr>
@@ -147,7 +147,7 @@
                                 @endif
                             </div>
                             <div class="card-footer text-muted">
-                                <a target="_blank" class="btn btn-outline-primary"
+                                <a target="_blank" class="btn btn-primary"
                                     href="{{ route('legals.edit', $beneficiario->unid_hab_id) }}">
                                     Editar Perfil Legal
                                 </a>
@@ -155,6 +155,8 @@
                         </div>
                     </div>
                 </div>
+                <hr>
+                <button button type="button" onclick="window.open('', '_self', ''); window.close();" class="btn btn-secondary">Cancelar</button>
             </div>
         </div>
     </div>
