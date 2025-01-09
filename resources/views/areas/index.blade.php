@@ -27,6 +27,10 @@
                                             <td>{{ $beneficiario->credit->entidad_financiera }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Telefono / Celular</td>
+                                            <td>{{ $beneficiario->credit->fono }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Estado Cartera:</td>
                                             <td>{{ $beneficiario->credit->estado_cartera }}</td>
                                         </tr>

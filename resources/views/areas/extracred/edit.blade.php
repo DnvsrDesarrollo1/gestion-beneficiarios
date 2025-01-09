@@ -1,10 +1,11 @@
-@extends('layouts.app')
+
+extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="mb-4">
             <h2>Actualizar Datos Creditícios</h2>
-            <span>Ultima actualizacion hecha por: {{$credito->user->name ?? ""}} ({{$credito->updated_at ?? ""}})</span>
+            <span>Ultima actualizacion hecha por: {{$credito->user->name}} ({{$credito->updated_at}})</span>
         </div>
 
         @if (session('success'))
@@ -29,7 +30,7 @@
             </div>
         @endif
 
-        <form action="{{ route('credits.update', $credito) }}" method="POST">
+        <form action="{{ route('extracred.update', $credito) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card">

@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="/">
                 Gestor de Beneficiarios
             </a>
             <p class="alert alert-warning" role="alert" wire:offline>

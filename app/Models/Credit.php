@@ -12,6 +12,7 @@ class Credit extends Model
 
     protected $fillable = [
         'codigo_credito',
+        'fono',
         'departamento',
         'estado_cartera',
         'nombre_beneficiario',

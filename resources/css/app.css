@@ -1,0 +1,31 @@
+body {
+    background-color: #c5d5db;
+}
+.navbar-custom {
+    background: linear-gradient(45deg, #6c757d, #495057);
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar-brand:hover {
+    color: #adb5bd;
+}
+.dropdown-menu {
+    background-color: #495057;
+    border: none;
+}
+.dropdown-item {
+    color: #f8f9fa;
+}
+.dropdown-item:hover {
+    background-color: #343a40;
+}
+.btn-dark {
+    background-color: #212529;
+    border: none;
+}
+.btn-dark:hover {
+    background-color: #343a40;
+}

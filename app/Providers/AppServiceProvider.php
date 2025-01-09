@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Livewire\Beneficiario_celSearch;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         Livewire::component('beneficiario-search', BeneficiarioSearch::class);
+        Livewire::component('beneficiario_cel-search', Beneficiario_celSearch::class);
     }
 }

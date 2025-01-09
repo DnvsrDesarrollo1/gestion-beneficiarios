@@ -13,6 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     //    return view('datatables');
     //});
 
+    Route::get('/excredito', [App\Http\Controllers\ExtraCreditoController::class, 'index'])->name('extracredito');
     Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/panel-general/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('home.show');
@@ -31,6 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
         'legales' => 'legal'
     ])
         ->names('legals');
+
+
+
+    Route::resource('extracred', App\Http\Controllers\SocExtcreController::class)->parameters(['extracred' => 'extracredito'])->names('extracred');
+
 });
 
 // -------------------------------------------------------------------------------------------------------------

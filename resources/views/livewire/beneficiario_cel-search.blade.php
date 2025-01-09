@@ -6,14 +6,15 @@
             </span>
             <div class="form-floating flex-grow-1">
                 <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput" placeholder="Buscar beneficiarios">
-                <label for="searchInput">Buscar beneficiarios</label>
+                <label for="searchInput">Buscar beneficiarios2</label>
             </div>
         </div>
     </div>
 
+
     <div class="card">
         <div class="card-header">
-            Beneficiarios Activos
+            Beneficiarios Activos2
         </div>
         <div class="card-body">
             <div>{{ $beneficiarios->links() }}</div>
@@ -46,8 +47,8 @@
                             </td>
                             <td>
                                 <a target="_blank"
-                                    href="{{ route('home.show', $beneficiario->unid_hab_id) }}"
-                                    class="d-block btn btn-primary">Revisar</a>
+                                    href="{{ route('credits.edit', $beneficiario->unid_hab_id) }}"
+                                    class="d-block btn btn-primary">Actualizar</a>
                             </td>
                         </tr>
                     @endforeach
