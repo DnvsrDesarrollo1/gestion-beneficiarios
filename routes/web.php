@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/busqueda', [App\Http\Controllers\HomeExtrController::class, 'index'])->name('homext');
+
+Route::put('/beneficiario/update', [App\Http\Controllers\HomeExtrController::class, 'update'])->name('beneficiario.update');
+
 Route::group(['middleware' => 'auth'], function () {
 
     //Route::get('/dt', function () {
@@ -33,9 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     ])
         ->names('legals');
 
-
-
-    Route::resource('extracred', App\Http\Controllers\SocExtcreController::class)->parameters(['extracred' => 'extracredito'])->names('extracred');
+    Route::resource('extracred', App\Http\Controllers\SocExtcreController::class)->parameters([
+        'creditos' => 'credito'
+    ])
+        ->names('extracred');
 
 });
 

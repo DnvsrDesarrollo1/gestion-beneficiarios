@@ -6,11 +6,12 @@
 
 @section('content')
     <div class="container">
-        <h5 class="text-center mb-4">Datos del Beneficiario</h5>
+
+        <h5 class="text-center mb-4">Actualizar Número Telefono / Celular del Beneficiario</h5>
 
         <div class="overflow-hidden">
             <div>
-                @livewire('beneficiario_cel-search')
+                @livewire('beneficiario_ci-search')
             </div>
         </div>
     </div>

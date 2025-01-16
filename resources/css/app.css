@@ -29,3 +29,9 @@ body {
 .btn-dark:hover {
     background-color: #343a40;
 }
+.custom-container {
+    max-width: 900px; /* Ancho máximo */
+    margin: 0 auto;   /* Centrar el contenedor */
+    padding: 15px;    /* Espaciado interno */
+}
+

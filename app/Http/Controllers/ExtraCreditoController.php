@@ -24,10 +24,12 @@ class ExtraCreditoController extends Controller
     public function index()
     {
 
-        $beneficiarios = \App\Models\Social::select('extrasocial.*', 'extracreditos.fono')
-        ->join('extracreditos', 'extrasocial.unid_hab_id', '=', 'extracreditos.unid_hab_id')
-        ->where('extrasocial.departamento', '<>', '')
+        $beneficiarios = \App\Models\Credit::select('extracreditos.*')
+        ->from( 'extracreditos')
+        ->where('extracreditos.departamento', '<>', '')
         ->paginate(100);
+        //dump($beneficiarios);
+        //return $beneficiarios;
         return view('extracredito', compact('beneficiarios'));
     }
 

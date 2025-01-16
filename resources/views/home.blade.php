@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Panel General de Beneficiarios</h2>
+        <h5 class="text-center mb-4">Panel General de Beneficiarios</h5>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
             <a href="{{route('socials.create')}}" class="btn btn-primary" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

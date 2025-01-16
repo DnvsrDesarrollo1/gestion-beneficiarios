@@ -1,8 +1,11 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <nav class="navbar navbar-expand-md navbar-light bg-white navbar-custom p-3" >
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-title" href="/">
                 Gestor de Beneficiarios
+            </a>
+            <a class="navbar-title" href="{{ route('homext') }}">
+                Actualizar Telefono / Celular
             </a>
             <p class="alert alert-warning" role="alert" wire:offline>
                 Atencion, tu conexión se ha perdido. Por favor, verifica tu conexión a internet.
@@ -32,15 +35,16 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link custom-nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link custom-nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
+
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -50,9 +54,10 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                                    onclick="event.preventDefault(); if(confirm('¿Estás seguro de que quieres cerrar sesión?'))
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <i class="bi bi-box-arrow-right me-2"></i>
+                                    {{ __('Cerrar Sesión') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -67,3 +72,4 @@
         </div>
     </nav>
 </header>
+

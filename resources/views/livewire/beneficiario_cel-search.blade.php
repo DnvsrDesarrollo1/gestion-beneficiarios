@@ -6,7 +6,7 @@
             </span>
             <div class="form-floating flex-grow-1">
                 <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput" placeholder="Buscar beneficiarios">
-                <label for="searchInput">Buscar beneficiarios2</label>
+                <label for="searchInput">Buscar Beneficiario</label>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
     <div class="card">
         <div class="card-header">
-            Beneficiarios Activos2
+            Beneficiarios
         </div>
         <div class="card-body">
             <div>{{ $beneficiarios->links() }}</div>
@@ -23,12 +23,9 @@
                     <tr>
                         <th>Departamento</th>
                         <th>Nombres</th>
-                        <th>Cedula</th>
+                        <th>C.I.</th>
                         <th>Proyecto</th>
-                        <th>Proc. Estado Social</th>
                         <th>Celular</th>
-                        <th>Observaciones</th>
-                        <th>Cartera</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -36,23 +33,19 @@
                     @foreach ($beneficiarios as $beneficiario)
                         <tr>
                             <td>{{ $beneficiario->departamento }}</td>
-                            <td>{{ $beneficiario->nombre_beneficiario_final }}</td>
-                            <td>{{ $beneficiario->ci_beneficiario_final }}</td>
-                            <td>{{ $beneficiario->nombre_proyecto }}</td>
-                            <td>{{ $beneficiario->proceso_estado_benef_final }}</td>
-                            <td>{{ $beneficiario->credit->fono }}</td>
-                            <td>{{ $beneficiario->observacion_benef_final }}</td>
-                            <td>
-                                {{ $beneficiario->credit ? "Cartera Activa" : "Cartera Pendiente" }}
-                            </td>
+                            <td>{{ $beneficiario->nombre_beneficiario }}</td>
+                            <td>{{ $beneficiario->ci }}</td>
+                            <td>{{ $beneficiario->proyecto }}</td>
+                            <td>{{ $beneficiario->fono }}</td>
                             <td>
                                 <a target="_blank"
-                                    href="{{ route('credits.edit', $beneficiario->unid_hab_id) }}"
+                                    href="{{ route('extracred.edit', $beneficiario->unid_hab_id) }}"
                                     class="d-block btn btn-primary">Actualizar</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
         <div class="card-footer text-muted">

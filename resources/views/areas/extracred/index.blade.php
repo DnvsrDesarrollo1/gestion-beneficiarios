@@ -6,33 +6,34 @@
 
 @section('content')
     <div class="container mt-6">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Lista de Créditos</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Datos del Beneficiarios</h2>
         <div class="table-responsive">
             <table id="creditos" class="table table-bordered table-hover rounded overflow-hidden" style="width:100%">
                 <thead class="table-success">
                     <tr class="align-middle">
                         <th>Departamento</th>
-                        <th>Estado</th>
+
                         <th>Beneficiario</th>
                         <th>C.I.</th>
-                        <th>Monto Activado</th>
-                        <th>Cancelado a la Fecha</th>
+                        <th>Telefono/Celular</th>
+
+
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($credits as $c)
-                        <tr class="align-middle">wire
+                    @foreach ($extracred as $c)
+                        <tr class="align-middle">
                             <td class="table-primary">{{ $c->departamento }}</td>
-                            <td class="table-secondary">{{ $c->estado_cartera }}</td>
+
                             <td class="table-success">{{ $c->nombre_beneficiario }}</td>
                             <td class="table-danger">{{ $c->ci }}</td>
-                            <td class="table-warning">{{ number_format($c->monto_activado, 2) }}</td>
-                            <td class="table-info">{{ number_format($c->monto_canceladoafecha, 2) }}</td>
-                            <td class="table-light">
-                                <a href="{{ route('extracred.edit', $c) }}" target="_blank"
-                                    class="btn btn-block btn-success">Editar</a>
 
+
+                            <td></td>
+                            <td class="table-light">
+                                <a href="{{ route('extracred.edit', $c->unid_hab_id) }}" target="_blank"
+                                    class="btn btn-block btn-success">Editar</a>
                             </td>
                         </tr>
                     @endforeach

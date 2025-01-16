@@ -147,6 +147,31 @@
             background-color: #e9ecef;
             border-color: #dee2e6;
         }
+
+        .navbar-custom {
+            background: linear-gradient(45deg, #173844, #7ca7b6);
+        }
+        .navbar-title {
+        color: white; /* Color del texto */
+        font-family: Arial, sans-serif; /* Fuente del texto */
+        font-size: 1.25rem; /* Tamaño del texto */
+        font-weight: bold; /* Negrita (opcional) */
+        margin-right: 20px; /* Espaciado entre los elementos */
+        text-decoration: none; /* Sin subrayado */
+        }
+
+        .navbar-title:hover {
+        color: #f3f3ef; /* Color al pasar el cursor */
+        }
+        .custom-nav-link {
+        color: white; /* Cambiar color a blanco */
+        text-decoration: none; /* Quitar subrayado (opcional) */
+        }
+
+        .custom-nav-link:hover {
+        color: #ddd; /* Cambiar color al pasar el cursor (hover) */
+        }
+
     </style>
 
     <!-- Scripts -->

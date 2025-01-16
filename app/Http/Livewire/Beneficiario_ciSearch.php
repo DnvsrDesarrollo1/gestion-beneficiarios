@@ -7,7 +7,7 @@ use Livewire\Component;
 use App\Models\Social;
 use Livewire\WithPagination;
 
-class Beneficiario_celSearch extends Component
+class Beneficiario_ciSearch extends Component
 {
     use WithPagination;
 
@@ -20,12 +20,14 @@ class Beneficiario_celSearch extends Component
         $this->resetPage();
     }
 
+
+
     public function render()
     {
-        $beneficiarios = Credit::where('nombre_beneficiario', 'like', '%' . $this->search . '%')
-            ->orWhere('ci', 'like', '%' . $this->search . '%')
+        $beneficiarios = Credit::where('ci', 'like', '%' . $this->search . '%')
+            //->orWhere('', 'like', '%' . $this->search . '%')
             ->paginate(10);
 
-        return view('livewire.beneficiario_cel-search', compact('beneficiarios'));
+        return view('livewire.beneficiario_ci-search', compact('beneficiarios'));
     }
 }

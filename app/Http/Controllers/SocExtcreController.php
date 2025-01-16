@@ -12,9 +12,9 @@ class SocExtcreController extends Controller
      */
     public function index()
     {
-        $credits = Credit::where('codigo_credito', '<>', null)->get();
+        $extracred = Credit::where('codigo_credito', '<>', null)->get();
 
-        return view('areas.credits.index', compact('credits'));
+        return view('areas.extracred.index', compact('extracred'));
     }
 
     /**
@@ -46,32 +46,37 @@ class SocExtcreController extends Controller
      */
     public function edit($credito)
     {
-        //$credito = Credit::where('unid_hab_id', $credito)->first();
-        //$estados = Credit::select('estado_cartera')->distinct()->get()->pluck('estado_cartera');
-        //return view('areas.credits.edit', compact('credito', 'estados'));
+        //return $credito;
+        $credito = Credit::where('unid_hab_id', $credito)->first();
+        $estados = Credit::select('estado_cartera')->distinct()->get()->pluck('estado_cartera');
+        //return $credito;
+        return view('areas.extracred.edit', compact('credito', 'estados'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-   /* public function update(Request $request, Credit $credito)
+    public function update(Request $request, $credito)
     {
+        //return $credito;
         // Validación
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'departamento' => 'required',
-            'estado_cartera' => 'required',
-            'nombre_beneficiario' => 'required',
-            'ci' => 'required',
-            'total_activado' => 'required',
-            'monto_canceladoafecha' => 'required',
+            //'departamento' => 'required',
+            //'nombre_beneficiario' => 'required',
+            //'ci' => 'required',
+            'fono' => 'required',
         ]);
+
+        $credito = Credit::where('unid_hab_id', $credito)->first();
 
         if ($validator->fails()) {
             return redirect()
-                ->route('credits.edit', $credito->id_cred)
+                ->route('extracred.edit', $credito->id_cred)
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        //return $credito;
 
         // Actualización
 
@@ -82,11 +87,11 @@ class SocExtcreController extends Controller
             $credito->update($validator->validated());
 
             return redirect()
-                ->route('credits.edit', $credito)
-                ->with('success', 'El crédito ha sido actualizado exitosamente.');
+                ->route('extracred.edit', $credito->unid_hab_id)
+                ->with('success', 'Los datos se actualizaron exitosamente.');
         } catch (\Exception $e) {
             return redirect()
-                ->route('credits.edit', $credito)
+                ->route('extracred.edit', $credito->unid_hab_id)
                 ->with('error', 'Hubo un problema al actualizar el crédito. Por favor, inténtalo de nuevo.')
                 ->with('code', $e->getMessage())
                 ->withInput();

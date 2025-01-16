@@ -14,6 +14,7 @@ class Credit extends Model
         'codigo_credito',
         'fono',
         'departamento',
+        'proyecto',
         'estado_cartera',
         'nombre_beneficiario',
         'ci',

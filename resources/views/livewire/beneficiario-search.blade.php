@@ -47,7 +47,7 @@
                             <td>
                                 <a target="_blank"
                                     href="{{ route('home.show', $beneficiario->unid_hab_id) }}"
-                                    class="d-block btn btn-primary">Revisar</a>
+                                    class="d-block btn btn-info">Revisar</a>
                             </td>
                         </tr>
                     @endforeach

@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach ($credits as $c)
-                        <tr class="align-middle">wire
+                        <tr class="align-middle">
                             <td class="table-primary">{{ $c->departamento }}</td>
                             <td class="table-secondary">{{ $c->estado_cartera }}</td>
                             <td class="table-success">{{ $c->nombre_beneficiario }}</td>
