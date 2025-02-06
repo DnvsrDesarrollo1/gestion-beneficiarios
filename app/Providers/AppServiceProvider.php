@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Livewire\Beneficiario_celSearch;
-use App\Http\Livewire\Beneficiario_ciSearch;
+//use App\Http\Livewire\Beneficiario_ciSearch;
+use App\Http\Livewire\Benefi_ciSearch;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         Livewire::component('beneficiario-search', BeneficiarioSearch::class);
         Livewire::component('beneficiario_cel-search', Beneficiario_celSearch::class);
-        Livewire::component('beneficiario_ci-search', Beneficiario_ciSearch::class);
+        //Livewire::component('beneficiario_ci-search', Beneficiario_ciSearch::class);
+        Livewire::component('benefi_ci-search', Benefi_ciSearch::class);
     }
 }

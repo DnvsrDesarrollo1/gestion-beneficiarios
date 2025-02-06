@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Beneficiario_ciSearch extends Component
+class Benefi_ciSearch extends Component
 {
     public function render()
     {
-        return view('livewire.beneficiario_ci-search');
+        return view('livewire.benefi_ci-search');
     }
 }

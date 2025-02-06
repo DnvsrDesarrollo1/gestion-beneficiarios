@@ -94,8 +94,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Estado Ley 850:</td>
-                                            <td>{{ $beneficiario->aplic_ley850_estado_social_fuente }}</td>
+                                            <td>Estado Social:</td>
+                                            <td>{{ $beneficiario->estado_social_benef_final }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -1,4 +1,6 @@
 @section('css')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 @endsection
 <div>
     @if (session('success'))
@@ -37,35 +39,42 @@
     </div>
 
 
+
     @foreach ($beneficiarios as $beneficiario)
-        <form action="{{ route('beneficiario.update') }}" method="POST">
+        {{-- 0 --}}
+        <form action="{{ route('beneficiarios.update') }}" method="POST">
             @csrf
             @method('PUT')
-            <input type="hidden" name="uhi" value="{{ $beneficiario->unid_hab_id }}">
+
+            <input type="hidden" name="bei" value="{{ $beneficiario->beneficiario_id }}">
+
+
             <div class="row g-3">
 
                 <div class="col-md-6 mb-3">
                     <label for="departamento" class="form-label fw-bold">Departamento</label>
                     <input type="text" class="form-control @error('departamento') is-invalid @enderror"
                         id="departamento" name="departamento"
-                        value="{{ old('departamento', $beneficiario->departamento) }}"disabled>
+                        value="{{ old('departamento', $beneficiario->departamento) }}" readonly>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="nombre_beneficiario" class="form-label fw-bold">Beneficiario</label>
-                    <input type="text" class="form-control @error('nombre_beneficiario') is-invalid @enderror"
-                        id="nombre_beneficiario" name="nombre_beneficiario"
-                        value="{{ old('nombre_beneficiario', $beneficiario->nombre_beneficiario) }}"disabled>
+                    <label for="nombres" class="form-label fw-bold">Beneficiario</label>
+                    <input type="text" class="form-control @error('nombres') is-invalid @enderror"
+                        id="nombres" name="nombres"
+                        value="{{ old('nombres', $beneficiario->nombres) }}" readonly>
                 </div>
+
                 <div class="col-md-6 mb-3">
-                    <label for="ci" class="form-label fw-bold">C.I.</label>
-                    <input type="text" class="form-control @error('ci') is-invalid @enderror" id="ci"
-                        name="ci" value="{{ old('ci', $beneficiario->ci) }}"disabled>
+                    <label for="cedula_identidad" class="form-label fw-bold">C.I.</label>
+                    <input type="text" class="form-control @error('cedula_identidad') is-invalid @enderror" id="cedula_identidad"
+                        name="cedula_identidad" value="{{ old('cedula_identidad', $beneficiario->cedula_identidad) }}" readonly>
                 </div>
+
                 <div class="col-md-6 mb-3">
-                    <label for="fono" class="form-label fw-bold">Teléfono / Celular</label>
-                    <input type="text" class="form-control @error('fono') is-invalid @enderror" id="fono"
-                        name="fono" value="{{ old('fono', $beneficiario->fono) }}"required>
+                    <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
+                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono"
+                        name="telefono" value="{{ old('telefono', $beneficiario->telefono) }}">
                 </div>
 
 
@@ -79,6 +88,7 @@
 
         </form>
     @endforeach
+
 
 
 

@@ -7,9 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/busqueda', [App\Http\Controllers\HomeExtrController::class, 'index'])->name('homext');
 
-Route::put('/beneficiario/update', [App\Http\Controllers\HomeExtrController::class, 'update'])->name('beneficiario.update');
+Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'])->name('homebene');
+Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth'], function () {
         'sociales' => 'social'
     ])
         ->names('socials');
+
+    Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'index'])->name('reporte');;
+
+
 
     Route::resource('legales', App\Http\Controllers\LegalController::class)->parameters([
         'legales' => 'legal'

@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center bg-gray-100 border border-2 m-4 p-2 rounded">
         <div class="text-center">
             <svg fill="#a03131" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" width="110px" height="110px"
+                xmlns:xlink="http://www.w3.org/1999/xlink" width="75px" height="75px"
                 viewBox="-11.41 -11.41 126.52 126.52" xml:space="preserve" stroke="#a03131">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -18,7 +18,8 @@
                 Algo salió mal
             </h1>
             <p class="text-gray-600 mb-4">
-                Al parecer hay problemas con la red, <b>no actualices ni recargues la página o todo tu avance se perderá.</b>
+                Al parecer hay problemas con la red, <b>no actualices ni recargues la página o todo tu avance se
+                    perderá.</b>
             </p>
             <p class="text-gray-600 mb-4">
                 (Este mensaje desaparecerá cuando se restaure la conexión a internet).

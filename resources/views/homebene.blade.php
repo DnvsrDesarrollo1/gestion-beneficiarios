@@ -11,7 +11,7 @@
 
         <div class="overflow-hidden">
             <div>
-                @livewire('beneficiario_ci-search')
+                @livewire('benefi_ci-search')
             </div>
         </div>
     </div>

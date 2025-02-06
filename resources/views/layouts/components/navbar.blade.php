@@ -4,7 +4,8 @@
             <a class="navbar-title" href="/">
                 Gestor de Beneficiarios
             </a>
-            <a class="navbar-title" href="{{ route('homext') }}">
+
+            <a class="navbar-title" href="{{ route('homebene') }}">
                 Actualizar Telefono / Celular
             </a>
             <p class="alert alert-warning" role="alert" wire:offline>

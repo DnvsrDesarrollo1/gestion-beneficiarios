@@ -17,9 +17,7 @@
             <a class="btn btn-lg text-white" href="{{route('extracredito')}}" style="background-color: #173844; border-color: #4CAF50;">
                 <i class="bi bi-pencil-square"></i> Actualizar número de Teléfono / Celular
             </a>
-            <!--<a class="btn btn-lg text-white" href="{{route('homext')}}" style="background-color: #173844; border-color: #4CAF50;">
-                <i class="bi bi-person-plus"></i> Beneficiario Registrar Celular
-            </a>-->
+
         </div>
     </div>
 </div>
