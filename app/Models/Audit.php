@@ -9,7 +9,7 @@ class Audit extends Model
     protected $table = 'vauditoria';
     public $timestamps = false;
 
-    //protected $primaryKey = 'audit_id';
+    protected $primaryKey = 'audit_id';
 
     protected $fillable = [
         'nombre_tabla',
@@ -23,7 +23,7 @@ class Audit extends Model
 
     public function user()
     {
-        return $this->belongsTo(User2::class, 'user_id', 'id')->from('users');
+        return $this->belongsTo(User2::class, 'user_id', '')->from('users');
     }
 
     public function department()

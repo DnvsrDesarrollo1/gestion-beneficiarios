@@ -31,7 +31,7 @@ class ReporteController extends Controller
         //return($reports);
 
         //return view('areas.reporte.index', compact('reports'));
-        $reports = Audit::find($id); // Ejemplo en Laravel
+        $reports = Department::find($id); // Ejemplo en Laravel
 
         if ($reports) {
             echo $reports->departamento;
