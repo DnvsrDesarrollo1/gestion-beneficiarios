@@ -114,7 +114,7 @@
                                         <tr>
                                             <td>Estado Social:</td>
                                             <td>{{ $beneficiario->estado_social_benef_final }}</td>
-                                            <td>
+                                            <td class="">
                                                 @switch($beneficiario->estado_social_benef_final)
                                                     @case('CANCELADO')
                                                         {{-- PASS --}}
@@ -595,6 +595,7 @@
                                                             </g>
                                                         </svg>
                                                     @break
+
                                                     @default
                                                 @endswitch
                                             </td>
@@ -650,10 +651,10 @@
                                                 </tr>
                                             @endif
                                             @if ($beneficiario->lote != $beneficiario->legal->lote)
-                                            <tr>
-                                                <td>Lote:</td>
-                                                <td>{{ $beneficiario->legal->lote }}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td>Lote:</td>
+                                                    <td>{{ $beneficiario->legal->lote }}</td>
+                                                </tr>
                                             @endif
                                             <tr>
                                                 <td>Lote:</td>
@@ -725,10 +726,14 @@
                                                 <td>Bs. {{ number_format($beneficiario->credit->total_activado, 2) }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Tasas:</td>
-                                                <td>Interes: {{ $beneficiario->credit->tasa_interes * 100 }}%<br>
-                                                    Seg. Desgrv:
-                                                    {{ $beneficiario->credit->tasa_seguro_desgravamen * 100 }}%</td>
+                                                <td>Restructuracion:</td>
+                                                <td>
+                                                    @if ($beneficiario->credit->fecha_restructuracion != null)
+                                                        {{ $beneficiario->credit->fecha_restructuracion }}
+                                                    @else
+                                                        {{ $beneficiario->credit->reestructurados }}
+                                                    @endif
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Saldo:</td>

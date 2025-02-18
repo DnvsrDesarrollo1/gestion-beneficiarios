@@ -5,8 +5,25 @@
                 <i class="fas fa-search"></i>
             </span>
             <div class="form-floating flex-grow-1">
-                <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput" placeholder="Buscar beneficiarios">
+                <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput"
+                    placeholder="Buscar beneficiarios">
                 <label for="searchInput">Buscar beneficiarios</label>
+            </div>
+            <div class="form-floating">
+                <select wire:model.live="searchType" class="form-select" id="searchType" aria-label="Tipo de búsqueda">
+                    <option value="partial">Búsqueda Parcial</option>
+                    <option value="exact">Búsqueda Exacta</option>
+                </select>
+                <label for="searchType">Tipo de búsqueda</label>
+            </div>
+            <div class="form-floating">
+                <select wire:model.live="proyecto" class="form-select" id="proyecto" aria-label="Filtrar por proyecto">
+                    <option value="">Todos los proyectos</option>
+                    @foreach ($proyectos as $proyecto)
+                        <option value="{{ $proyecto->nombre_proyecto }}">{{ $proyecto->nombre_proyecto }}</option>
+                    @endforeach
+                </select>
+                <label for="proyecto">Filtrar por proyecto</label>
             </div>
         </div>
     </div>
@@ -16,6 +33,12 @@
             Beneficiarios Activos
         </div>
         <div class="card-body">
+            @if (session()->has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div>{{ $beneficiarios->links() }}</div>
             <table class="table table-bordered table-hover rounded overflow-hidden" style="width:100%">
                 <thead class="align-middle table-dark">
@@ -24,10 +47,11 @@
                         <th>Nombres</th>
                         <th>Cedula</th>
                         <th>Proyecto</th>
-                        <th>Proc. Estado Social</th>
                         <th>Celular</th>
                         <th>Observaciones</th>
-                        <th>Cartera</th>
+                        <th>Manzano</th>
+                        <th>Lote</th>
+                        <th>Estado Visita</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -38,15 +62,28 @@
                             <td>{{ $beneficiario->nombre_beneficiario_final }}</td>
                             <td>{{ $beneficiario->ci_beneficiario_final }}</td>
                             <td>{{ $beneficiario->nombre_proyecto }}</td>
-                            <td>{{ $beneficiario->proceso_estado_benef_final }}</td>
                             <td>{{ $beneficiario->credit->fono }}</td>
                             <td>{{ $beneficiario->observacion_benef_final }}</td>
                             <td>
-                                {{ $beneficiario->credit ? "Cartera Activa" : "Cartera Pendiente" }}
+                                {{ $beneficiario->manzano }}
                             </td>
                             <td>
-                                <a target="_blank"
-                                    href="{{ route('home.show', $beneficiario->unid_hab_id) }}"
+                                {{ $beneficiario->lote }}
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm"
+                                    wire:change="updateAlerta({{ $beneficiario->id_soc }}, $event.target.value)">
+                                    <option value="{{$beneficiario->alerta}}">{{$beneficiario->alerta}}</option>
+                                    @foreach ($alertaOpciones as $valor => $texto)
+                                        <option value="{{ $valor }}"
+                                            {{ $beneficiario->alerta == $valor ? 'selected' : '' }}>
+                                            {{ $texto }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <a target="_blank" href="{{ route('home.show', $beneficiario->unid_hab_id) }}"
                                     class="d-block btn btn-info">Revisar</a>
                             </td>
                         </tr>

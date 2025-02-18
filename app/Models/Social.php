@@ -54,6 +54,7 @@ class Social extends Model
         'proceso_estado_benef_final',
         'observacion_benef_final',
         'user_id',
+        'alerta'
     ];
 
     public function user()

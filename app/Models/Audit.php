@@ -23,17 +23,17 @@ class Audit extends Model
 
     public function user()
     {
-        return $this->belongsTo(User2::class, 'user_id', '')->from('users');
+        return $this->belongsTo(User::class, 'user_id', 'user_id')->from('users');
     }
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
+       return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
     }
 
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id', 'id')->from('proyectos');
+        return $this->belongsTo(Project::class, 'proyecto_id', 'proyecto_id')->from('proyectos');
     }
 
 

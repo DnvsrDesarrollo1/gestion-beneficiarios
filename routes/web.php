@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         'sociales' => 'social'
     ])
         ->names('socials');
+//Reportes
 
     Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'index'])->name('reporte');;
 

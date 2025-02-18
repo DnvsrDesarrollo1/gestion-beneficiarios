@@ -55,28 +55,43 @@
                     <label for="departamento" class="form-label fw-bold">Departamento</label>
                     <input type="text" class="form-control @error('departamento') is-invalid @enderror"
                         id="departamento" name="departamento"
-                        value="{{ old('departamento', $beneficiario->departamento) }}" readonly>
+                        value="{{ old('departamento', $beneficiario->departamento) }}" disabled>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="nombres" class="form-label fw-bold">Beneficiario</label>
                     <input type="text" class="form-control @error('nombres') is-invalid @enderror"
                         id="nombres" name="nombres"
-                        value="{{ old('nombres', $beneficiario->nombres) }}" readonly>
+                        value="{{ old('nombres', $beneficiario->nombres) }}" disabled>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="cedula_identidad" class="form-label fw-bold">C.I.</label>
                     <input type="text" class="form-control @error('cedula_identidad') is-invalid @enderror" id="cedula_identidad"
-                        name="cedula_identidad" value="{{ old('cedula_identidad', $beneficiario->cedula_identidad) }}" readonly>
+                        name="cedula_identidad" value="{{ old('cedula_identidad', $beneficiario->cedula_identidad) }}" disabled>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <!--<div class="col-md-6 mb-3">
                     <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
                     <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono"
                         name="telefono" value="{{ old('telefono', $beneficiario->telefono) }}">
-                </div>
+                </div>-->
 
+
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
+                    <input type="text" class="form-control @error('telefono') is-invalid @enderror"
+                    id="telefono"
+                    name="telefono"
+                    value="{{ old('telefono', $beneficiario->telefono) }}"
+                    pattern="[0-9]{8,9}"
+                    maxlength="9"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);"
+                    required>
+                    @error('telefono')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
             </div>
 

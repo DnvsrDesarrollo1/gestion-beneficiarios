@@ -17,6 +17,9 @@
             <a class="btn btn-lg text-white" href="{{route('extracredito')}}" style="background-color: #173844; border-color: #4CAF50;">
                 <i class="bi bi-pencil-square"></i> Actualizar número de Teléfono / Celular
             </a>
+            <a class="btn btn-lg text-white" href="{{route('reporte')}}" style="background-color: #173844; border-color: #4CAF50;">
+                <i class="bi bi-pencil-square"></i> Reporte de Auditoria
+            </a>
 
         </div>
     </div>

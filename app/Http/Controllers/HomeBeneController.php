@@ -40,10 +40,16 @@ class HomeBeneController extends Controller
         //return $request;
         // Validación
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'departamento' => 'required',
-            'nombres' => 'required',
-            'cedula_identidad' => 'required',
-            'telefono' => 'required',
+            //'departamento' => 'required',
+            //'nombres' => 'required',
+            //'cedula_identidad' => 'required',
+
+            'telefono' => 'required|regex:/^\d{8,9}$/', // Acepta 8 o 9 dígitos
+        ], [
+            'telefono.required' => 'El número de teléfono es obligatorio.',
+            'telefono.regex' => 'El número de teléfono debe contener 8 o 9 dígitos numéricos.',
+
+
         ]);
 
         $ci = Beneficiari::where('beneficiario_id', $request->input('bei'))->first();
