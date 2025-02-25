@@ -1,8 +1,5 @@
 <?php
-/*use App\Services\BeneficiarioService;
-$service = new BeneficiarioService();
-$lista = $service->obtenerBeneficiarios("LOREDO"); // Ver sin filtro
-dd($lista);*/
+
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;

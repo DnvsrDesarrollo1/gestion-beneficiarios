@@ -17,7 +17,7 @@ class BeneficiarioController extends Controller
     public function index(Request $request)
     {
         $listar = $this->beneficiarioService->obtenerBeneficiarios($request->input('search'));
-        //dd($listar);
+       // dd($listar);
         return view('livewire.beneficiario-search', compact('listar'));
 
     }
