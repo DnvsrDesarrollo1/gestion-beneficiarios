@@ -9,7 +9,13 @@ Route::get('/', function () {
 
 
 Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'])->name('homebene');
+
+//---------------------Ruta del nuevo sistema------------------------------------------------------------------------
+
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
+
+//---------------------------------------------------------------------------------------------------------------------
+
 Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');
 
 Route::group(['middleware' => 'auth'], function () {

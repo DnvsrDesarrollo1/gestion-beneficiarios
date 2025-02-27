@@ -23,7 +23,7 @@ class HomeBeneController extends Controller
      */
     public function index()
     {
-        $beneficiarios = \App\Models\Beneficiari::where('departamento', '<>', '')->get();
+       $beneficiarios = \App\Models\Beneficiari::where('departamento', '<>', '')->get();
         //return $beneficiarios;
         return view('homebene', compact('beneficiarios'));
 

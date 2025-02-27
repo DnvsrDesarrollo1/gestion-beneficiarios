@@ -1,23 +1,24 @@
-<!-- filepath: /C:/laragon/www/gestion-beneficiarios/gestion-beneficiarios/resources/views/livewire/beneficiario-search.blade.php -->
-@extends('layouts.app')
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-
-@section('title', 'Lista de Beneficiarios')
-@section('css')
-
-
-@endsection
-
-
-@section('content')
+<div>
     <h1>Buscar Beneficiario</h1>
-    <div>
-        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Buscar beneficiario..." />
-
+    <div class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-search"></i>
+            </span>
+            <div class="form-floating flex-grow-0" style="width: 200px;">
+                <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput"
+                    placeholder="Buscar por nombre o C.I.">
+                <label for="searchInput">Ingrese el numero de C.I.</label>
+            </div>
+        </div>
     </div>
+    <button wire:click="buscar" class="btn btn-primary">
+        <i class="fas fa-search"></i> Buscar
+    </button>
 
+    <!-- Mostrar la paginación -->
+
+    {{ $query->links() }}
 
     <div class="table-responsive-sm">
         <table class="table table-bordered table-striped">
@@ -41,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($listar as $beneficiarios)
+                @foreach ($query as $beneficiarios)
                     <tr>
                         <td>{{ $beneficiarios->nombres_beneficiario ?? 'N/A' }}</td>
                         <td>{{ $beneficiarios->cedula_benef ?? 'N/A' }}</td>
@@ -60,8 +61,6 @@
 
             </tbody>
         </table>
-        <!-- Mostrar la paginación --
-
 
     </div>
-@endsection
+</div>
