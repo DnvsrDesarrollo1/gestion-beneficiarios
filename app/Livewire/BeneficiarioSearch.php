@@ -12,7 +12,11 @@ class BeneficiarioSearch extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $search = '';
+    //public $search = '';
+    public $nombre = '';
+    public $cedula = '';
+    public $nom_conyugue = '';
+    public $cedula_cony = '';
 
     public function buscar()
     {
@@ -41,10 +45,29 @@ class BeneficiarioSearch extends Component
                 'uh.unidad_habitacional_id'
             ])
             ->where('uha.estado_reg', 'U')
-            ->where('b1.estado_reg', 'U')
-            ->where('b1.cedula_identidad', 'like', '%'. $this->search .'%') // Condición de búsqueda específica
-            ->paginate(10);
+            ->where('b1.estado_reg', 'U');
+            //->where('b1.nombres', 'like', '%'. $this->search .'%') // Condición de búsqueda específica
+            //->paginate(10);
+            // Aplicar filtros solo si los campos tienen valores
+        if (!empty($this->nombre)) {
+            $query->where('b1.nombres', 'like', '%' . $this->nombre . '%');
+        }
+        if (!empty($this->cedula)) {
+            $query->where('b1.cedula_identidad', 'like', '%' . $this->cedula . '%');
+        }
 
-        return view('livewire.beneficiario-search', compact('query'));
+        if (!empty($this->nom_conyugue)) {
+            $query->where('b2.nombres', 'like', '%' . $this->nom_conyugue . '%');
+        }
+
+        if (!empty($this->cedula_cony)) {
+            $query->where('b2.cedula_identidad', 'like', '%' . $this->cedula_cony . '%');
+        }
+
+        $beneficiarios = $query->paginate(10);
+
+        return view('livewire.beneficiario-search', compact('beneficiarios'));
+
+
     }
 }

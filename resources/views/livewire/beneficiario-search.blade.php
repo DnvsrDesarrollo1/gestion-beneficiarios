@@ -1,24 +1,71 @@
+
 <div>
     <h1>Buscar Beneficiario</h1>
+    <!--Busqueda por nombre del beneficiario -->
     <div class="mb-4">
         <div class="input-group">
             <span class="input-group-text bg-primary text-white">
                 <i class="fas fa-search"></i>
             </span>
             <div class="form-floating flex-grow-0" style="width: 200px;">
-                <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput"
-                    placeholder="Buscar por nombre o C.I.">
-                <label for="searchInput">Ingrese el numero de C.I.</label>
+                <input wire:model.live.debounce.300ms="nombre" type="text" class="form-control" id="nombreInput"
+                    placeholder="Buscar por nombre">
+                <label for="nombreInput">Ingrese el nombre beneficiario</label>
             </div>
         </div>
     </div>
+    <!--Busqueda por carnet de identidad del beneficiario-->
+    <div class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-search"></i>
+            </span>
+            <div class="form-floating flex-grow-0" style="width: 200px;">
+                <input wire:model.live.debounce.300ms="cedula" type="text" class="form-control" id="cedulaInput"
+                    placeholder="Buscar por C.I.">
+                <label for="cedulaInput">Ingrese el numero de C.I.</label>
+            </div>
+        </div>
+    </div>
+    <!--Busqueda por nombre conyugue-->
+    <div class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-search"></i>
+            </span>
+            <div class="form-floating flex-grow-0" style="width: 200px;">
+                <input wire:model.live.debounce.300ms="nom_conyugue" type="text" class="form-control" id="nombre_conyugueInput"
+                    placeholder="Buscar por C.I.">
+                <label for="nom_conyugueInput">Ingrese el proyecto</label>
+            </div>
+        </div>
+    </div>
+
+    <!--Busqueda por cedula conyugue-->
+    <div class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text bg-primary text-white">
+                <i class="fas fa-search"></i>
+            </span>
+            <div class="form-floating flex-grow-0" style="width: 200px;">
+                <input wire:model.live.debounce.300ms="cedula_cony" type="text" class="form-control" id="cedula_conyInput"
+                    placeholder="Buscar por C.I.">
+                <label for="cedula_conyInput">Ingrese el proyecto</label>
+            </div>
+        </div>
+    </div>
+
     <button wire:click="buscar" class="btn btn-primary">
         <i class="fas fa-search"></i> Buscar
     </button>
 
     <!-- Mostrar la paginación -->
+    @if ($beneficiarios instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    {{ $beneficiarios->links() }}
+    @else
+    <p>No se encontraron datos paginados.</p>
+    @endif
 
-    {{ $query->links() }}
 
     <div class="table-responsive-sm">
         <table class="table table-bordered table-striped">
@@ -42,7 +89,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($query as $beneficiarios)
+                @foreach ($beneficiarios as $beneficiarios)
                     <tr>
                         <td>{{ $beneficiarios->nombres_beneficiario ?? 'N/A' }}</td>
                         <td>{{ $beneficiarios->cedula_benef ?? 'N/A' }}</td>
