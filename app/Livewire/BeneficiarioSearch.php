@@ -17,6 +17,11 @@ class BeneficiarioSearch extends Component
     public $cedula = '';
     public $nom_conyugue = '';
     public $cedula_cony = '';
+    public $benefi_cod = '';
+    public $fecha_na = '';
+    public $manzano = '';
+    public $lote = '';
+    public $unidad_habitacional = '';
 
     public function buscar()
     {
@@ -33,6 +38,8 @@ class BeneficiarioSearch extends Component
             ->leftJoin('uh_asignada as uha', 'b1.beneficiario_id', '=', 'uha.beneficiario_id')
             ->leftJoin('unidad_habitacional as uh', 'uha.unidad_habitacional_id', '=', 'uh.unidad_habitacional_id')
             ->select([
+                'b1.beneficiario_cod',
+                'b1.fecha_nacimiento',
                 'b1.nombres as nombres_beneficiario',
                 'b1.cedula_identidad as cedula_benef',
                 'b2.nombres as nombres_conyugue',
@@ -63,6 +70,27 @@ class BeneficiarioSearch extends Component
         if (!empty($this->cedula_cony)) {
             $query->where('b2.cedula_identidad', 'like', '%' . $this->cedula_cony . '%');
         }
+
+        if (!empty($this->benefi_cod)) {
+            $query->where('b1.beneficiario_cod', 'like', '%' . $this->benefi_cod . '%');
+        }
+
+        if (!empty($this->fecha_na)) {
+            $query->whereDate('b1.fecha_nacimiento', $this->fecha_na);
+        }
+
+        if (!empty($this->manzano)){
+            $query->where('uh.manzano','like', '%'.$this->manzano.'%');
+        }
+
+        if(!empty($this->lote)){
+            $query->where('uh.lote','like', '%'. $this->lote . '%');
+        }
+
+        if(!empty($this->unidad_habitacional)){
+            $query->where('uh.unidad_habitacional_id', 'like', '%'. $this->unidad_habitacional.'%');
+        }
+
 
         $beneficiarios = $query->paginate(10);
 
