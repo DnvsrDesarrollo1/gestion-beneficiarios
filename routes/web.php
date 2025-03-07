@@ -14,6 +14,8 @@ Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'
 
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
 
+Route::put('/beneficiario/update', [App\Http\Controllers\BeneficiarioController::class, 'update'])->name('beneficiario.edit');
+
 //---------------------------------------------------------------------------------------------------------------------
 
 Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');
@@ -25,9 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
     //});
 
     Route::get('/excredito', [App\Http\Controllers\ExtraCreditoController::class, 'index'])->name('extracredito');
-    Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/panel-general/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('home.show');
+    //Route::get('/panel-general/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('home.show');
 
     Route::resource('creditos', App\Http\Controllers\CreditController::class)->parameters([
         'creditos' => 'credito'

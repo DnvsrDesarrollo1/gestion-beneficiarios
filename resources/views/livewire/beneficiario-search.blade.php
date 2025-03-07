@@ -1,16 +1,56 @@
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        table.custom-table {
+        border: 0px solid #4CAF50; /* Borde general de la tabla */
+        border-radius: 8px; /* Bordes redondeados */
+        overflow: hidden; /* Evita que los bordes sobresalgan */
+        }
+
+        table.custom-table thead th {
+        background-color: #4CAF50; /* Color del encabezado */
+        color: white;
+        border: 1px solid #3e8e41; /* Borde del encabezado */
+        text-align: center;
+        }
+
+        table.custom-table tbody td {
+        border: 0px solid #ddd; /* Bordes de las celdas */
+        padding: 0px;
+        text-align: center;
+        }
+
+        table.custom-table tbody tr:hover {
+        background-color: #f1f1f1; /* Color al pasar el mouse */
+        }
+
+        /* Bordes más finos y mejor contraste */
+        table.custom-table th,
+        table.custom-table td {
+        border-width: 0px;
+        border-color: #ccc;
+        }
+        .custom-container {
+        max-width: 100%; /* Asegura que el contenedor use todo el ancho */
+        width: 95%; /* Un ancho mayor, puedes ajustarlo */
+        margin: 0 auto;   /* Centrar el contenedor */
+        padding: 15px;    /* Espaciado interno */
+       }
+
+    </style>
 @endsection
 
-    <div class="container py-1">
+<div>
+
+    <div class="custom-container mt-2 p-2 bg-light border rounded shadow-md">
         <div class="text-center mb-4">
             <h5 class="fw-bold text-uppercase">BUSQUEDA BENEFICIARIO</h5>
         </div>
         <div class="row g-3">
             <!--Busqueda por nombre del beneficiario -->
-            <div class="col-4 col-md-4 col-lg-3 mb-1">
+            <div class="col-4 col-md-4 col-lg-3 mb-4">
                 <div class="input-group">
                     <div class="form-floating flex-grow-0" style="width: 250px;">
                         <input wire:model.live.debounce.300ms="nombre" type="text" class="form-control" id="nombreInput"
@@ -123,8 +163,8 @@
         @endif
 
 
-        <div class="table-responsive-sm">
-            <table class="table table-bordered table-striped">
+        <div class="table-responsive-sm custom-container">
+            <table class="table table-bordered table-striped custom-table w-90">
 
                 <thead class="table-danger">
                     <tr>
@@ -161,8 +201,6 @@
                             <td>{{ $beneficiarios->unidad_habitacional_id ?? 'N/A' }}</td>
                             <td>{{ $beneficiarios->beneficiario_cod ?? 'N/A' }}</td>
                             <td>{{ $beneficiarios->fecha_nacimiento ?? 'N/A' }}</td>
-
-
                         </tr>
                     @endforeach
 
@@ -171,4 +209,9 @@
 
         </div>
     </div>
+</div>
+@section('js')
+
+@endsection
+
 
