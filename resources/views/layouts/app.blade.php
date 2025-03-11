@@ -154,7 +154,7 @@
         .navbar-title {
         color: white; /* Color del texto */
         font-family: Arial, sans-serif; /* Fuente del texto */
-        font-size: 1.25rem; /* Tamaño del texto */
+        font-size: 1rem; /* Tamaño del texto */
         font-weight: bold; /* Negrita (opcional) */
         margin-right: 20px; /* Espaciado entre los elementos */
         text-decoration: none; /* Sin subrayado */
@@ -170,6 +170,12 @@
 
         .custom-nav-link:hover {
         color: #ddd; /* Cambiar color al pasar el cursor (hover) */
+        }
+        .footer-custom {
+            background-color: #173844;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
         }
 
     </style>
@@ -217,6 +223,10 @@
             });
         }
     </script>
+    <!-- Footer -->
+    <footer class="footer-custom text-center">
+    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) - &copy; {{ date('Y') }}
+    </footer>
 </body>
 
 </html>

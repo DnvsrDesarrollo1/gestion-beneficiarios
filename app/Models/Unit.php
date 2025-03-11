@@ -20,4 +20,14 @@ class Unit extends Model
         'usuario_reg',
         'fecha_reg'
     ];
+
+    public function department()
+    {
+       return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'proyecto_id', 'proyecto_id')->from('proyectos');
+    }
 }

@@ -14,11 +14,18 @@ Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'
 
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
 
-Route::put('/beneficiario/update', [App\Http\Controllers\BeneficiarioController::class, 'update'])->name('beneficiario.edit');
+//Route::get('/lista', [App\Http\Controllers\BeneficiarioUpdController::class, 'index'])->name('beneficiario.edit');
+//Route::get('/beneficiario/{id}/edit', [App\Http\Controllers\BeneficiarioUpdController::class, 'edit'])->name('beneficiario.edit');
+Route::put('/beneficiario-act/update', [App\Http\Controllers\BeneficiarioUpdController::class, 'update'])->name('beneficiario.update');
+
+Route::get('/unidades', [App\Http\Controllers\UnidHabitacionalController::class, 'index'])->name('unidades_hab.index');
+Route::get('/unidades/{id}/edit', [App\Http\Controllers\UnidHabitacionalController::class, 'edit'])->name('unidades_hab.edit');
+Route::put('/unidades/{id}', [App\Http\Controllers\UnidHabitacionalController::class, 'update'])->name('unidades.update');
+
 
 //---------------------------------------------------------------------------------------------------------------------
 
-Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');
+//Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');
 
 Route::group(['middleware' => 'auth'], function () {
 

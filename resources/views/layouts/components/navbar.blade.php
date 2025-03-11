@@ -1,13 +1,15 @@
-<header>
-    <nav class="navbar navbar-expand-md navbar-light bg-white navbar-custom p-3" >
-        <div class="container">
-            <a class="navbar-title" href="/">
-                Gestor de Beneficiarios
-            </a>
 
-            <a class="navbar-title" href="{{ route('homebene') }}">
-                Actualizar Telefono / Celular
-            </a>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-custom p-3" >
+        <div class="container-fluid">
+            <a class="navbar-title ms-4" href="">Gestor de Beneficiarios</a>
+            <a class="navbar-title ms-4" href="#">Beneficiario</a>
+            <a class="navbar-title ms-4" href="#">Datos del Proyecto</a>
+            <a class="navbar-title ms-4" href="#">Asignacion Habitacional</a>
+            <a class="navbar-title ms-4" href="#">Devolucion de Pagos</a>
+            <a class="navbar-title ms-4" href="#">Saldo de Terreno</a>
+            <a class="navbar-title ms-4" href="#">Reportes</a>
+
             <p class="alert alert-warning" role="alert" wire:offline>
                 Atencion, tu conexión se ha perdido. Por favor, verifica tu conexión a internet.
             </p>
@@ -73,4 +75,5 @@
         </div>
     </nav>
 </header>
+
 

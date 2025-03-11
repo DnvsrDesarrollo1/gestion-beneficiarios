@@ -12,7 +12,7 @@ class SocialController extends Controller
      */
     public function index()
     {
-        $socials = Social::where('departamento', '<>', '')->get();
+        $socials = Social::where('departamento', '<>', '')->firs();
         return view('areas.socials.index', compact('socials'));
     }
 
