@@ -26,6 +26,7 @@
                 <td>{{ $beneficiarios->extension_ci }}</td>
                 <td>{{ $beneficiarios->telefono }}</td>
                 <td>
+                    <a href="{{ route('beneficiario_act.edit', $beneficiarios->beneficiario_id) }}" class="btn btn-warning">Editar</a>
 
                 </td>
             </tr>

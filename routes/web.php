@@ -14,14 +14,10 @@ Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'
 
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
 
-//Route::get('/lista', [App\Http\Controllers\BeneficiarioUpdController::class, 'index'])->name('beneficiario.edit');
-//Route::get('/beneficiario/{id}/edit', [App\Http\Controllers\BeneficiarioUpdController::class, 'edit'])->name('beneficiario.edit');
-Route::put('/beneficiario-act/update', [App\Http\Controllers\BeneficiarioUpdController::class, 'update'])->name('beneficiario.update');
+Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)->parameters(['beneficiario_act' => 'beneficiarios']);
 
-Route::get('/unidades', [App\Http\Controllers\UnidHabitacionalController::class, 'index'])->name('unidades_hab.index');
-Route::get('/unidades/{id}/edit', [App\Http\Controllers\UnidHabitacionalController::class, 'edit'])->name('unidades_hab.edit');
-Route::put('/unidades/{id}', [App\Http\Controllers\UnidHabitacionalController::class, 'update'])->name('unidades.update');
-
+Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)->parameters(['unidades_hab' => 'unidad'])
+    ->names('unidades_hab');
 
 //---------------------------------------------------------------------------------------------------------------------
 

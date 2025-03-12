@@ -22,13 +22,19 @@ class BeneficiarioSearch extends Component
     public $manzano = '';
     public $lote = '';
     public $unidad_habitacional = '';
+    public $departamento = '';
 
-    public function buscar()
+    public function buscar($propertyName)
     {
         // Aquí deberías agregar la lógica para buscar los beneficiarios
         // Por ejemplo, podrías buscar en la base de datos
         $this->render();
     }
+
+    /*public function updated($propertyName)
+    {
+    $this->render();
+    }*/
 
     public function render()
     {
@@ -91,10 +97,15 @@ class BeneficiarioSearch extends Component
             $query->where('uh.unidad_habitacional_id', 'like', '%'. $this->unidad_habitacional.'%');
         }
 
+        if (!empty($this->departamento)) {
+            $query->whereRaw('nombre_depto(uh.departamento_id) = ?', [$this->departamento]);
+        }
+
 
         $beneficiarios = $query->paginate(10);
 
         return view('livewire.beneficiario-search', compact('beneficiarios'));
+        //return $query;
 
 
     }

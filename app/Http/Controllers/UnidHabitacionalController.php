@@ -12,8 +12,8 @@ class UnidHabitacionalController extends Controller
         $unidades = DB::table('unidad_habitacional as uh')
             ->select(
                 'uh.unidad_habitacional_id',
-                'd.departamento',
-                'p.nombre_proy',
+                'd.departamento as departamento',
+                'p.nombre_proy as proyecto',
                 'uh.manzano',
                 'uh.lote',
                 'uh.observaciones'
@@ -24,35 +24,30 @@ class UnidHabitacionalController extends Controller
             ->orderBy('d.departamento', 'asc') // Agregamos orden por departamento
             ->get();
 
-        return view('unidades_hab.index', compact('unidades')); // Retorna a la vista
+        return view('areas.unidades_hab.index', compact('unidades')); // Retorna a la vista
 
     }
 
     // Método para mostrar el formulario de edición
-    public function edit($id)
+    public function edit($unidad_habitacional_id)
     {
-        $unidades = DB::table('unidad_habitacional')->where('unidad_habitacional_id', $id)->first();
-        //return $unidad_habitacional;
-        // Si no se encuentra la unidad, redirigir con un mensaje de error
-        /*if (!$unidad_habitacional) {
-        return redirect()->route('unidades.index')->with('error', 'Unidad Habitacional no encontrada.');
-        }*/
-
-        return view('unidades_hab.edit', compact('unidades'));
+        $unidades = DB::table('unidad_habitacional')->where('unidad_habitacional_id', $unidad_habitacional_id)->first();
+        //return $unidades;
+        return view('areas.unidades_hab.edit', compact('unidades'));
     }
 
     // Método para actualizar los datos en la base de datos
-    public function update(Request $request, $id)
+    public function update(Request $request, $unidad_habitacional_id)
     {
         DB::table('unidad_habitacional')
-            ->where('unidad_habitacional_id', $id)
+            ->where('unidad_habitacional_id', $unidad_habitacional_id)
             ->update([
                 'manzano' => $request->manzano,
                 'lote' => $request->lote,
                 'observaciones' => $request->observaciones,
             ]);
 
-        return redirect()->route('unidades_hab.index')->with('success', 'Unidad Habitacional actualizada correctamente');
+        return redirect()->route('areas.unidades_hab.index')->with('success', 'Unidad Habitacional actualizada correctamente');
     }
 }
 

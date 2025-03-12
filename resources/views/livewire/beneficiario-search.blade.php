@@ -210,17 +210,18 @@
         <!--Busqueda por departamento-->
             <div class="col-3 col-md-3 col-lg-3 mb-4">
                 <div class="form-group">
-                    <label for="departamento" class="form-label">Departamento:</label>
-                    <select class="form-input" id="departamento" name="departamento">
-                       <option value="1">Chuquisaca</option>
-                       <option value="2">La Paz</option>
-                       <option value="3">Cochabamba</option>
-                       <option value="4">Oruro</option>
-                       <option value="5">Potosí</option>
-                       <option value="6">Tarija</option>
-                       <option value="7">Santa Cruz</option>
-                       <option value="8">Beni</option>
-                       <option value="9">Pando</option>
+                    <label for="departamento">Buscar por Departamento:</label>
+                    <select wire:model="departamento" id="departamento" class="form-control">
+                        <option value="">-- Seleccione un Departamento --</option>
+                        <option value="CHUQUISACA">CHUQUISACA</option>
+                        <option value="LA PAZ">LA PAZ</option>
+                        <option value="COCHABAMBA">COCHABAMBA</option>
+                        <option value="ORURO">ORURO</option>
+                        <option value="POTOSÍ">POTOSÍ</option>
+                        <option value="TARIJA">TARIJA</option>
+                        <option value="SANTA CRUZ">SANTA CRUZ</option>
+                        <option value="BENI">BENI</option>
+                        <option value="PANDO">PANDO</option>
                     </select>
                 </div>
             </div>

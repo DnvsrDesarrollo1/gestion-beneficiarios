@@ -58,15 +58,14 @@
             <div class="ms-auto">
                 @guest
                     @if (Route::has('login'))
-                        <li class="nav-item">
+
                             <a class="btn btn-outline-light me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
                     @endif
 
                     @if (Route::has('register'))
-                        <li class="nav-item">
+
                             <a class="btn btn-warning" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+
                     @endif
                 @else
                     <li class="nav-item dropdown">

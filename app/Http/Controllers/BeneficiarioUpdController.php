@@ -13,18 +13,20 @@ class BeneficiarioUpdController extends Controller
         $listar = Beneficiary::where('departamento', '<>', '')
         ->get();
         //return $listar;
-        return view('beneficiario.edit', compact('listar'));
+        return view('areas.beneficiario_act.index', compact('listar'));
     }
 
-   /* public function edit($id)
+    public function edit($beneficiario_id)
     {
-        $listar = Beneficiary::findOrFail($id);
-        return view('beneficiario.edit', compact('listar'));
+        $listar = Beneficiary::findOrFail($beneficiario_id);
+        //return $listar;
+       return view('areas.beneficiario_act.edit', compact('listar'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $beneficiario_id)
     {
-        $beneficiario = Beneficiary::findOrFail($id);
+        //$beneficiario = Beneficiary::findOrFail($beneficiario_id);
+        $beneficiario = Beneficiary::findOrFail($beneficiario_id);
         $request->validate([
             'nombres' => 'required',
             'apellido_paterno' => 'required',
@@ -36,11 +38,17 @@ class BeneficiarioUpdController extends Controller
             'telefono' => 'required'
         ]);
 
-        $beneficiario->update($request->all());
+        //$beneficiario->update($request->all());
+        try {
+            $beneficiario->update($request->all());
+            return $beneficiario;
+            //return redirect()->route('areas.beneficiario_act.index')->with('success', 'Beneficiario actualizado exitosamente.');
+        } catch (\Exception $e) {
 
-        return redirect()->route('beneficiario.index')->with('success', 'Beneficiario actualizado.');
-    }*/
-    public function update(Request $request)
+        return redirect()->route('areas.beneficiario_act.index')->with('success', 'Beneficiario actualizado.');
+        }
+    }
+    /*public function update(Request $request)
     {
         //return $request;
         // Validación
@@ -82,16 +90,16 @@ class BeneficiarioUpdController extends Controller
             ]);
 
             return redirect()
-                ->route('beneficiario.edit')
+                ->route('beneficiario_act.edit')
                 ->with('success', 'Los datos se actualizaron exitosamente.');
         } catch (\Exception $e) {
             return redirect()
-                ->route('beneficiario.edit')
+                ->route('beneficiario_act.edit')
                 ->with('error', 'Hubo un problema al actualizar los datos. Por favor, inténtalo de nuevo.')
                 ->with('code', $e->getMessage())
                 ->withInput();
         }
-    }
+    }*/
 
 
 }
