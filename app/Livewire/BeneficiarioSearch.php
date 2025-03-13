@@ -12,7 +12,6 @@ class BeneficiarioSearch extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    //public $search = '';
     public $nombre = '';
     public $cedula = '';
     public $nom_conyugue = '';
@@ -22,7 +21,8 @@ class BeneficiarioSearch extends Component
     public $manzano = '';
     public $lote = '';
     public $unidad_habitacional = '';
-    public $departamento = '';
+    public $departamentos = '';
+    public $proyecto = '';
 
     public function buscar($propertyName)
     {
@@ -31,11 +31,6 @@ class BeneficiarioSearch extends Component
         $this->render();
     }
 
-    /*public function updated($propertyName)
-    {
-    $this->render();
-    }*/
-
     public function render()
     {
         $query = DB::table('beneficiarios as b1')
@@ -43,6 +38,8 @@ class BeneficiarioSearch extends Component
             ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
             ->leftJoin('uh_asignada as uha', 'b1.beneficiario_id', '=', 'uha.beneficiario_id')
             ->leftJoin('unidad_habitacional as uh', 'uha.unidad_habitacional_id', '=', 'uh.unidad_habitacional_id')
+            ->leftJoin('proyectos as p', 'uh.proyecto_id', '=', 'p.proyecto_id')
+            ->leftJoin('departamentos as d', 'uh.departamento_id', '=', 'd.departamento_id')
             ->select([
                 'b1.beneficiario_cod',
                 'b1.fecha_nacimiento',
@@ -50,18 +47,17 @@ class BeneficiarioSearch extends Component
                 'b1.cedula_identidad as cedula_benef',
                 'b2.nombres as nombres_conyugue',
                 'b2.cedula_identidad as cedula_conyugue',
-                DB::raw('nombre_depto(uh.departamento_id) as departamento'),
-                DB::raw('nombre_proyecto(uh.proyecto_id) as proyecto'),
+                 'd.departamento AS departamento',
+                 'p.nombre_proy AS proyecto',
                 'uh.manzano',
                 'uh.lote',
                 'uha.uh_asignada_id',
                 'uh.unidad_habitacional_id'
             ])
+
             ->where('uha.estado_reg', 'U')
             ->where('b1.estado_reg', 'U');
-            //->where('b1.nombres', 'like', '%'. $this->search .'%') // Condición de búsqueda específica
-            //->paginate(10);
-            // Aplicar filtros solo si los campos tienen valores
+
         if (!empty($this->nombre)) {
             $query->where('b1.nombres', 'like', '%' . $this->nombre . '%');
         }
@@ -97,10 +93,13 @@ class BeneficiarioSearch extends Component
             $query->where('uh.unidad_habitacional_id', 'like', '%'. $this->unidad_habitacional.'%');
         }
 
-        if (!empty($this->departamento)) {
-            $query->whereRaw('nombre_depto(uh.departamento_id) = ?', [$this->departamento]);
+        if (!empty($this->departamentos)) {
+            $query->whereRaw('LOWER(d.departamento) = LOWER(?)', [$this->departamentos]);
         }
 
+        if (!empty($this->proyecto)) {
+            $query->whereRaw('LOWER(p.nombre_proy) = LOWER(?)', [$this->proyecto]);
+        }
 
         $beneficiarios = $query->paginate(10);
 

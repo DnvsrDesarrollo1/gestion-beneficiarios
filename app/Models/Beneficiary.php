@@ -44,4 +44,19 @@ class Beneficiary extends Model
     {
         return $this->hasOne(Usignad::class, 'beneficiario_id', 'beneficiario_id');
     }
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unidad_habitacional_id', 'unidad_habitacional_id');
+    }
+
+    public function department()
+    {
+       return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'proyecto_id', 'proyecto_id')->from('proyectos');
+    }
+
 }
