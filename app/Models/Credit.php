@@ -26,7 +26,8 @@ class Credit extends Model
         'fecha_activacion',
         'plazo_credito',
         'tasa_interes',
-        'observaciones'
+        'observaciones',
+        'fecha_reg'
 ];
 
 }

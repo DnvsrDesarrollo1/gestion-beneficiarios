@@ -59,4 +59,5 @@ class Beneficiary extends Model
         return $this->belongsTo(Project::class, 'proyecto_id', 'proyecto_id')->from('proyectos');
     }
 
+
 }

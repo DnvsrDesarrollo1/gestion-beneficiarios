@@ -23,6 +23,8 @@ class BeneficiarioSearch extends Component
     public $unidad_habitacional = '';
     public $departamentos = '';
     public $proyecto = '';
+    public $prestamo = '';
+    public $folio = '';
 
     public function buscar($propertyName)
     {
@@ -40,6 +42,9 @@ class BeneficiarioSearch extends Component
             ->leftJoin('unidad_habitacional as uh', 'uha.unidad_habitacional_id', '=', 'uh.unidad_habitacional_id')
             ->leftJoin('proyectos as p', 'uh.proyecto_id', '=', 'p.proyecto_id')
             ->leftJoin('departamentos as d', 'uh.departamento_id', '=', 'd.departamento_id')
+            ->leftJoin('estado_social as es', 'uha.uh_asignada_id', '=', 'es.uh_asignada_id')
+            ->leftJoin('infor_legal as il', 'uha.uh_asignada_id', '=', 'il.uh_asignada_id')
+            ->leftJoin('creditos as cr', 'uha.uh_asignada_id', '=', 'cr.uh_asignada_id')
             ->select([
                 'b1.beneficiario_cod',
                 'b1.fecha_nacimiento',
@@ -52,7 +57,10 @@ class BeneficiarioSearch extends Component
                 'uh.manzano',
                 'uh.lote',
                 'uha.uh_asignada_id',
-                'uh.unidad_habitacional_id'
+                'uh.unidad_habitacional_id',
+                'es.estado_social',
+                'il.nro_folio_real',
+                'cr.cod_prestamo'
             ])
 
             ->where('uha.estado_reg', 'U')
@@ -100,6 +108,16 @@ class BeneficiarioSearch extends Component
         if (!empty($this->proyecto)) {
             $query->whereRaw('LOWER(p.nombre_proy) = LOWER(?)', [$this->proyecto]);
         }
+
+        if(!empty($this->prestamo)){
+            $query->where('cr.cod_prestamo', 'like', '%'. $this->prestamo.'%');
+        }
+
+        if(!empty($this->folio)){
+            $query->where('nro_folio_real', 'like', '%'. $this->folio.'%');
+        }
+
+
 
         $beneficiarios = $query->paginate(10);
 
