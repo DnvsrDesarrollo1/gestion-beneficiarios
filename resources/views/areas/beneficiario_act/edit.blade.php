@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons para el diseño boton siguiente anterior-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .custom-container {
             max-width: 900px;
@@ -161,6 +165,16 @@
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <button button type="button" onclick="window.open('', '_self', ''); window.close();"
                         class="btn btn-danger">Cancelar</button>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                    <!-- Botón Anterior -->
+                    <a href="{{ route('beneficiario_act.index') }}" class="btn btn-warning">
+                        <i class="bi bi-arrow-left-circle"></i> Anterior
+                    </a>
+                    <!-- Botón Siguiente -->
+                    <a href="pagina_siguiente.html" class="btn btn-secondary">
+                        Siguiente <i class="bi bi-arrow-right-circle"></i>
+                    </a>
                 </div>
             </form>
 

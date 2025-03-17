@@ -1,4 +1,66 @@
 @extends('layouts.app')
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons para el diseño boton siguiente anterior-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .custom-container {
+            max-width: 900px;
+            /* Ancho máximo */
+            margin: 0 auto;
+            /* Centrar el contenedor */
+            padding: 15px;
+            /* Espaciado interno */
+        }
+
+        /* Estilo general del form-group */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            /* Alinea verticalmente label y select */
+            margin-bottom: 15px;
+            /* Espaciado entre campos */
+        }
+
+        /* Estilo del label */
+        .form-group label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            /* Espaciado debajo del label */
+        }
+
+        /* Estilo del select */
+        .form-group select {
+            width: 600px;
+            /* Tamaño fijo del select */
+            max-width: 100%;
+            /* Asegura que no exceda el ancho del contenedor */
+            padding: 8px;
+            /* Espaciado interno */
+            font-size: 14px;
+            /* Tamaño de texto */
+            border: 1px solid #ccc;
+            /* Borde estándar */
+            border-radius: 4px;
+            /* Esquinas redondeadas */
+            background-color: #fff;
+            /* Fondo blanco */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            /* Sombra interna */
+        }
+
+        .form-input {
+            margin-bottom: 10px;
+            /* Espacio debajo de cada input */
+            flex: 1;
+            /* Hace que los inputs se expandan para ocupar el espacio restante */
+
+        }
+    </style>
+@endsection
 
 @section('content')
 <div class="container">
@@ -7,14 +69,17 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
-        <thead>
+    <!-- Paginación -->
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-danger">
             <tr>
-                <th>ID</th>
+                <th>Unidad Habitacional ID</th>
                 <th>Departamento</th>
                 <th>Proyecto</th>
                 <th>Manzano</th>
                 <th>Lote</th>
+                <th>Unidad Vecinal</th>
                 <th>Observaciones</th>
                 <th>Acciones</th>
             </tr>
@@ -27,6 +92,7 @@
                     <td>{{ $unidad_habitacional->proyecto }}</td>
                     <td>{{ $unidad_habitacional->manzano }}</td>
                     <td>{{ $unidad_habitacional->lote }}</td>
+                    <td>{{ $unidad_habitacional->unidad_vecinal }}</td>
                     <td>{{ $unidad_habitacional->observaciones }}</td>
                     <td>
                         <a href="{{ route('unidades_hab.edit', $unidad_habitacional->unidad_habitacional_id) }}" class="btn btn-warning">Editar</a>
@@ -35,5 +101,19 @@
             @endforeach
         </tbody>
     </table>
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-3">
+        <div>{{ $unidades->links() }}</div>
+    </div>
+    <div class="d-flex justify-content-between mt-4">
+        <!-- Botón Anterior -->
+        <a href="{{ route('welcome') }}" class="btn btn-warning">
+            <i class="bi bi-arrow-left-circle"></i> Anterior
+        </a>
+        <!-- Botón Siguiente -->
+        <a href="pagina_siguiente.html" class="btn btn-secondary">
+            Siguiente <i class="bi bi-arrow-right-circle"></i>
+        </a>
+    </div>
 </div>
 @endsection

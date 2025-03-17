@@ -16,13 +16,15 @@ class UnidHabitacionalController extends Controller
                 'p.nombre_proy as proyecto',
                 'uh.manzano',
                 'uh.lote',
+                'uh.unidad_vecinal',
                 'uh.observaciones'
             )
             ->leftJoin('proyectos as p', 'uh.proyecto_id', '=', 'p.proyecto_id')
             ->leftJoin('departamentos as d', 'uh.departamento_id', '=', 'd.departamento_id')
             ->where('uh.estado_reg', 'U')
             ->orderBy('d.departamento', 'asc') // Agregamos orden por departamento
-            ->get();
+            ->paginate(10);
+           // $unidades = UnidadHabitacional::paginate(10);
 
         return view('areas.unidades_hab.index', compact('unidades')); // Retorna a la vista
 
@@ -44,6 +46,7 @@ class UnidHabitacionalController extends Controller
             ->update([
                 'manzano' => $request->manzano,
                 'lote' => $request->lote,
+                'unidad_vecinal' => $request->unidad_vecinal,
                 'observaciones' => $request->observaciones,
             ]);
 

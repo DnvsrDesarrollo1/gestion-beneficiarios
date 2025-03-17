@@ -14,17 +14,27 @@
             background: linear-gradient(45deg, #173844, #7ca7b6);
         }
 
-        .navbar-title,
+        .navbar-title {
+        color: white; /* Color del texto */
+        font-family: Arial, sans-serif; /* Fuente del texto */
+        font-size: 1rem; /* Tamaño del texto */
+        font-weight: bold; /* Negrita (opcional) */
+        margin-right: 20px; /* Espaciado entre los elementos */
+        text-decoration: none; /* Sin subrayado */
+        }
+
         .custom-nav-link {
             color: white;
             font-size: 1rem;
             font-weight: bold;
             text-decoration: none;
         }
-
-        .navbar-title:hover,
-        .custom-nav-link:hover {
-            color: #ddd;
+        .navbar-title:hover {
+        color: #f3f3ef; /* Color al pasar el cursor */
+        }
+        .custom-nav-link {
+        color: white; /* Cambiar color a blanco */
+        text-decoration: none; /* Quitar subrayado (opcional) */
         }
 
         .footer-custom {
@@ -39,20 +49,99 @@
             /* Hace el contenido más ancho */
             margin: auto;
         }
+
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom p-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-custom p-3">
         <div class="container-fluid">
-            <a class="navbar-title ms-4" href="">Gestor de Beneficiarios</a>
-            <a class="navbar-title ms-4" href="{{ route('home') }}">Beneficiario</a>
-            <a class="navbar-title ms-4" href="#">Datos del Proyecto</a>
-            <a class="navbar-title ms-4" href="#">Asignacion Habitacional</a>
-            <a class="navbar-title ms-4" href="#">Devolucion de Pagos</a>
-            <a class="navbar-title ms-4" href="#">Saldo de Terreno</a>
-            <a class="navbar-title ms-4" href="#">Reportes</a>
+
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestor de Beneficiarios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" >Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Beneficiario
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"  href="{{ route('home') }}">Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Crear nuevo beneficiario y actualizar datos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Datos del Proyecto
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Datos del proyecto</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Unidad Habitacional
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Asignacion Habitacional</a></li>
+                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Modificacion de la Unidad Habitacional</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Devolucion de Pagos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Saldo de Terreno
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Reportes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
 
 
             <div class="ms-auto">
