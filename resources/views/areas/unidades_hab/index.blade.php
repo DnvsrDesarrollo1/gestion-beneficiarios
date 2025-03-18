@@ -107,7 +107,7 @@
     </div>
     <div class="d-flex justify-content-between mt-4">
         <!-- Botón Anterior -->
-        <a href="{{ route('welcome') }}" class="btn btn-warning">
+        <a href="#" class="btn btn-warning">
             <i class="bi bi-arrow-left-circle"></i> Anterior
         </a>
         <!-- Botón Siguiente -->

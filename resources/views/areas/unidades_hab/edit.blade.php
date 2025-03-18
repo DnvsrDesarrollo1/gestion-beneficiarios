@@ -63,7 +63,7 @@
     </style>
 @endsection
 
-@section('content')
+
     <div class="custom-container mt-4 p-4 bg-light border rounded shadow-md">
         <div style="display: flex; justify-content: center; align-items: center; height: 10vh;" id="step1">
             <h5>Unidad Habitacional</h5>
@@ -484,4 +484,4 @@
         </form>
 
     </div>
-@endsection
+

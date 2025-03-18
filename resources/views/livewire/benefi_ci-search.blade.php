@@ -71,12 +71,6 @@
                         name="cedula_identidad" value="{{ old('cedula_identidad', $beneficiario->cedula_identidad) }}" disabled>
                 </div>
 
-                <!--<div class="col-md-6 mb-3">
-                    <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
-                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono"
-                        name="telefono" value="{{ old('telefono', $beneficiario->telefono) }}">
-                </div>-->
-
 
                 <div class="col-md-6 mb-3">
                     <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>

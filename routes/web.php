@@ -14,7 +14,19 @@ Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'
 
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
 
-Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)->parameters(['beneficiario_act' => 'beneficiarios']);
+//Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)->parameters(['beneficiario_act' => 'beneficiarios']);
+//Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class);
+
+Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)
+    ->names([
+        'index' => 'beneficiario_act.index',
+        //'create' => 'beneficiario_act.create',
+        //'store' => 'beneficiario_act.store',
+        //'show' => 'beneficiario_act.show',
+        'edit' => 'beneficiario_act.edit',
+        'update' => 'beneficiario_act.update',
+        //'destroy' => 'beneficiario_act.destroy',
+    ]);
 
 Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)->parameters(['unidades_hab' => 'unidad'])
     ->names('unidades_hab');

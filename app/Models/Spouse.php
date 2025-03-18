@@ -11,6 +11,16 @@ class Spouse extends Model
     protected $filiable = [
         'beneficiario_id',
         'beneficiario_conyu_id',
+        'cedula_identidad',
+        'extension_ci',
+        'complemento_ci',
+        'apellido_paterno',
+        'apellido_materno',
+        'nombres',
+        'apellido_casada',
+        'sexo',
+        'fecha_nacimiento',
+        'telefono',
         'estado_reg',
         'usuario_reg',
         'fecha_reg'

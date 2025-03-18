@@ -58,41 +58,58 @@
         }
     </style>
 @endsection
-<div class="container mt-4 p-4 bg-light border rounded shadow-md">
-    <h5 class="text-center">LISTA DE BENEFICIARIOS</h5>
+
+@section('content')
+    <div class="container mt-4 p-4 bg-light border rounded shadow-md">
+        <h5 class="text-center">LISTA DE BENEFICIARIOS</h5>
 
 
-    <table class="table table-bordered table-striped mt-3">
-        <thead class="table-danger">
-            <tr>
-
-                <th>Nombres</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>Cédula Identidad</th>
-                <th>Expedido</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($listar as $beneficiarios)
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-danger">
                 <tr>
 
-                    <td>{{ $beneficiarios->nombres }}</td>
-                    <td>{{ $beneficiarios->apellido_paterno }}</td>
-                    <td>{{ $beneficiarios->apellido_materno }}</td>
-                    <td>{{ $beneficiarios->cedula_identidad }}</td>
-                    <td>{{ $beneficiarios->extension_ci }}</td>
-                    <td>{{ $beneficiarios->telefono }}</td>
-                    <td>
-                        <a href="{{ route('beneficiario_act.edit', $beneficiarios->beneficiario_id) }}"
-                            class="btn btn-warning">Editar</a>
-
-                    </td>
+                    <th>Nombres</th>
+                    <th>Cedula Identidad</th>
+                    <th>Expedido en</th>
+                    <th>Nombre Conyugue</th>
+                    <th>Cedula Identidad C</th>
+                    <th>Ext_ci_cony</th>
+                    <th>Acciones</th>
                 </tr>
-            @endforeach
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach ($listar as $beneficiarios)
+                    <tr>
 
-    </table>
-</div>
+                        <td>{{ $beneficiarios->nombres_beneficiario }}</td>
+                        <td>{{ $beneficiarios->cedula_benef }}</td>
+                        <td>{{ $beneficiarios->ext_benef }}</td>
+                        <td>{{ $beneficiarios->nombres_conyugue }}</td>
+                        <td>{{ $beneficiarios->cedula_conyugue }}</td>
+                        <td>{{ $beneficiarios->ext_conyugue }}</td>
+                        <td>
+                            <a href="{{ route('beneficiario_act.edit', $beneficiarios->beneficiario_id) }}"
+                                class="btn btn-warning">Editar</a>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+        <!-- Paginación -->
+        <div class="d-flex justify-content-center mt-3">
+            <div>{{ $listar->links() }}</div>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <!-- Botón Anterior -->
+            <a href="#" class="btn btn-warning">
+                <i class="bi bi-arrow-left-circle"></i> Anterior
+            </a>
+            <!-- Botón Siguiente -->
+            <a href="pagina_siguiente.html" class="btn btn-secondary">
+                Siguiente <i class="bi bi-arrow-right-circle"></i>
+            </a>
+        </div>
+    </div>
+@endsection
