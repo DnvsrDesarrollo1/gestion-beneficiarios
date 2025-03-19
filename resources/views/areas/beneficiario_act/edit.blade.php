@@ -53,10 +53,10 @@
         }
 
         .form-input {
-                margin-bottom: 10px;
-                /* Espacio debajo de cada input */
-                flex: 1;
-                /* Hace que los inputs se expandan para ocupar el espacio restante */
+            margin-bottom: 10px;
+            /* Espacio debajo de cada input */
+            flex: 1;
+            /* Hace que los inputs se expandan para ocupar el espacio restante */
 
         }
     </style>
@@ -69,126 +69,277 @@
             <h5>MODIFICACIÓN DATOS DEL BENEFICIARIO</h5>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
-            <form method="POST" action="{{ route('beneficiario_act.update', $listar->beneficiario_id) }}">
-                @csrf <!-- Token de seguridad -->
-                @method('PUT')
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
 
-                <div class="custom-container">
-                    <div class="row mb-3 align-items-center">
-                        <!-- Primera columna -->
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label class="form-label">Nombres:</label>
-                                <input type="text" class="form-control" name="nombres_beneficiario"
-                                    value="{{ $listar->nombres_beneficiario }}" required>
-                            </div>
+        <form method="POST" action="{{ route('beneficiario_act.update', $listar->beneficiario_id) }}">
+            @csrf <!-- Token de seguridad -->
+            @method('PUT')
+
+
+            <div class="custom-container">
+                <div class="row mb-3 align-items-center">
+                    <!-- Nombre del beneficiario  -->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="nombres_beneficiario" class="form-label">Nombres:</label>
+                            <input type="text" class="form-control @error('nombres_beneficiario') is-invalid @enderror"
+                                name="nombres_beneficiario" id="nombres_beneficiario"
+                                value="{{ old('nombres_beneficiario', $listar->nombres_beneficiario ?? '') }}" required>
+
+                            @error('nombres_beneficiario')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+                    </div>
 
-                        <!-- Segunda columna -->
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label class="form-label">Cédula Identidad:</label>
-                                <input type="text" class="form-control" name="cedula_benef"
-                                    value="{{ $listar->cedula_benef }}" required>
-                            </div>
+                    <!--Apellido paterno del beneficiario-->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="apellido_pa_benef" class="form-label">Apellido Paterno:</label>
+                            <input type="text" class="form-control @error('apellido_pa_benef') is-invalid @enderror"
+                                name="apellido_pa_benef" id="apellido_pa_benef"
+                                value="{{ old('apellido_pa_benef', $listar->apellido_pa_benef ?? '') }}">
+
+                            @error('apellido_pa_benef')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                         </div>
+                    </div>
 
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label class="form-label">Expedido en:</label>
-                                <select class="form-input" name="ext_benef">
-                                    <option value="CH" {{ $listar->ext_benef == 'CH' ? 'selected' : '' }}>CH</option>
-                                    <option value="LP" {{ $listar->ext_benef == 'LP' ? 'selected' : '' }}>LP</option>
-                                    <option value="CB" {{ $listar->ext_benef == 'CB' ? 'selected' : '' }}>CB</option>
-                                    <option value="OR" {{ $listar->ext_benef == 'OR' ? 'selected' : '' }}>OR</option>
-                                    <option value="PT" {{ $listar->ext_benef == 'PT' ? 'selected' : '' }}>PT</option>
-                                    <option value="TJ" {{ $listar->ext_benef == 'TJ' ? 'selected' : '' }}>TJ</option>
-                                    <option value="SC" {{ $listar->ext_benef == 'SJ' ? 'selected' : '' }}>SC</option>
-                                    <option value="BE" {{ $listar->ext_benef == 'BE' ? 'selected' : '' }}>BE</option>
-                                    <option value="PA" {{ $listar->ext_benef == 'PA' ? 'selected' : '' }}>PA</option>
-                                    <option value="QR" {{ $listar->ext_benef == 'QR' ? 'selected' : '' }}>QR</option>
-                                </select>
-                            </div>
+                    <!--Apellido materno del beneficiario-->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="apellido_ma_benef" class="form-label">Apellido Materno:</label>
+                            <input type="text" class="form-control @error('apellido_ma_benef') is-invalid @enderror"
+                                name="apellido_ma_benef" id="apellido_ma_benef"
+                                value="{{ old('apellido_ma_benef', $listar->apellido_ma_benef ?? '') }}">
+
+                            @error('apellido_ma_benef')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+                    </div>
 
-                        <!-- Primera columna (siguiente fila) -->
-                        <!--<div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label for="apellido_materno" class="form-label">Apellido Materno:</label>
-                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno"
-                                    value="" required>
-                            </div>
+                    <!--Fecha de nacimiento del beneficiario-->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="fecha_na_benef" class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" name="fecha_na_benef" id="fecha_na_benef"
+                                value="{{ old('fecha_na_benef', $listar->fecha_na_benef ?? '') }}" required>
                         </div>
+                    </div>
 
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
-                                    value="" required>
-                            </div>
-                        </div>-->
+                    <!-- Segunda columna -->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="cedula_benef" class="form-label">Cédula Identidad:</label>
+                            <input type="text" class="form-control @error('cedula_benef') is-invalid @enderror"
+                                name="cedula_benef" id="cedula_benef"
+                                value="{{ old('cedula_benef', $listar->cedula_benef ?? '') }}" required>
 
-                        <h4>Datos del Cónyuge</h4>
-                        <input type="hidden" name="conyuge_id" value="{{ $listar->conyuge_id }}">
-
-
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombres_conyugue" value="{{ $listar->nombres_conyuge }}" required>
+                            @error('cedula_benef')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Cédula Identidad</label>
-                            <input type="text" class="form-control" name="cedula_conyugue" value="{{ $listar->cedula_conyugue }}" required>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="ext_benef" class="form-label">Expedido en:</label>
+                            <select class="form-input" name="ext_benef" id="ext_benef">
+                                <option value="CH" {{ $listar->ext_benef == 'CH' ? 'selected' : '' }}>CH</option>
+                                <option value="LP" {{ $listar->ext_benef == 'LP' ? 'selected' : '' }}>LP</option>
+                                <option value="CB" {{ $listar->ext_benef == 'CB' ? 'selected' : '' }}>CB</option>
+                                <option value="OR" {{ $listar->ext_benef == 'OR' ? 'selected' : '' }}>OR</option>
+                                <option value="PT" {{ $listar->ext_benef == 'PT' ? 'selected' : '' }}>PT</option>
+                                <option value="TJ" {{ $listar->ext_benef == 'TJ' ? 'selected' : '' }}>TJ</option>
+                                <option value="SC" {{ $listar->ext_benef == 'SJ' ? 'selected' : '' }}>SC</option>
+                                <option value="BE" {{ $listar->ext_benef == 'BE' ? 'selected' : '' }}>BE</option>
+                                <option value="PA" {{ $listar->ext_benef == 'PA' ? 'selected' : '' }}>PA</option>
+                                <option value="QR" {{ $listar->ext_benef == 'QR' ? 'selected' : '' }}>QR</option>
+                            </select>
                         </div>
+                    </div>
 
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label class="form-label">Cedula Identidad:</label>
-                                <input type="text" class="form-control" name="cedula_conyugue"
-                                    value="{{ $listar->cedula_conyugue }}" required>
-                            </div>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="sexo_benef" class="form-label">Elige una opción:</label>
+                            <select class="form-input" name="sexo_benef" id="sexo_benef">
+                                <option value="FE" {{ $listar->sexo_benef == 'CH' ? 'selected' : '' }}>Femenino
+                                </option>
+                                <option value="MA" {{ $listar->sexo_benef == 'MA' ? 'selected' : '' }}>Masculino
+                                </option>
+                            </select>
                         </div>
+                    </div>
 
-                        <div class="col-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <label class="form-label">Expedido en:</label>
-                                <select class="form-input" name="ext_conyugue">
-                                    <option value="CH" {{ $listar->ext_conyugue == 'CH' ? 'selected' : '' }}>CH</option>
-                                    <option value="LP" {{ $listar->ext_conyugue == 'LP' ? 'selected' : '' }}>LP</option>
-                                    <option value="CB" {{ $listar->ext_conyugue == 'CB' ? 'selected' : '' }}>CB</option>
-                                    <option value="OR" {{ $listar->ext_conyugue == 'OR' ? 'selected' : '' }}>OR</option>
-                                    <option value="PT" {{ $listar->ext_conyugue == 'PT' ? 'selected' : '' }}>PT</option>
-                                    <option value="TJ" {{ $listar->ext_conyugue == 'TJ' ? 'selected' : '' }}>TJ</option>
-                                    <option value="SC" {{ $listar->ext_conyugue == 'SJ' ? 'selected' : '' }}>SC</option>
-                                    <option value="BE" {{ $listar->ext_conyugue == 'BE' ? 'selected' : '' }}>BE</option>
-                                    <option value="PA" {{ $listar->ext_conyugue == 'PA' ? 'selected' : '' }}>PA</option>
-                                    <option value="QR" {{ $listar->ext_conyugue == 'QR' ? 'selected' : '' }}>QR</option>
-                                </select>
-                            </div>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="telefono_benef" class="form-label">Teléfono / Celular:</label>
+                            <input type="text" class="form-control @error('telefono_benef') is-invalid @enderror"
+                                name="telefono_benef" id="telefono_benef"
+                                value="{{ old('telefono_benef', $listar->telefono_benef ?? '') }}" pattern="[0-9]{8,9}"
+                                maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);">
+
+                            @error('telefono_benef')
+                                <!-- Aquí estaba el error -->
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+                    </div>
 
-                                           </div>
+
+                    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+                        <h5>DATOS DEL CONYUGUE</h5>
+                    </div>
+                    <input type="hidden" name="conyuge_id" value="{{ $listar->conyuge_id }}">
+
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="nombres_conyugue" class="form-label">Nombres</label>
+                            <input type="text" class="form-control @error('nombres_conyugue') is-invalid @enderror"
+                                name="nombres_conyugue" id="nombres_conyugue"
+                                value="{{ old('nombres_conyuge', $listar->nombres_conyuge ?? '') }}" required>
+
+                            @error('nombres_conyugue')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="apellido_pa_conyugue" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control @error('apellido_pa_conyugue') is-invalid @enderror"
+                                name="apellido_pa_conyugue" id="apellido_pa_conyugue"
+                                value="{{ old('apellido_pa_conyugue', $listar->apellido_pa_conyugue ?? '') }}">
+
+                            @error('apellido_pa_conyugue')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="apellido_ma_conyugue" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control @error('apellido_ma_conyugue') is-invalid @enderror"
+                                name="apellido_ma_conyugue" id="apellido_ma_conyugue"
+                                value="{{ old('apellido_ma_conyugue', $listar->apellido_ma_conyugue ?? '') }}">
+
+                            @error('apellido_ma_conyugue')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!--Fecha de nacimiento del beneficiario-->
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="fecha_na_conyugue" class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control @error('fecha_na_conyugue') is-invalid @enderror"
+                                name="fecha_na_conyugue" id="fecha_na_conyugue"
+                                value="{{ old('fecha_na_conyugue', $listar->fecha_na_conyugue ?? '') }}">
+
+                            @error('fecha_na_conyugue')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="cedula_conyugue" class="form-label">Cedula Identidad:</label>
+                            <input type="text" class="form-control @error('cedula_conyugue') is-invalid @enderror"
+                                name="cedula_conyugue" id="cedula_conyugue"
+                                value="{{ old('cedula_conyugue', $listar->cedula_conyugue ?? '') }}" required>
+
+                            @error('cedula_conyugue')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="ext_conyugue" class="form-label">Expedido en:</label>
+                            <select class="form-input" name="ext_conyugue" id="ext_conyugue">
+                                <option value="CH" {{ $listar->ext_conyugue == 'CH' ? 'selected' : '' }}>CH</option>
+                                <option value="LP" {{ $listar->ext_conyugue == 'LP' ? 'selected' : '' }}>LP</option>
+                                <option value="CB" {{ $listar->ext_conyugue == 'CB' ? 'selected' : '' }}>CB</option>
+                                <option value="OR" {{ $listar->ext_conyugue == 'OR' ? 'selected' : '' }}>OR</option>
+                                <option value="PT" {{ $listar->ext_conyugue == 'PT' ? 'selected' : '' }}>PT</option>
+                                <option value="TJ" {{ $listar->ext_conyugue == 'TJ' ? 'selected' : '' }}>TJ</option>
+                                <option value="SC" {{ $listar->ext_conyugue == 'SJ' ? 'selected' : '' }}>SC</option>
+                                <option value="BE" {{ $listar->ext_conyugue == 'BE' ? 'selected' : '' }}>BE</option>
+                                <option value="PA" {{ $listar->ext_conyugue == 'PA' ? 'selected' : '' }}>PA</option>
+                                <option value="QR" {{ $listar->ext_conyugue == 'QR' ? 'selected' : '' }}>QR</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="sexo_conyugue" class="form-label">Elige una opción:</label>
+                            <select class="form-input" name="sexo_conyugue" id="sexo_conyugue">
+                                <option value="FE" {{ $listar->sexo_conyugue == 'CH' ? 'selected' : '' }}>Femenino
+                                </option>
+                                <option value="MA" {{ $listar->sexo_conyugue == 'MA' ? 'selected' : '' }}>Masculino
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="telefono_conyugue" class="form-label">Teléfono / Celular:</label>
+                            <input type="text" class="form-control @error('telefono_conyugue') is-invalid @enderror"
+                                name="telefono_conyugue" id="telefono_conyugue"
+                                value="{{ old('telefono_conyugue', $listar->telefono_conyugue ?? '') }}"
+                                pattern="[0-9]{8,9}" maxlength="9"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);">
+
+                            @error('telefono_conyugue')
+                                <!-- Aquí estaba el error -->
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
                 </div>
+            </div>
 
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button button type="button" onclick="window.open('', '_self', ''); window.close();"
-                        class="btn btn-danger">Cancelar</button>
-                </div>
-                <div class="d-flex justify-content-between mt-4">
-                    <!-- Botón Anterior -->
-                    <a href="{{ route('beneficiario_act.index') }}" class="btn btn-warning">
-                        <i class="bi bi-arrow-left-circle"></i> Anterior
-                    </a>
-                    <!-- Botón Siguiente -->
-                    <a href="pagina_siguiente.html" class="btn btn-secondary">
-                        Siguiente <i class="bi bi-arrow-right-circle"></i>
-                    </a>
-                </div>
-            </form>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button button type="button" onclick="window.open('', '_self', ''); window.close();"
+                    class="btn btn-danger">Cancelar</button>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <!-- Botón Anterior -->
+                <a href="{{ route('beneficiario_act.index') }}" class="btn btn-warning">
+                    <i class="bi bi-arrow-left-circle"></i> Anterior
+                </a>
+                <!-- Botón Siguiente -->
+                <a href="pagina_siguiente.html" class="btn btn-secondary">
+                    Siguiente <i class="bi bi-arrow-right-circle"></i>
+                </a>
+            </div>
+        </form>
 
     </div>
 @endsection
