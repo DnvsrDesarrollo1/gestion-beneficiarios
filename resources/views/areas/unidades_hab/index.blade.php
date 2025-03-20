@@ -89,7 +89,7 @@
                 <tr>
                     <td>{{ $unidad_habitacional->unidad_habitacional_id }}</td>
                     <td>{{ $unidad_habitacional->departamento }}</td>
-                    <td>{{ $unidad_habitacional->proyecto }}</td>
+                    <td>{{ $unidad_habitacional->nombre_proy }}</td>
                     <td>{{ $unidad_habitacional->manzano }}</td>
                     <td>{{ $unidad_habitacional->lote }}</td>
                     <td>{{ $unidad_habitacional->unidad_vecinal }}</td>

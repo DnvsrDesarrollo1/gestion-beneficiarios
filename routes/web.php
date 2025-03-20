@@ -14,8 +14,7 @@ Route::get('/busqueda', [App\Http\Controllers\HomeBeneController::class, 'index'
 
 Route::get('/busquedas', [App\Http\Controllers\BeneficiarioController::class, 'index'])->name('home');
 
-//Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)->parameters(['beneficiario_act' => 'beneficiarios']);
-//Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class);
+
 
 Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdController::class)
     ->names([
@@ -28,8 +27,15 @@ Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdControll
         //'destroy' => 'beneficiario_act.destroy',
     ]);
 
-Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)->parameters(['unidades_hab' => 'unidad'])
-    ->names('unidades_hab');
+//Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)->parameters(['unidades_hab' => 'unidad'])
+    //->names('unidades_hab');
+Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)
+->names([
+    'index' => 'unidades_hab.index',
+    'edit' => 'unidades_hab.edit',
+    'update' => 'unidades_hab.update',
+    //'destroy' => 'beneficiario_act.destroy',
+]);
 
 //---------------------------------------------------------------------------------------------------------------------
 

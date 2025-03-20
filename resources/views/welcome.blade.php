@@ -101,9 +101,9 @@
                             Unidad Habitacional
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Asignacion Habitacional</a></li>
-                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Modificacion de la Unidad Habitacional</a></li>
-                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item"  href="#">Asignacion Habitacional</a></li>
+                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Crear nuevo beneficiario y actualizar datos</a></li>
+                            <li><a class="dropdown-item" href="">Menu item</a></li>
                         </ul>
                     </li>
 

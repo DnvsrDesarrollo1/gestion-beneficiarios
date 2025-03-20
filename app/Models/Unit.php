@@ -19,7 +19,7 @@ class Unit extends Model
         'observaciones',
         'estado_reg',
         'usuario_reg',
-        'fecha_reg'
+        'updated_at'
     ];
 
     public function department()
