@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beneficiary;
+use App\Models\Spouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +41,81 @@ class BeneficiarioUpdController extends Controller
         // Retornar la vista con los datos obtenidos
         return view('areas.beneficiario_act.index', compact('listar'));
     }
+
+    public function create(Request $request)
+    {
+        return view('areas.beneficiario_act.create');
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request->all());
+        // Validación de datos
+        $request->validate([
+            'nombres_beneficiario' => 'required|string|max:255',
+            'apellido_pa_benef' => 'required|string|max:255',
+            'apellido_ma_benef' => 'nullable|string|max:255',
+            'fecha_na_benef' => 'required|date',
+            'cedula_benef' => 'required|string|max:20|unique:beneficiarios,cedula_identidad',
+            'ext_benef' => 'required|string|max:10',
+            'sexo_benef' => 'required|string|in:M,F',
+            'telefono_benef' => 'nullable|string|max:20',
+
+            'nombres_conyugue' => 'required|string|max:255',
+            'apellido_pa_conyugue' => 'required|string|max:255',
+            'apellido_ma_conyugue' => 'nullable|string|max:255',
+            'fecha_na_conyugue' => 'required|date',
+            'cedula_conyugue' => 'required|string|max:20|unique:beneficiarios,cedula_identidad',
+            'ext_conyugue' => 'required|string|max:10',
+            'sexo_conyugue' => 'required|string|in:M,F',
+            'telefono_conyugue' => 'nullable|string|max:20',
+        ]);
+
+        // Intentamos guardar los datos
+        try {
+            DB::beginTransaction();
+
+            // Guardar Beneficiario Principal
+            $beneficiario = Beneficiary::create([
+                'nombres' => $request->nombres_beneficiario,
+                'apellido_paterno' => $request->apellido_pa_benef,
+                'apellido_materno' => $request->apellido_ma_benef,
+                'fecha_nacimiento' => $request->fecha_na_benef,
+                'cedula_identidad' => $request->cedula_benef,
+                'extension_ci' => $request->ext_benef,
+                'sexo' => $request->sexo_benef,
+                'telefono' => $request->telefono_benef,
+            ]);
+
+            // Guardar Beneficiario Conyugue
+            $conyugue = Beneficiary::create([
+                'nombres' => $request->nombres_conyugue,
+                'apellido_paterno' => $request->apellido_pa_conyugue,
+                'apellido_materno' => $request->apellido_ma_conyugue,
+                'fecha_nacimiento' => $request->fecha_na_conyugue,
+                'cedula_identidad' => $request->cedula_conyugue,
+                'extension_ci' => $request->ext_conyugue,
+                'sexo' => $request->sexo_conyugue,
+                'telefono' => $request->telefono_conyugue,
+            ]);
+
+            // Relacionar Beneficiario con su Conyugue en la tabla "conyugues"
+            Spouse::create([
+                'beneficiario_id' => $beneficiario->beneficiario_id,
+                'beneficiario_conyu_id' => $conyugue->beneficiario_id,
+            ]);
+
+            DB::commit();
+
+            // Redirigir a la lista con mensaje de éxito
+            return redirect()->route('beneficiario_act.index')->with('success', 'Registro exitoso.');
+        } catch (\Exception $e) {
+            // Si algo sale mal, deshacemos la transacción y mostramos el error
+            DB::rollBack();
+            return back()->with('error', 'Error al registrar: ' . $e->getMessage());
+        }
+    }
+
 
     public function edit($beneficiario_id)
     {

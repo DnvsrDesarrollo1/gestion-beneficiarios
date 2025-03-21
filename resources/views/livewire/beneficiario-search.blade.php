@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label for="proyecto" class="form-label fw-bold">Busqueda por Proyecto:</label>
                     <select wire:model.live.debounce.300ms="proyecto" id="proyecto" class="form-select">
-                        <option value="">-- Seleccione un Departamento --</option>
+                        <option value="">-- Seleccione un Proyecto --</option>
                         <option value="CONSTRUCCION DE 72 VIVIENDAS TIPO PROYECTO EL PORVENIR">CONSTRUCCION DE 72
                             VIVIENDAS TIPO PROYECTO "EL PORVENIR"</option>
                         <option value="URBANIZACION SANTA ISABEL">URBANIZACION SANTA ISABEL</option>

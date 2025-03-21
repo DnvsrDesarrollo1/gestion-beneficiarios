@@ -81,7 +81,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"  href="{{ route('home') }}">Beneficiario</a></li>
                             <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Crear nuevo beneficiario y actualizar datos</a></li>
-                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Registro Nuevo Beneficiario</a></li>
                         </ul>
                     </li>
 

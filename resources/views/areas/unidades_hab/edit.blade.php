@@ -68,6 +68,21 @@
         <div style="display: flex; justify-content: center; align-items: center; height: 10vh;" id="step1">
             <h5>Unidad Habitacional</h5>
         </div>
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
         <form action="{{ route('unidades_hab.update', $unidades->unidad_habitacional_id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -120,34 +135,49 @@
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="manzano" class="form-label">Manzano</label>
-                            <input type="text" class="form-control" id="manzano" name="manzano"
-                                value="{{ $unidades->manzano }}" required>
+                            <input type="text" class="form-control @error('manzano') is-invalid @enderror" id="manzano"
+                                name="manzano" value="{{ old('manzano', $unidades->manzano ?? '') }}" required>
+
+                            @error('manzano')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="lote" class="form-label">Lote</label>
-                            <input type="text" class="form-control" id="lote" name="lote"
-                                value="{{ $unidades->lote }}" required>
+                            <input type="text" class="form-control @error('lote') is-invalid @enderror" id="lote"
+                                name="lote" value="{{ old('lote', $unidades->lote ?? '') }}" required>
+
+                            @error('lote')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="unidad_vecinal" class="form-label">Unidad Vecinal</label>
-                            <input type="text" class="form-control" id="unidad_vecinal" name="unidad_vecinal"
-                                value="{{ $unidades->unidad_vecinal }}" required>
+                            <input type="text" class="form-control @error('unidad_vecinal') is-invalid @enderror"
+                                id="unidad_vecinal" name="unidad_vecinal"
+                                value="{{ old('unidad_vecinal', $unidades->unidad_vecinal ?? '') }}" required>
+
+                            @error('unidad_vecinal')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-3 col-md-3 col-lg-12">
                         <div class="form-group">
                             <label for="observaciones" class="form-label">Observaciones</label>
-                            <textarea class="form-control" id="observaciones" name="observaciones" rows="1" cols="120"
-                                placeholder="Escribe tus observaciones aquí" value="{{ $unidades->observaciones }}"></textarea>
+                            <textarea class="form-control @error('observaciones') is-invalid @enderror" id="observaciones" name="observaciones"
+                                rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones', $unidades->observaciones ?? '') }}
+                            </textarea>
                         </div>
                     </div>
+
                 </div>
             </div>
 

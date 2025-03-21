@@ -62,7 +62,7 @@
 @section('content')
     <div class="container mt-4 p-4 bg-light border rounded shadow-md">
         <h5 class="text-center">LISTA DE BENEFICIARIOS</h5>
-
+        <a href="{{ route('beneficiario_act.create') }}" class="btn btn-primary">Nuevo Beneficiario</a>
 
         <table class="table table-bordered table-striped mt-3">
             <thead class="table-danger">
