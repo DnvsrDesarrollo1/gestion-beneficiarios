@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Spouse extends Model
 {
     protected $table = 'conyugues';
-    protected $primaryKey = 'conyugue_id';
+    protected $primaryKey = '';
     protected $filiable = [
         'beneficiario_id',
         'beneficiario_conyu_id',

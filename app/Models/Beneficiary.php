@@ -30,10 +30,12 @@ class Beneficiary extends Model
         'usuario_reg',
         'fecha_reg',
         'departamento',
-        'user_id'
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 
-    protected $guarded = ['created_at', 'updated_at'];
+    //protected $guarded = ['created_at', 'updated_at'];
 
     public function spouse()
     {
