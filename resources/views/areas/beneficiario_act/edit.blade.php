@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .custom-container {
-            max-width: 900px;
+            max-width: 1000px;
             /* Ancho máximo */
             margin: 0 auto;
             /* Centrar el contenedor */
