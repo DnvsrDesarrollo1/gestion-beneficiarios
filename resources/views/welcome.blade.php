@@ -90,7 +90,7 @@
                             Datos del Proyecto
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Datos del proyecto</a></li>
+                            <li><a class="dropdown-item" href="{{ route('proyecto.index') }}">Datos del proyecto</a></li>
                             <li><a class="dropdown-item" href="#">Menu item</a></li>
                             <li><a class="dropdown-item" href="#">Menu item</a></li>
                         </ul>

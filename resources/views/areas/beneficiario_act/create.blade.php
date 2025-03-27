@@ -111,7 +111,7 @@
                                 <label for="apellido_pa_benef" class="form-label">Apellido Paterno</label>
                                 <input type="text" name="apellido_pa_benef"
                                     class="form-control @error('apellido_pa_benef') is-invalid @enderror"
-                                    value="{{ old('apellido_pa_benef') }}" placeholder="Ingrese Apellido Paterno" required>
+                                    value="{{ old('apellido_pa_benef') }}" placeholder="Ingrese Apellido Paterno">
                                 @error('apellido_pa_benef')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -201,7 +201,9 @@
                                 <label for="telefono_benef" class="form-label">Teléfono / Celular</label>
                                 <input type="text" name="telefono_benef"
                                     class="form-control @error('telefono_benef') is-invalid @enderror"
-                                    value="{{ old('telefono_benef') }}" placeholder="Ingrese Teléfono / Celular">
+                                    value="{{ old('telefono_benef') }}" placeholder="Ingrese Teléfono / Celular"
+                                    pattern="[0-9]{8,9}" maxlength="9"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);">
                                 @error('telefono_benef')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -239,8 +241,7 @@
                                     <label for="apellido_pa_conyugue" class="form-label">Apellido Paterno</label>
                                     <input type="text" name="apellido_pa_conyugue"
                                         class="form-control @error('apellido_pa_conyugue') is-invalid @enderror"
-                                        value="{{ old('apellido_pa_conyugue') }}" placeholder="Ingrese Apellido Paterno"
-                                        >
+                                        value="{{ old('apellido_pa_conyugue') }}" placeholder="Ingrese Apellido Paterno">
                                     @error('apellido_pa_conyugue')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -249,7 +250,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="apellido_ma_conyugue">Apellido Materno</label>
+                                    <label for="apellido_ma_conyugue" class="form-label">Apellido Materno</label>
                                     <input type="text" name="apellido_ma_conyugue"
                                         class="form-control @error('apellido_ma_conyugue') is-invalid @enderror"
                                         value="{{ old('apellido_ma_conyugue') }}" placeholder="Ingrese Apellido Materno">
@@ -276,8 +277,7 @@
                                     <label for="cedula_conyugue" class="form-label">Cédula de Identidad</label>
                                     <input type="text" name="cedula_conyugue"
                                         class="form-control @error('cedula_conyugue') is-invalid @enderror"
-                                        value="{{ old('cedula_conyugue') }}" placeholder="Ingrese la cédula"
-                                        style="color: transparent;">
+                                        value="{{ old('cedula_conyugue') }}" placeholder="Ingrese la cédula">
                                     @error('cedula_conyugue')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -343,7 +343,9 @@
                                     <label for="telefono_conyugue" class="form-label">Teléfono</label>
                                     <input type="text" name="telefono_conyugue"
                                         class="form-control @error('telefono_conyugue') is-invalid @enderror"
-                                        value="{{ old('telefono_conyugue') }}" placeholder="Ingrese Teléfono / Celular">
+                                        value="{{ old('telefono_conyugue') }}" placeholder="Ingrese Teléfono / Celular"
+                                        pattern="[0-9]{8,9}" maxlength="9"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);">
                                     @error('telefono_conyugue')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -31,8 +31,10 @@ class Project extends Model
         'estado_reg',
         'usuario_reg',
         'fecha_reg'
-
-
-
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id');
+    }
 }

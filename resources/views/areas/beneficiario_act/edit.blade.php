@@ -247,17 +247,12 @@
                         </div>
                     </div>
 
-                    <!--Fecha de nacimiento del beneficiario-->
+                    <!--Fecha de nacimiento del conyugue-->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label for="fecha_na_conyugue" class="form-label">Fecha de Nacimiento:</label>
-                            <input type="date" class="form-control @error('fecha_na_conyugue') is-invalid @enderror"
-                                name="fecha_na_conyugue" id="fecha_na_conyugue"
-                                value="{{ old('fecha_na_conyugue', $listar->fecha_na_conyugue ?? '') }}">
-
-                            @error('fecha_na_conyugue')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <input type="date" class="form-control" name="fecha_na_conyugue" id="fecha_na_conyugue"
+                                value="{{ old('fecha_na_conyugue', $listar->fecha_na_conyugue ?? '') }}" required>
                         </div>
                     </div>
 

@@ -48,6 +48,36 @@ class BeneficiarioUpdController extends Controller
 
     public function store(Request $request)
     {
+        /*$request->validate([
+            // Beneficiario
+            'nombres_beneficiario' => 'required|string|max:255',
+            'apellido_pa_benef' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_ma_benef',
+            'apellido_ma_benef' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_pa_benef',
+            'fecha_na_benef' => 'required|date|before:today',
+            'cedula_benef' => 'required|string|max:20|unique:beneficiarios,cedula_identidad',
+            'ext_benef' => 'required|string|max:10',
+            'sexo_benef' => 'required|string|max:10',
+            'telefono_benef' => 'nullable|string|regex:/^\d{8,9}$/',
+
+            // Cónyuge (solo requerido si se ingresa el nombre)
+            'nombres_conyugue' => 'nullable|string|max:255',
+            'apellido_pa_conyugue' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_ma_conyugue|required_with:nombres_conyugue',
+            'apellido_ma_conyugue' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_pa_conyugue|required_with:nombres_conyugue',
+            'fecha_na_conyugue' => 'nullable|date|before:today|required_with:nombres_conyugue',
+            'cedula_conyugue' => 'nullable|string|max:20|required_with:nombres_conyugue',
+            'ext_conyugue' => 'nullable|string|max:10|required_with:nombres_conyugue',
+            'sexo_conyugue' => 'nullable|string|max:10|required_with:nombres_conyugue',
+            'telefono_conyugue' => 'nullable|string|regex:/^\d{8,9}$/',
+        ], [
+            'telefono_benef.regex' => 'El número de teléfono debe contener 8 o 9 dígitos numéricos.',
+            'telefono_conyugue.regex' => 'El número de teléfono debe contener 8 o 9 dígitos numéricos.',
+            'apellido_pa_benef.required_without' => 'Debe ingresar al menos un apellido (paterno o materno) para el beneficiario.',
+            'apellido_ma_benef.required_without' => 'Debe ingresar al menos un apellido (paterno o materno) para el beneficiario.',
+            'apellido_pa_conyugue.required_without' => 'Debe ingresar al menos un apellido (paterno o materno) para el cónyuge.',
+            'apellido_ma_conyugue.required_without' => 'Debe ingresar al menos un apellido (paterno o materno) para el cónyuge.',
+        ]);*/
+
+
         // Obtener el ID máximo del beneficiario (este ya lo has calculado previamente)
         $maxBeneficiarioId = DB::select("SELECT COALESCE(obtener_max_id('beneficiarios', 'beneficiario_id'), 0) AS max_id");
         $nextBeneficiarioId = $maxBeneficiarioId[0]->max_id + 1;
@@ -74,17 +104,17 @@ class BeneficiarioUpdController extends Controller
         ]);
 
         // Verificar si el beneficiario tiene cónyuge
-    $tieneConyugue = $request->filled('nombres_conyugue') && $request->filled('cedula_conyugue');
+        $tieneConyugue = $request->filled('nombres_conyugue') && $request->filled('cedula_conyugue');
 
         if ($tieneConyugue) {
             //Obtener el siguiente ID para el cónyuge en la tabla beneficiarios
-        $nexIdeCoyugue  = $nextBeneficiarioId + 1;
+            $nexIdeCoyugue  = $nextBeneficiarioId + 1;
 
-        // Obtener el máximo ID actual de la tabla "conyugues"
-        $maxConyugueId = DB::select("SELECT COALESCE(obtener_max_id('conyugues', 'conyugue_id'), 0) AS max_id");
-        $nextConyugueId = $maxConyugueId[0]->max_id + 1;
-        //Obtener el siguiente ID beneficiario_conyu_id
-        $nexbeneficiarioConyuId = $nextBeneficiarioId + 1;
+            // Obtener el máximo ID actual de la tabla "conyugues"
+            $maxConyugueId = DB::select("SELECT COALESCE(obtener_max_id('conyugues', 'conyugue_id'), 0) AS max_id");
+            $nextConyugueId = $maxConyugueId[0]->max_id + 1;
+            //Obtener el siguiente ID beneficiario_conyu_id
+            $nexbeneficiarioConyuId = $nextBeneficiarioId + 1;
 
             // Insertar cónyuge en la misma tabla beneficiarios
             DB::table('beneficiarios')->insert([
@@ -111,13 +141,11 @@ class BeneficiarioUpdController extends Controller
                 'fecha_reg' => now(),
                 'estado_reg' => 'U',
             ]);
-
         }
 
         return redirect()
-        ->route('beneficiario_act.index')
-        ->with('success', $tieneConyugue ? 'Beneficiario y Cónyuge registrados correctamente.' : 'Beneficiario registrado correctamente.');
-
+            ->route('beneficiario_act.index')
+            ->with('success', $tieneConyugue ? 'Beneficiario y Cónyuge registrados correctamente.' : 'Beneficiario registrado correctamente.');
     }
 
     public function edit($beneficiario_id)
