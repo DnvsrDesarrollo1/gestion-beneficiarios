@@ -30,7 +30,8 @@ class Project extends Model
         'encargado_proy',
         'estado_reg',
         'usuario_reg',
-        'fecha_reg'
+        'fecha_reg',
+        'updated_at'
     ];
 
     public function department()

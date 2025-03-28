@@ -39,7 +39,7 @@ Route::resource('proyecto', App\Http\Controllers\ProyectoController::class)
 ->names([
     'index' => 'proyecto.index',
     'edit' => 'proyecto.edit',
-    //'update' => 'unidades_hab.update',
+    'update' => 'proyecto.update',
     //'destroy' => 'beneficiario_act.destroy',
 ]);
 

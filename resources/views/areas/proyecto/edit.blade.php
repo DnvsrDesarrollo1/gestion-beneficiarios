@@ -69,6 +69,20 @@
             <h5>MODIFICACIÓN DATOS DEL PROYECTO</h5>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
 
         <form method="POST" action="{{ route('proyecto.update', $datos_proy->proyecto_id) }}">
             @csrf <!-- Token de seguridad -->
@@ -78,45 +92,33 @@
             <div class="custom-container">
                 <div class="row mb-3 align-items-center">
 
+                    <!--Select Departamento-->
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="departamento_id" class="form-label">Departamento</label>
                             <select name="departamento_id" class="form-select">
-                                <option value="">Seleccione un departamento</option>
                                 @foreach ($departamento as $departamentos)
                                     <option value="{{ $departamentos->departamento_id }}"
-                                        {{ old('departamento_id', $unidades->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
+                                        {{ old('departamento_id', $datos_proy->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
                                         {{ $departamentos->departamento }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <!-- Departamento -->
-                    <div class="col-3 col-md-3 col-lg-3">
+
+                    <!--Select Proyecto-->
+                    <div class="col-8 col-md-8 col-lg-8">
                         <div class="form-group">
-                            <label for="departamento_id" class="form-label">Departamento:</label>
-                            <input type="text" class="form-control @error('departamento_id') is-invalid @enderror"
-                                name="departamento_id" id="departamento_id"
-                                value="{{ old('departamento_id', $datos_proy->departamento_id ?? '') }}" required>
-
-                            @error('departamento_id')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!--Proyecto-->
-                    <div class="col-3 col-md-3 col-lg-3">
-                        <div class="form-group">
-                            <label for="nombre_proy" class="form-label">Proyecto:</label>
-                            <input type="text" class="form-control @error('nombre_proy') is-invalid @enderror"
-                                name="nombre_proy" id="nombre_proy"
-                                value="{{ old('nombre_proy', $datos_proy->nombre_proy ?? '') }}">
-
-                            @error('nombre_proy')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <label for="proyecto_id" class="form-label">Proyecto:</label>
+                            <select name="proyecto_id" class="form-select">
+                                @foreach ($proyecto as $proyectos)
+                                    <option value="{{ $proyectos->proyecto_id }}"
+                                        {{ old('proyecto_id', $datos_proy->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
+                                        {{ $proyectos->nombre_proy }}
+                                    </option>
+                                @endforeach
+                            </select>
 
                         </div>
                     </div>
@@ -139,9 +141,8 @@
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label for="cant_uh" class="form-label">Nro de U.H:</label>
-                            <input type="text" class="form-control @error('cant_uh') is-invalid @enderror"
-                                name="cant_uh" id="cant_uh"
-                                value="{{ old('cant_uh', $datos_proy->cant_uh ?? '') }}">
+                            <input type="text" class="form-control @error('cant_uh') is-invalid @enderror" name="cant_uh"
+                                id="cant_uh" value="{{ old('cant_uh', $datos_proy->cant_uh ?? '') }}" requerid>
 
                             @error('cant_uh')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -155,7 +156,7 @@
                             <label for="estado_proy" class="form-label">Estado Proyecto:</label>
                             <input type="text" class="form-control @error('estado_proy') is-invalid @enderror"
                                 name="estado_proy" id="estado_proy"
-                                value="{{ old('estado_proy', $datos_proy->estado_proy ?? '') }}" required>
+                                value="{{ old('estado_proy', $datos_proy->estado_proy ?? '') }}">
 
                             @error('estado_proy')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -169,7 +170,7 @@
                             <label for="modalidad" class="form-label">Modalidad:</label>
                             <input type="text" class="form-control @error('modalidad') is-invalid @enderror"
                                 name="modalidad" id="modalidad"
-                                value="{{ old('modalidad', $datos_proy->modalidad ?? '') }}" required>
+                                value="{{ old('modalidad', $datos_proy->modalidad ?? '') }}">
 
                             @error('modalidad')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -180,28 +181,18 @@
                     <!--Fecha de inicio obra-->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
-                            <label for="fecha_ini_obra" class="form-label">Fecha de inicio obra:</label>
-                            <input type="date" class="form-control @error('fecha_ini_obra') is-invalid @enderror"
-                                name="fecha_ini_obra" id="fecha_ini_obra"
+                            <label for="fecha_ini_obra" class="form-label">Fecha inicio obra:</label>
+                            <input type="date" class="form-control" name="fecha_ini_obra" id="fecha_ini_obra"
                                 value="{{ old('fecha_ini_obra', $datos_proy->fecha_ini_obra ?? '') }}">
-
-                            @error('fecha_ini_obra')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
                     <!--Fecha fin obra-->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
-                            <label for="fecha_fin_obra" class="form-label">Fecha fin obra:</label>
-                            <input type="date" class="form-control @error('fecha_fin_obra') is-invalid @enderror"
-                                name="fecha_fin_obra" id="fecha_fin_obra"
+                            <label for="fecha_fin_obra" class="form-label">Fecha fin de obra:</label>
+                            <input type="date" class="form-control" name="fecha_fin_obra" id="fecha_fin_obra"
                                 value="{{ old('fecha_fin_obra', $datos_proy->fecha_fin_obra ?? '') }}">
-
-                            @error('fecha_fin_obra')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
 
@@ -211,7 +202,7 @@
                             <label for="viviends_conclui" class="form-label">Viviendas Concluidas:</label>
                             <input type="text" class="form-control @error('viviends_conclui') is-invalid @enderror"
                                 name="viviends_conclui" id="viviends_conclui"
-                                value="{{ old('viviends_conclui', $datos_proy->viviends_conclui ?? '') }}" required>
+                                value="{{ old('viviends_conclui', $datos_proy->viviends_conclui ?? '') }}">
 
                             @error('viviends_conclui')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -225,7 +216,7 @@
                             <label for="componente" class="form-label">Componente:</label>
                             <input type="text" class="form-control @error('componente') is-invalid @enderror"
                                 name="componente" id="componente"
-                                value="{{ old('componente', $datos_proy->componente ?? '') }}" required>
+                                value="{{ old('componente', $datos_proy->componente ?? '') }}">
 
                             @error('componente')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -239,7 +230,7 @@
                             <label for="provincia" class="form-label">Provincia:</label>
                             <input type="text" class="form-control @error('provincia') is-invalid @enderror"
                                 name="provincia" id="provincia"
-                                value="{{ old('provincia', $datos_proy->provincia ?? '') }}" required>
+                                value="{{ old('provincia', $datos_proy->provincia ?? '') }}">
 
                             @error('provincia')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -247,13 +238,13 @@
                         </div>
                     </div>
 
-                     <!-- Municipio -->
+                    <!-- Municipio -->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label for="municipio" class="form-label">Municipio:</label>
                             <input type="text" class="form-control @error('municipio') is-invalid @enderror"
                                 name="municipio" id="municipio"
-                                value="{{ old('municipio', $datos_proy->municipio ?? '') }}" required>
+                                value="{{ old('municipio', $datos_proy->municipio ?? '') }}">
 
                             @error('municipio')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -267,7 +258,7 @@
                             <label for="direccion" class="form-label">Direccion:</label>
                             <input type="text" class="form-control @error('direccion') is-invalid @enderror"
                                 name="direccion" id="direccion"
-                                value="{{ old('direccion', $datos_proy->direccion ?? '') }}" required>
+                                value="{{ old('direccion', $datos_proy->direccion ?? '') }}">
 
                             @error('direccion')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -280,8 +271,7 @@
                         <div class="form-group">
                             <label for="latitud" class="form-label">Latitud:</label>
                             <input type="text" class="form-control @error('latitud') is-invalid @enderror"
-                                name="latitud" id="latitud"
-                                value="{{ old('latitud', $datos_proy->latitud ?? '') }}" required>
+                                name="latitud" id="latitud" value="{{ old('latitud', $datos_proy->latitud ?? '') }}">
 
                             @error('latitud')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -295,7 +285,7 @@
                             <label for="longitud" class="form-label">Latitud:</label>
                             <input type="text" class="form-control @error('longitud') is-invalid @enderror"
                                 name="longitud" id="longitud"
-                                value="{{ old('longitud', $datos_proy->longitud ?? '') }}" required>
+                                value="{{ old('longitud', $datos_proy->longitud ?? '') }}">
 
                             @error('longitud')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -308,7 +298,7 @@
                         <div class="form-group">
                             <label for="anio_relevamiento" class="form-label">Año de relevamiento:</label>
                             <input type="text" class="form-control" name="anio_relevamiento" id="anio_relevamiento"
-                                value="{{ old('anio_relevamiento', $datos_proy->anio_relevamiento ?? '') }}" required>
+                                value="{{ old('anio_relevamiento', $datos_proy->anio_relevamiento ?? '') }}">
                         </div>
                     </div>
 

@@ -52,8 +52,8 @@ class BeneficiarioSearch extends Component
                 'b1.cedula_identidad as cedula_benef',
                 'b2.nombres as nombres_conyugue',
                 'b2.cedula_identidad as cedula_conyugue',
-                 'd.departamento AS departamento',
-                 'p.nombre_proy AS proyecto',
+                'd.departamento AS departamento',
+                'p.nombre_proy AS proyecto',
                 'uh.manzano',
                 'uh.lote',
                 'uha.uh_asignada_id',
@@ -65,6 +65,7 @@ class BeneficiarioSearch extends Component
 
             ->where('uha.estado_reg', 'U')
             ->where('b1.estado_reg', 'U');
+
 
         if (!empty($this->nombre)) {
             $query->where('b1.nombres', 'like', '%' . $this->nombre . '%');
@@ -89,16 +90,16 @@ class BeneficiarioSearch extends Component
             $query->whereDate('b1.fecha_nacimiento', $this->fecha_na);
         }
 
-        if (!empty($this->manzano)){
-            $query->where('uh.manzano','like', '%'.$this->manzano.'%');
+        if (!empty($this->manzano)) {
+            $query->where('uh.manzano', 'like', '%' . $this->manzano . '%');
         }
 
-        if(!empty($this->lote)){
-            $query->where('uh.lote','like', '%'. $this->lote . '%');
+        if (!empty($this->lote)) {
+            $query->where('uh.lote', 'like', '%' . $this->lote . '%');
         }
 
-        if(!empty($this->unidad_habitacional)){
-            $query->where('uh.unidad_habitacional_id', 'like', '%'. $this->unidad_habitacional.'%');
+        if (!empty($this->unidad_habitacional)) {
+            $query->where('uh.unidad_habitacional_id', 'like', '%' . $this->unidad_habitacional . '%');
         }
 
         if (!empty($this->departamentos)) {
@@ -109,12 +110,12 @@ class BeneficiarioSearch extends Component
             $query->whereRaw('LOWER(p.nombre_proy) = LOWER(?)', [$this->proyecto]);
         }
 
-        if(!empty($this->prestamo)){
-            $query->where('cr.cod_prestamo', 'like', '%'. $this->prestamo.'%');
+        if (!empty($this->prestamo)) {
+            $query->where('cr.cod_prestamo', 'like', '%' . $this->prestamo . '%');
         }
 
-        if(!empty($this->folio)){
-            $query->where('nro_folio_real', 'like', '%'. $this->folio.'%');
+        if (!empty($this->folio)) {
+            $query->where('nro_folio_real', 'like', '%' . $this->folio . '%');
         }
 
 

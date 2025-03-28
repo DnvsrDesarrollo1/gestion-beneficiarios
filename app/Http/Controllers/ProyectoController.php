@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 class ProyectoController extends Controller
 {
 
-    public function index()
-    {
+    public function index(Request $request)
+    {  // dd($request->input('proyecto'));
+        $proy = $request->input('proy', null); // Obtén lo que el usuario ingresa en el campo
 
         $datos_proy = DB::table('proyectos as p')
             ->select(
                 'p.proyecto_id',
-                'd.departamento_id',
+                'd.departamento',
                 'p.nombre_proy',
                 'p.cant_uh',
                 'p.num_acta',
@@ -32,16 +33,18 @@ class ProyectoController extends Controller
                 'p.longitud',
                 'p.anio_relevamiento'
             )
-            ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
-            ->get();
-        //return $datos_proy;
 
-        return view('areas.proyecto.index', compact('datos_proy'));
+            ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
+            ->orderBy('proyecto_id', 'ASC')
+            ->when($proy, function ($query, $proy) {
+                return $query->whereRaw('LOWER(p.proyecto_id) LIKE LOWER(?)', ['%' . $proy . '%']);
+            })
+            ->paginate(10); // Paginación: muestra 10 resultados por página
+
+         return view('areas.proyecto.index', compact('datos_proy'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
@@ -60,7 +63,7 @@ class ProyectoController extends Controller
         $datos_proy = DB::table('proyectos as p')
             ->select(
                 'p.proyecto_id',
-                'd.departamento_id',
+                'd.departamento',
                 'p.nombre_proy',
                 'p.cant_uh',
                 'p.num_acta',
@@ -80,19 +83,20 @@ class ProyectoController extends Controller
             ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
             ->first();
         //return $datos_proy;
-        //$proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
+        $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
         $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
-         //return dd($datos_proy, $departamento);
+        //return dd($datos_proy, $departamento);
 
-        return view('areas.proyecto.edit', compact('datos_proy', 'departamento'));
+        return view('areas.proyecto.edit', compact('datos_proy', 'departamento', 'proyecto'));
+       //return view('areas.proyecto.edit', compact('datos_proy', 'departamento'));
     }
 
 
     public function update(Request $request, $proyecto_id)
     {
         // Validación de datos
-        $request->validate([
+       /* $request->validate([
             'departamento_id' => 'required|exists:departamentos,departamento_id',
             'nombre_proy' => 'required|string|max:255',
             'cant_uh' => 'required|integer',
@@ -109,7 +113,7 @@ class ProyectoController extends Controller
             'latitud' => 'nullable|numeric',
             'longitud' => 'nullable|numeric',
             'anio_relevamiento' => 'nullable|integer|min:1900|max:' . date('Y'),
-        ]);
+        ]);*/
 
         // Buscar el proyecto por ID
         $proyecto = DB::table('proyectos')->where('proyecto_id', $proyecto_id)->first();
@@ -120,7 +124,7 @@ class ProyectoController extends Controller
         }
 
         // Actualizar el proyecto
-        DB::table('proyectos')
+        $actualizar= DB::table('proyectos')
             ->where('proyecto_id', $proyecto_id)
             ->update([
                 'departamento_id' => $request->departamento_id,
@@ -141,7 +145,14 @@ class ProyectoController extends Controller
                 'anio_relevamiento' => $request->anio_relevamiento,
                 'updated_at' => now()
             ]);
+            //return $actualizar;
 
-        return redirect()->route('proyectos.index')->with('success', 'Proyecto actualizado correctamente.');
+        // Redireccionar con mensaje adecuado
+        if ($actualizar) {
+            return redirect()->route('proyecto.edit', $proyecto_id)
+            ->with('success', 'Proyecto actualizada correctamente.');
+
+        }
+
     }
 }
