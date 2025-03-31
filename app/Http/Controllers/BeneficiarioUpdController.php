@@ -77,6 +77,35 @@ class BeneficiarioUpdController extends Controller
             'apellido_ma_conyugue.required_without' => 'Debe ingresar al menos un apellido (paterno o materno) para el cónyuge.',
         ]);*/
 
+        $request->validate([
+            // Beneficiario
+            'nombres_beneficiario' => 'required|string|max:255',
+            'apellido_pa_benef' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_ma_benef',
+            'apellido_ma_benef' => 'nullable|string|max:255|regex:/^\S+$/|required_without:apellido_pa_benef',
+            'fecha_na_benef' => 'required|date|before:today',
+            'cedula_benef' => 'required|string|max:20|unique:beneficiarios,cedula_identidad',
+            'ext_benef' => 'required|string|max:10',
+            'sexo_benef' => 'required|string|max:10',
+            'telefono_benef' => 'nullable|string|regex:/^\d{8,9}$/',
+
+            // Cónyuge (solo requerido si se ingresa el nombre)
+            'nombres_conyugue',
+            'apellido_pa_conyugue',
+            'apellido_ma_conyugue',
+            'fecha_na_conyugue',
+            'cedula_conyugue',
+            'ext_conyugue',
+            'sexo_conyugue',
+            'telefono_conyugue',
+        ], [
+            'telefono_benef',
+            'telefono_conyugue',
+            'apellido_pa_benef',
+            'apellido_ma_benef',
+            'apellido_pa_conyugue',
+            'apellido_ma_conyugue',
+        ]);
+
 
         // Obtener el ID máximo del beneficiario (este ya lo has calculado previamente)
         $maxBeneficiarioId = DB::select("SELECT COALESCE(obtener_max_id('beneficiarios', 'beneficiario_id'), 0) AS max_id");

@@ -63,16 +63,7 @@
         <h5 class="text-center">Datos de los proyectos</h5>
 
 
-        <!--<div class="col-md-4">
-            <div class="form-group">
-                <label for="proyectoInput" class="form-label fw-bold">Ingrese Código Proyecto</label>
-                <div class="input-group">
-                    <input type="text" name="proyecto" class="form-control" id="proyectoInput"
-                        placeholder="Ingrese Código Proyecto" value="{{ request('proyecto') }}">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </div>
-            </div>
-        </div>-->
+
         <div class="mb-3 no-print">
             <form method="GET" class="d-flex gap-2">
                 <input type="text" name="proy" class="form-control" placeholder="Buscar por Codigo Proyecto"

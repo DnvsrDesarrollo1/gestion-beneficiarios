@@ -35,7 +35,7 @@ class ProyectoController extends Controller
             )
 
             ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
-            ->orderBy('proyecto_id', 'ASC')
+            //->orderBy('proyecto_id', 'ASC')
             ->when($proy, function ($query, $proy) {
                 return $query->whereRaw('LOWER(p.proyecto_id) LIKE LOWER(?)', ['%' . $proy . '%']);
             })
@@ -58,7 +58,8 @@ class ProyectoController extends Controller
         //
     }
 
-    public function edit(Project $project)
+    //public function edit(Project $project)
+    public function edit($proyecto_id)
     {
         $datos_proy = DB::table('proyectos as p')
             ->select(
@@ -81,12 +82,18 @@ class ProyectoController extends Controller
                 'p.anio_relevamiento'
             )
             ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
+            ->where('p.proyecto_id', $proyecto_id) // Filtra por el ID recibido
+            ->orderBy('proyecto_id','ASC')
             ->first();
         //return $datos_proy;
+        if (!$datos_proy) {
+            return redirect()->route('proyectos.index')->with('error', 'Proyecto no encontrado.');
+        }
+
         $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
         $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
-        //return dd($datos_proy, $departamento);
+        //return dd($datos_proy, $departamento, );
 
         return view('areas.proyecto.edit', compact('datos_proy', 'departamento', 'proyecto'));
        //return view('areas.proyecto.edit', compact('datos_proy', 'departamento'));
@@ -114,6 +121,26 @@ class ProyectoController extends Controller
             'longitud' => 'nullable|numeric',
             'anio_relevamiento' => 'nullable|integer|min:1900|max:' . date('Y'),
         ]);*/
+
+        // Validación de datos
+        $request->validate([
+            'departamento_id',
+            'nombre_proy',
+            'cant_uh',
+            'num_acta',
+            'estado_proy',
+            'modalidad',
+            'fecha_ini_obra',
+            'fecha_fin_obra',
+            'viviends_conclui',
+            'componente',
+            'provincia',
+            'municipio',
+            'direccion',
+            'latitud',
+            'longitud',
+            'anio_relevamiento',
+        ]);
 
         // Buscar el proyecto por ID
         $proyecto = DB::table('proyectos')->where('proyecto_id', $proyecto_id)->first();
