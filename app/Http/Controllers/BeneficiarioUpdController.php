@@ -7,8 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class BeneficiarioUpdController extends Controller
 {
-    public function index()
+    /* public function index(Request $request)
     {
+        $ci_beneficiario = $request->input('ci_beneficiario'); // Obtener CI desde el formulario
+        //dd($ci_beneficiario);
+
+
         $listar = DB::table('beneficiarios as b1')
             ->select(
                 'b1.beneficiario_id',
@@ -21,6 +25,7 @@ class BeneficiarioUpdController extends Controller
                 'b1.sexo AS sexo_benef',
                 'b1.telefono AS telefono_benef',
                 'b2.nombres as nombres_conyugue',
+
                 'b2.apellido_paterno AS apellido_pa_conyugue',
                 'b2.apellido_materno AS apellido_ma_conyugue',
                 'b2.fecha_nacimiento AS fecha_na_conyugue',
@@ -31,12 +36,46 @@ class BeneficiarioUpdController extends Controller
             )
             ->join('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
             ->join('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
-            ->paginate(10);
-        //->get();
-        //return $listar;
-        //return dd($listar);
 
-        // Retornar la vista con los datos obtenidos
+            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
+                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
+            })
+            ->paginate(10);
+
+        return view('areas.beneficiario_act.index', compact('listar'));
+    }*/
+    public function index(Request $request)
+    {
+        $ci_beneficiario = $request->input('ci_beneficiario');
+
+        $listar = DB::table('beneficiarios as b1')
+            ->select(
+                'b1.beneficiario_id',
+                'b1.nombres as nombres_beneficiario',
+                'b1.apellido_paterno AS apellido_pa_benef',
+                'b1.apellido_materno AS apellido_ma_benef',
+                'b1.fecha_nacimiento AS fecha_na_benef',
+                'b1.cedula_identidad as cedula_benef',
+                'b1.extension_ci AS ext_benef',
+                'b1.sexo AS sexo_benef',
+                'b1.telefono AS telefono_benef',
+                'b2.nombres as nombres_conyugue',// Puede ser NULL si no tiene cónyuge
+
+                'b2.apellido_paterno AS apellido_pa_conyugue',
+                'b2.apellido_materno AS apellido_ma_conyugue',
+                'b2.fecha_nacimiento AS fecha_na_conyugue',
+                'b2.cedula_identidad as cedula_conyugue', // Puede ser NULL si no tiene cónyuge
+                'b2.extension_ci as ext_conyugue', // Puede ser NULL si no tiene có<nyuge></nyuge>
+                'b2.sexo AS sexo_conyugue',
+                'b2.telefono AS telefono_conyugue'
+            )
+            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
+            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
+            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
+                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
+            })
+            ->paginate(10);
+
         return view('areas.beneficiario_act.index', compact('listar'));
     }
 
@@ -201,8 +240,10 @@ class BeneficiarioUpdController extends Controller
                 'b2.sexo AS sexo_conyugue',
                 'b2.telefono AS telefono_conyugue'
             )
-            ->join('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
-            ->join('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
+            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
+            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
+            /*->join('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
+            ->join('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')*/
             ->where('b1.beneficiario_id', $beneficiario_id)
             ->first();
 

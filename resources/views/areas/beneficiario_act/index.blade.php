@@ -64,6 +64,13 @@
         <h5 class="text-center">LISTA DE BENEFICIARIOS</h5>
         <a href="{{ route('beneficiario_act.create') }}" class="btn btn-primary">Registro de Nuevo Beneficiario</a>
 
+
+        <form method="GET" class="d-flex gap-2">
+            <input type="text" name="ci_beneficiario" class="form-control"
+                   value="{{ request('ci_beneficiario') }}" placeholder="Buscar por CI">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
         <table class="table table-bordered table-striped mt-3">
             <thead class="table-danger">
                 <tr>
