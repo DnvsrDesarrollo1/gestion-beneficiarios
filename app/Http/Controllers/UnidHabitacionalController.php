@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class UnidHabitacionalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $unid_habitacionalId = $request->input('unid_habitacionalId');
+
         $unidades = DB::table('unidad_habitacional as uh')
             ->select(
                 'uh.unidad_habitacional_id',
@@ -22,6 +24,10 @@ class UnidHabitacionalController extends Controller
             )
             ->leftJoin('proyectos as p', 'uh.proyecto_id', '=', 'p.proyecto_id')
             ->leftJoin('departamentos as d', 'uh.departamento_id', '=', 'd.departamento_id')
+            ->when($unid_habitacionalId, function ($query, $unid_habitacionalId) {
+                return $query->whereRaw("uh.unidad_habitacional_id::TEXT LIKE ?", ["%{$unid_habitacionalId}%"]);
+            })
+
             ->where('uh.estado_reg', 'U')
             ->orderBy('uh.unidad_habitacional_id', 'asc') // Ordenar por departamento
             ->paginate(10);
@@ -31,7 +37,7 @@ class UnidHabitacionalController extends Controller
         $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
         //return $departamento;
 
-        return view('areas.unidades_hab.index', compact('unidades','departamento','proyecto')); // Retorna la vista con datos paginados
+        return view('areas.unidades_hab.index', compact('unidades', 'departamento', 'proyecto')); // Retorna la vista con datos paginados
 
 
     }
@@ -41,7 +47,7 @@ class UnidHabitacionalController extends Controller
         $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
         $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
-        return view('areas.unidades_hab.create', compact('proyecto','departamento'));
+        return view('areas.unidades_hab.create', compact('proyecto', 'departamento'));
     }
 
     // Método para mostrar el formulario de edición
@@ -77,7 +83,7 @@ class UnidHabitacionalController extends Controller
 
         //return dd($unidades, $proyecto, $departamento);
         // Retornar la vista con los datos de la unidad
-        return view('areas.unidades_hab.edit', compact('unidades','departamento','proyecto'));
+        return view('areas.unidades_hab.edit', compact('unidades', 'departamento', 'proyecto'));
     }
 
     public function update(Request $request, $unidad_habitacional_id)
@@ -115,8 +121,7 @@ class UnidHabitacionalController extends Controller
         // Redireccionar con mensaje adecuado
         if ($actualizar) {
             return redirect()->route('unidades_hab.edit', $unidad_habitacional_id)
-            ->with('success', 'Unidad Habitacional actualizada correctamente.');
-
+                ->with('success', 'Unidad Habitacional actualizada correctamente.');
         }
     }
 }

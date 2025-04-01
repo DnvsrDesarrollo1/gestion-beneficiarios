@@ -64,12 +64,20 @@
 
 @section('content')
 <div class="container">
-    <h2>Lista de Unidades Habitacionales</h2>
+    <h5 class="text-center">Lista de Unidades Habitacionales</h5>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <!-- Paginación -->
+
+    <div class="mb-3 no-print">
+        <form method="GET" class="d-flex gap-2">
+            <input type="text" name="unid_habitacionalId" class="form-control" placeholder="Busqueda por unidad habitacional_id"
+                value="{{ request('unid_habitacionalId') }}">
+            <!--<button type="submit" class="btn btn-primary">Buscar</button>-->
+        </form>
+    </div>
 
     <table class="table table-bordered table-striped mt-3">
         <thead class="table-danger">

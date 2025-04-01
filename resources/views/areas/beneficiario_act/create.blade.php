@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label for="cedula_benef" class="form-label">Cédula de Identidad</label>
                                 <input type="text" name="cedula_benef"
-                                    class="form-control @error('cedula_benef') is-invalid @enderror"
+                                    class="form-control"
                                     value="{{ old('cedula_benef') }}" placeholder="Ingrese la cédula" required>
                                 @error('cedula_benef')
                                     <div class="invalid-feedback">{{ $message }}</div>

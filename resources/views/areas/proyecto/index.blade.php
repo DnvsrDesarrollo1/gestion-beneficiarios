@@ -60,7 +60,7 @@
 @endsection
 @section('content')
     <div class="container mt-4 p-4 bg-light border rounded shadow-md">
-        <h5 class="text-center">Datos de los proyectos</h5>
+        <h5 class="text-center">Datos de los Proyectos</h5>
 
 
 

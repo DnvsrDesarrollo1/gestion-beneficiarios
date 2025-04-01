@@ -52,7 +52,7 @@
 <div class="container mt-3">
     <div class="custom-container p-3 bg-light border rounded shadow" >
         <div class="text-center mb-4">
-            <h5 class="fw-bold text-uppercase">BUSQUEDA BENEFICIARIO</h5>
+            <h5 class="fw-bold text-uppercase">Busqueda Beneficiario</h5>
         </div>
 
         <div class="row g-3">
