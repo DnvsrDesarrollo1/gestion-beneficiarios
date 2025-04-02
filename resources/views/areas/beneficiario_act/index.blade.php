@@ -60,7 +60,7 @@
         }
 
         .btn-custom {
-            background-color: #5dade2 ;
+            background-color: #5dade2;
             color: white;
         }
 
@@ -105,11 +105,12 @@
                     <tr>
 
                         <td>{{ $beneficiarios->nombres_beneficiario }}</td>
-                        <td>{{ $beneficiarios->cedula_benef }}</td>
-                        <td>{{ $beneficiarios->ext_benef }}</td>
-                        <td>{{ $beneficiarios->nombres_conyugue }}</td>
-                        <td>{{ $beneficiarios->cedula_conyugue }}</td>
-                        <td>{{ $beneficiarios->ext_conyugue }}</td>
+                            <td>{{ $beneficiarios->cedula_benef }}</td>
+                            <td>{{ $beneficiarios->ext_benef }}</td>
+                            <td>{{ $beneficiarios->nombres_conyugue }}</td>
+                            <td>{{ $beneficiarios->cedula_conyugue }}</td>
+                            <td>{{ $beneficiarios->ext_conyugue }}</td>
+
                         <td>
                             <a href="{{ route('beneficiario_act.edit', $beneficiarios->beneficiario_id) }}"
                                 class="btn btn-warning">Editar</a>

@@ -43,6 +43,14 @@ Route::resource('proyecto', App\Http\Controllers\ProyectoController::class)
     //'destroy' => 'beneficiario_act.destroy',
 ]);
 
+Route::resource('social_act', App\Http\Controllers\SocialUpdController::class)
+->names([
+    'index' => 'social_act.index',
+    'edit' => 'social_act.edit',
+    //'update' => 'proyecto.update',
+    //'destroy' => 'beneficiario_act.destroy',
+]);
+
 //---------------------------------------------------------------------------------------------------------------------
 
 //Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');

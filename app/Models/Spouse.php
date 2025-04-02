@@ -29,12 +29,15 @@ class Spouse extends Model
     // Relación con el beneficiario
     public function beneficiary()
     {
-        return $this->belongsTo(Beneficiary::class, 'beneficiario_id');
+        return $this->belongsTo(Beneficiary::class, 'beneficiario_id', 'beneficiario_id');
     }
 
     // Relación con el conyugue (beneficiario también)
     public function spouse()
     {
-        return $this->belongsTo(Beneficiary::class, 'conyugue_id');
+        //return $this->hasOne(Spouse::class, 'beneficiario_id', 'beneficiario_id');
+        return $this->belongsTo(Beneficiary::class, 'beneficiario_conyu_id', 'beneficiario_id');
     }
+
+
 }

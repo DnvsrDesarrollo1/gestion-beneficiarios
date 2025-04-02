@@ -146,7 +146,7 @@
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label for="cedula_benef" class="form-label">Cédula Identidad:</label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control @error('apellido_ma_benef') is-invalid @enderror"
                                 name="cedula_benef" id="cedula_benef"
                                 value="{{ old('cedula_benef', $listar->cedula_benef ?? '') }}" required>
 
