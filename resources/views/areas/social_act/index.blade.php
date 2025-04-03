@@ -31,19 +31,22 @@
             </thead>
             <tbody>
                 @foreach ($lis_social as $uh_asignada)
+
                     <tr>
 
-                        <td>{{ $uh_asignada->nombres }}</td>
-                        <td>{{ $uh_asignada->cedula_identidad }}</td>
-                        <td>{{ $uh_asignada->departamento_id }}</td>
-                        <td>{{ $uh_asignada->proyecto_id }}</td>
-                        <td>{{ $uh_asignada->manzano }}</td>
-                        <td>{{ $uh_asignada->lote }}</td>
-                        <td>{{ $uh_asignada->unidad_vecinal }}</td>
-                        <td>{{ $uh_asignada->proceso_estado }}</td>
+                        <td>{{ $uh_asignada->beneficiarios->nombres }}</td>
+                        <td>{{ $uh_asignada->beneficiarios->cedula_identidad  }}</td>
+                        <td>{{ $uh_asignada->unidad_habitacional->departamento_id }}</td>
+                        <td>{{ $uh_asignada->unidad_habitacional->proyecto_id }}</td>
+                        <td>{{ $uh_asignada->unidad_habitacional->manzano }}</td>
+                        <td>{{ $uh_asignada->unidad_habitacional->lote }}</td>
+                        <td>{{ $uh_asignada->unidad_habitacional->unidad_vecinal }}</td>
+                        <td>{{ $uh_asignada->estado_social->proceso_estado }}</td>
                         <td>
                             <a href="{{ route('social_act.edit', $uh_asignada->uh_asignada_id) }}"
                                 class="btn btn-warning">Editar</a>
+
+
 
                         </td>
                     </tr>

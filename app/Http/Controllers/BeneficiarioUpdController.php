@@ -11,136 +11,7 @@ class BeneficiarioUpdController extends Controller
 
     public function index(Request $request)
     {
-        /* $ci_beneficiario = $request->input('ci_beneficiario');
 
-        $listar = DB::table('beneficiarios as b1')
-            ->select(
-                'b1.beneficiario_id',
-                'b1.nombres as nombres_beneficiario',
-                'b1.apellido_paterno AS apellido_pa_benef',
-                'b1.apellido_materno AS apellido_ma_benef',
-                'b1.fecha_nacimiento AS fecha_na_benef',
-                'b1.cedula_identidad as cedula_benef',
-                'b1.extension_ci AS ext_benef',
-                'b1.sexo AS sexo_benef',
-                'b1.telefono AS telefono_benef',
-                'b2.nombres as nombres_conyugue',// Puede ser NULL si no tiene cónyuge
-
-                'b2.apellido_paterno AS apellido_pa_conyugue',
-                'b2.apellido_materno AS apellido_ma_conyugue',
-                'b2.fecha_nacimiento AS fecha_na_conyugue',
-                'b2.cedula_identidad as cedula_conyugue', // Puede ser NULL si no tiene cónyuge
-                'b2.extension_ci as ext_conyugue', // Puede ser NULL si no tiene có<nyuge></nyuge>
-                'b2.sexo AS sexo_conyugue',
-                'b2.telefono AS telefono_conyugue'
-            )
-            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
-            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
-
-            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
-                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
-            })
-            ->paginate(10);*/
-        /*$ci_beneficiario = $request->input('ci_beneficiario');
-
-        $listar = Beneficiary::select(
-            'b1.beneficiario_id',
-            'b1.nombres as nombres_beneficiario',
-            'b1.apellido_paterno AS apellido_pa_benef',
-            'b1.apellido_materno AS apellido_ma_benef',
-            'b1.fecha_nacimiento AS fecha_na_benef',
-            'b1.cedula_identidad as cedula_benef',
-            'b1.extension_ci AS ext_benef',
-            'b1.sexo AS sexo_benef',
-            'b1.telefono AS telefono_benef',
-
-            'b2.nombres as nombres_conyugue',
-            'b2.apellido_paterno AS apellido_pa_conyugue',
-            'b2.apellido_materno AS apellido_ma_conyugue',
-            'b2.fecha_nacimiento AS fecha_na_conyugue',
-            'b2.cedula_identidad as cedula_conyugue',
-            'b2.extension_ci as ext_conyugue',
-            'b2.sexo AS sexo_conyugue',
-            'b2.telefono AS telefono_conyugue'
-        )
-            ->from('beneficiarios as b1')
-            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id') // LEFT JOIN para traer beneficiarios con o sin cónyuge
-            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id') // LEFT JOIN para obtener datos del cónyuge si existe
-            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
-                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
-            })
-            ->paginate(10);*/
-        /*$ci_beneficiario = $request->input('ci_beneficiario');
-
-        $listar = Beneficiary::select(
-            'b1.beneficiario_id',
-            'b1.nombres as nombres_beneficiario',
-            'b1.apellido_paterno AS apellido_pa_benef',
-            'b1.apellido_materno AS apellido_ma_benef',
-            'b1.fecha_nacimiento AS fecha_na_benef',
-            'b1.cedula_identidad as cedula_benef',
-            'b1.extension_ci AS ext_benef',
-            'b1.sexo AS sexo_benef',
-            'b1.telefono AS telefono_benef',
-
-            DB::raw("STRING_AGG(b2.nombres, ', ') as nombres_conyugue"),
-            DB::raw("STRING_AGG(b2.apellido_paterno, ', ') as apellido_pa_conyugue"),
-            DB::raw("STRING_AGG(b2.apellido_materno, ', ') as apellido_ma_conyugue"),
-            DB::raw("STRING_AGG(b2.fecha_nacimiento::TEXT, ', ') as fecha_na_conyugue"),
-            DB::raw("STRING_AGG(b2.cedula_identidad::TEXT, ', ') as cedula_conyugue"),
-            DB::raw("STRING_AGG(b2.extension_ci, ', ') as ext_conyugue"),
-            DB::raw("STRING_AGG(b2.sexo, ', ') as sexo_conyugue"),
-            DB::raw("STRING_AGG(b2.telefono::TEXT, ', ') as telefono_conyugue")
-        )
-            ->from('beneficiarios as b1')
-            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
-            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
-            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
-                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
-            })
-            ->groupBy(
-                'b1.beneficiario_id',
-                'b1.nombres',
-                'b1.apellido_paterno',
-                'b1.apellido_materno',
-                'b1.fecha_nacimiento',
-                'b1.cedula_identidad',
-                'b1.extension_ci',
-                'b1.sexo',
-                'b1.telefono'
-            )
-            ->paginate(10);*/
-        /* $ci_beneficiario = $request->input('ci_beneficiario');
-
-        $listar = DB::table('beneficiarios as b1')
-            ->select(
-                'b1.beneficiario_id',
-                'b1.nombres as nombres_beneficiario',
-                'b1.apellido_paterno AS apellido_pa_benef',
-                'b1.apellido_materno AS apellido_ma_benef',
-                'b1.fecha_nacimiento AS fecha_na_benef',
-                'b1.cedula_identidad as cedula_benef',
-                'b1.extension_ci AS ext_benef',
-                'b1.sexo AS sexo_benef',
-                'b1.telefono AS telefono_benef',
-                'b2.nombres as nombres_conyugue',
-                'b2.apellido_paterno AS apellido_pa_conyugue',
-                'b2.apellido_materno AS apellido_ma_conyugue',
-                'b2.fecha_nacimiento AS fecha_na_conyugue',
-                'b2.cedula_identidad as cedula_conyugue',
-                'b2.extension_ci as ext_conyugue',
-                'b2.sexo AS sexo_conyugue',
-                'b2.telefono AS telefono_conyugue'
-            )
-            ->leftJoin('conyugues as c', function ($join) {
-                $join->on('b1.beneficiario_id', '=', 'c.beneficiario_id')
-                    ->whereRaw('c.conyugue_id = (SELECT MIN(c2.conyugue_id) FROM conyugues c2 WHERE c2.beneficiario_id = c.beneficiario_id)');
-            })
-            ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
-            ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
-                return $query->where('b1.cedula_identidad', 'LIKE', "%{$ci_beneficiario}%");
-            })
-            ->paginate(10); // Paginación de 10 registros por página*/
         $ci_beneficiario = $request->input('ci_beneficiario');
 
         $listar = DB::table('beneficiarios as b1')
@@ -163,17 +34,9 @@ class BeneficiarioUpdController extends Controller
                 'b2.sexo AS sexo_conyugue',
                 'b2.telefono AS telefono_conyugue'
             )
-            ->leftJoinSub(
-                DB::table('conyugues as c')
-                    ->select('c.beneficiario_id', 'c.beneficiario_conyu_id')
-                    ->orderBy('c.conyugue_id') // Ordenamos para tomar el primero
-                    ->limit(1), // Solo tomamos un cónyuge por beneficiario
-                'c',
-                function ($join) {
-                    $join->on('b1.beneficiario_id', '=', 'c.beneficiario_id');
-                }
-            )
+            ->leftJoin('conyugues as c', 'b1.beneficiario_id', '=', 'c.beneficiario_id')
             ->leftJoin('beneficiarios as b2', 'c.beneficiario_conyu_id', '=', 'b2.beneficiario_id')
+
             ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
                 return $query->where('b1.cedula_identidad', 'LIKE', "%{$ci_beneficiario}%");
             })
@@ -197,8 +60,6 @@ class BeneficiarioUpdController extends Controller
                 'b2.telefono'
             )
             ->paginate(10);
-
-
 
         return view('areas.beneficiario_act.index', compact('listar'));
     }

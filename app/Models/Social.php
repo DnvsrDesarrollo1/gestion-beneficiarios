@@ -20,4 +20,9 @@ class Social extends Model
         'fecha_reg'
 
     ];
+
+    public function usignad()
+    {
+        return $this->belongsTo(Usignad::class, 'uh_asignada_id', 'uh_asignada_id');
+    }
 }

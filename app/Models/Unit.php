@@ -31,4 +31,9 @@ class Unit extends Model
     {
         return $this->belongsTo(Project::class, 'proyecto_id', 'proyecto_id')->from('proyectos');
     }
+
+    public function usignad()
+    {
+        return $this->hasMany(Usignad::class, 'uh_asignada_id', 'uh_asignada_id');
+    }
 }

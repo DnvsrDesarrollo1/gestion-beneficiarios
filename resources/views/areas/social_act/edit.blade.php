@@ -83,58 +83,70 @@
         @endif
 
 
-        <form action="{{ route('social_act.update', $unidades->unidad_habitacional_id) }}" method="POST">
+        <form action="{{ route('social_act.update', $lis_social->uh_asignada_id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="custom-container">
                 <div class="row mb-3 align-items-center">
+                    <!--<div class="col-4 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="nombres" class="form-label">Beneficiario:</label>
+                            <input type="text" class="form-control" id="nombres"
+                                name="nombres" value="" disabled>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="nombres">Nombres del beneficiario:</label>
+                        <input type="text" name="nombres" value="{{ $lis_social->beneficiarios->nombres }}" class="form-control">
+                    </div>
+
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
-                            <label for="unidad_habitacional_id" class="form-label">Codigo Unidad Habitacional:</label>
-                            <input type="text" class="form-control" id="unidad_habitacional_id"
-                                name="unidad_habitacional_id" value="{{ $unidades->unidad_habitacional_id }}" disabled>
+                            <label for="cedula_identidad" class="form-label">Cedula Identidad:</label>
+                            <input type="text" class="form-control" id="cedula_identidad"
+                                name="cedula_identidad" value="{{ $lis_social->beneficiarios->cedula_identidad }}" disabled>
                         </div>
                     </div>
 
 
-                    <div class="col-4 col-md-4 col-lg-4">
+                    <!--<div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="departamento_id" class="form-label">Departamento</label>
                             <select name="departamento_id" class="form-select">
                                 <option value="">Seleccione un departamento</option>
                                 @foreach ($departamento as $departamentos)
                                     <option value="{{ $departamentos->departamento_id }}"
-                                        {{ old('departamento_id', $unidades->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
+                                        {{ old('departamento_id', $$lis_social->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
                                         {{ $departamentos->departamento }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
 
                     <!--Select Proyecto-->
-                    <div class="col-4 col-md-4 col-lg-4">
+                    <!--<div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="proyecto_id" class="form-label">Proyecto:</label>
                             <select name="proyecto_id" class="form-select">
                                 <option value="">Seleccione un Proyecto</option>
                                 @foreach ($proyecto as $proyectos)
                                     <option value="{{ $proyectos->proyecto_id }}"
-                                        {{ old('proyecto_id', $unidades->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
+                                        {{ old('proyecto_id', $lis_social->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
                                         {{ $proyectos->nombre_proy }}
                                     </option>
                                 @endforeach
                             </select>
 
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="manzano" class="form-label">Manzano</label>
                             <input type="text" class="form-control @error('manzano') is-invalid @enderror" id="manzano"
-                                name="manzano" value="{{ old('manzano', $unidades->manzano ?? '') }}" required>
+                                name="manzano" value="{{ old('manzano', $lis_social->manzano ?? '') }}" required>
 
                             @error('manzano')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -146,7 +158,7 @@
                         <div class="form-group">
                             <label for="lote" class="form-label">Lote</label>
                             <input type="text" class="form-control @error('lote') is-invalid @enderror" id="lote"
-                                name="lote" value="{{ old('lote', $unidades->lote ?? '') }}" required>
+                                name="lote" value="{{ old('lote', $lis_social->lote ?? '') }}" required>
 
                             @error('lote')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -159,13 +171,53 @@
                             <label for="unidad_vecinal" class="form-label">Unidad Vecinal</label>
                             <input type="text" class="form-control @error('unidad_vecinal') is-invalid @enderror"
                                 id="unidad_vecinal" name="unidad_vecinal"
-                                value="{{ old('unidad_vecinal', $unidades->unidad_vecinal ?? '') }}" required>
+                                value="{{ old('unidad_vecinal', $lis_social->unidad_vecinal ?? '') }}" required>
 
                             @error('unidad_vecinal')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
+
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="proceso_estado" class="form-label">Proceso Estado</label>
+                            <input type="text" class="form-control @error('proceso_estado') is-invalid @enderror"
+                                id="proceso_estado" name="proceso_estado"
+                                value="{{ old('proceso_estado', $lis_social->proceso_estado ?? '') }}" required>
+
+                            @error('proceso_estado')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="estado_social" class="form-label">Estado Social</label>
+                            <input type="text" class="form-control @error('estado_social') is-invalid @enderror"
+                                id="estado_social" name="estado_social"
+                                value="{{ old('estado_social', $lis_social->estado_social ?? '') }}" required>
+
+                            @error('estado_social')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="fuente" class="form-label">Fuente</label>
+                            <input type="text" class="form-control @error('fuente') is-invalid @enderror"
+                                id="fuente" name="fuente"
+                                value="{{ old('fuente', $lis_social->fuente ?? '') }}" required>
+
+                            @error('fuente')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
 
                     <div class="col-3 col-md-3 col-lg-12">
                         <div class="form-group">

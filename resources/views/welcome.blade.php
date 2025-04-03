@@ -80,8 +80,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"  href="{{ route('home') }}">Beneficiario</a></li>
-                            <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Registro de nuevo beneficiario y actualizar datos</a></li>
-                            <li><a class="dropdown-item" href="#">Registro Nuevo Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Registro de Nuevo Beneficiario y Actualizar Datos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('social_act.index') }}">Estado Social del Beneficiario</a></li>
                         </ul>
                     </li>
 

@@ -31,8 +31,7 @@ class Usignad extends Model
     // Relación con Estado Social
     public function social()
     {
-        return $this->hasOne(Social::class, 'uh_asignada_id', 'uh_asignada_id')
-        ->where('estado_reg', 'U'); // Filtra solo los registros con estado_reg = 'U'
+        return $this->hasOne(Social::class, 'uh_asignada_id', 'uh_asignada_id');
     }
 
     // Relación con Información Legal
