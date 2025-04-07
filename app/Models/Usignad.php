@@ -23,10 +23,10 @@ class Usignad extends Model
     }
 
     // Relación con Unidad Habitacional
-    public function unit()
+    /*public function unit()
     {
         return $this->belongsTo(Unit::class, 'unidad_habitacional_id', 'unidad_habitacional_id');
-    }
+    }*/
 
     // Relación con Estado Social
     public function social()

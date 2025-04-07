@@ -24,7 +24,7 @@ class Unit extends Model
 
     public function department()
     {
-       return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
+        return $this->belongsTo(Department::class, 'departamento_id', 'departamento_id')->from('departamentos');
     }
 
     public function project()
@@ -34,6 +34,6 @@ class Unit extends Model
 
     public function usignad()
     {
-        return $this->hasMany(Usignad::class, 'uh_asignada_id', 'uh_asignada_id');
+        return $this->hasOne(Usignad::class, 'unidad_habitacional_id', 'unidad_habitacional_id');
     }
 }

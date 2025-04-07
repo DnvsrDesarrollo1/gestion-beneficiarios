@@ -47,7 +47,15 @@ Route::resource('social_act', App\Http\Controllers\SocialUpdController::class)
 ->names([
     'index' => 'social_act.index',
     'edit' => 'social_act.edit',
-    'update' => 'proyecto.update',
+    'update' => 'social_act.update',
+    //'destroy' => 'beneficiario_act.destroy',
+]);
+
+Route::resource('legal_act', App\Http\Controllers\LegalUpdController::class)
+->names([
+    'index' => 'legal_act.index',
+    //'edit' => 'legal_act.edit',
+    //'update' => 'legal_act.update',
     //'destroy' => 'beneficiario_act.destroy',
 ]);
 

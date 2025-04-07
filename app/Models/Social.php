@@ -8,7 +8,7 @@ class Social extends Model
 {
     protected $table = 'estado_social';
     protected $primaryKey = 'estado_social_id';
-    protected $filiable = [
+    protected $fillable = [
         'uh_asignada_id',
         'estado_social',
         'fecha_verificacion',
@@ -17,7 +17,8 @@ class Social extends Model
         'observaciones',
         'estado_reg',
         'usuario_reg',
-        'fecha_reg'
+        'fecha_reg',
+        'updated_at'
 
     ];
 

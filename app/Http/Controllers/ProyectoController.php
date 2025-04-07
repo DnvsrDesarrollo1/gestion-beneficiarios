@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -44,20 +41,6 @@ class ProyectoController extends Controller
          return view('areas.proyecto.index', compact('datos_proy'));
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     //public function edit(Project $project)
     public function edit($proyecto_id)
     {
@@ -93,19 +76,17 @@ class ProyectoController extends Controller
         $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
         $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
-        //return dd($datos_proy, $departamento, );
-
         return view('areas.proyecto.edit', compact('datos_proy', 'departamento', 'proyecto'));
-       //return view('areas.proyecto.edit', compact('datos_proy', 'departamento'));
+
     }
 
 
     public function update(Request $request, $proyecto_id)
     {
         // Validación de datos
-       /* $request->validate([
-            'departamento_id' => 'required|exists:departamentos,departamento_id',
-            'nombre_proy' => 'required|string|max:255',
+        $request->validate([
+            //'departamento_id' => 'required|exists:departamentos,departamento_id',
+            //'nombre_proy' => 'required|string|max:255',
             'cant_uh' => 'required|integer',
             'num_acta' => 'nullable|string|max:50',
             'estado_proy' => 'nullable|string|max:255',
@@ -120,10 +101,10 @@ class ProyectoController extends Controller
             'latitud' => 'nullable|numeric',
             'longitud' => 'nullable|numeric',
             'anio_relevamiento' => 'nullable|integer|min:1900|max:' . date('Y'),
-        ]);*/
+        ]);
 
         // Validación de datos
-        $request->validate([
+       /* $request->validate([
             'departamento_id',
             'nombre_proy',
             'cant_uh',
@@ -140,7 +121,7 @@ class ProyectoController extends Controller
             'latitud',
             'longitud',
             'anio_relevamiento',
-        ]);
+        ]);*/
 
         // Buscar el proyecto por ID
         $proyecto = DB::table('proyectos')->where('proyecto_id', $proyecto_id)->first();

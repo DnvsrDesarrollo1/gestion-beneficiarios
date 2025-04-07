@@ -123,20 +123,6 @@
                         </div>
                     </div>
 
-                    <!--Codigo Proyecto-->
-                    <div class="col-3 col-md-3 col-lg-3">
-                        <div class="form-group">
-                            <label for="proyecto_id" class="form-label">Codigo Proyecto:</label>
-                            <input type="text" class="form-control @error('proyecto_id') is-invalid @enderror"
-                                name="proyecto_id" id="proyecto_id"
-                                value="{{ old('proyecto_id', $datos_proy->proyecto_id ?? '') }}">
-
-                            @error('proyecto_id')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
                     <!--Nro de U.H-->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">

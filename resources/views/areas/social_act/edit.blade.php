@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .custom-container {
-            max-width: 900px;
+            max-width: 1200px;
             /* Ancho máximo */
             margin: 0 auto;
             /* Centrar el contenedor */
@@ -35,7 +35,7 @@
 
         /* Estilo del select */
         .form-group select {
-            width: 600px;
+            width: 800px;
             /* Tamaño fijo del select */
             max-width: 100%;
             /* Asegura que no exceda el ancho del contenedor */
@@ -66,7 +66,7 @@
 @section('content')
     <div class="custom-container mt-4 p-4 bg-light border rounded shadow-md">
         <div style="display: flex; justify-content: center; align-items: center; height: 10vh;" id="step1">
-            <h5>Unidad Habitacional</h5>
+            <h5>Estado Social</h5>
         </div>
 
         @if (session('success'))
@@ -83,70 +83,64 @@
         @endif
 
 
-        <form action="{{ route('social_act.update', $lis_social->uh_asignada_id) }}" method="POST">
+        <form action="{{ route('social_act.update', $unidad_habitacional->uh_asignada_id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="custom-container">
                 <div class="row mb-3 align-items-center">
-                    <!--<div class="col-4 col-md-4 col-lg-4">
+                    <div class="col-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label for="nombres" class="form-label">Beneficiario:</label>
-                            <input type="text" class="form-control" id="nombres"
-                                name="nombres" value="" disabled>
+                            <label for="nombres" class="form-label">Nombres del Beneficiario:</label>
+                            <input type="text" class="form-control" id="nombres" name="nombres"
+                                value="{{ $unidad_habitacional->nombres }}" disabled>
                         </div>
-                    </div>-->
-                    <div class="form-group">
-                        <label for="nombres">Nombres del beneficiario:</label>
-                        <input type="text" name="nombres" value="{{ $lis_social->beneficiarios->nombres }}" class="form-control">
                     </div>
+
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="cedula_identidad" class="form-label">Cedula Identidad:</label>
+                            <input type="text" class="form-control" id="cedula_identidad" name="cedula_identidad"
+                                value="{{ $unidad_habitacional->cedula_identidad }}" disabled>
+                        </div>
+                    </div>
+
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
-                            <label for="cedula_identidad" class="form-label">Cedula Identidad:</label>
-                            <input type="text" class="form-control" id="cedula_identidad"
-                                name="cedula_identidad" value="{{ $lis_social->beneficiarios->cedula_identidad }}" disabled>
-                        </div>
-                    </div>
-
-
-                    <!--<div class="col-4 col-md-4 col-lg-4">
-                        <div class="form-group">
                             <label for="departamento_id" class="form-label">Departamento</label>
                             <select name="departamento_id" class="form-select">
-                                <option value="">Seleccione un departamento</option>
                                 @foreach ($departamento as $departamentos)
                                     <option value="{{ $departamentos->departamento_id }}"
-                                        {{ old('departamento_id', $$lis_social->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
+                                        {{ old('departamento_id', $unidad_habitacional->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
                                         {{ $departamentos->departamento }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>-->
+                    </div>
 
 
                     <!--Select Proyecto-->
-                    <!--<div class="col-4 col-md-4 col-lg-4">
+                    <div class="col-8 col-md-8 col-lg-8">
                         <div class="form-group">
                             <label for="proyecto_id" class="form-label">Proyecto:</label>
                             <select name="proyecto_id" class="form-select">
-                                <option value="">Seleccione un Proyecto</option>
                                 @foreach ($proyecto as $proyectos)
                                     <option value="{{ $proyectos->proyecto_id }}"
-                                        {{ old('proyecto_id', $lis_social->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
+                                        {{ old('proyecto_id', $unidad_habitacional->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
                                         {{ $proyectos->nombre_proy }}
                                     </option>
                                 @endforeach
                             </select>
 
                         </div>
-                    </div>-->
+                    </div>
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="manzano" class="form-label">Manzano</label>
                             <input type="text" class="form-control @error('manzano') is-invalid @enderror" id="manzano"
-                                name="manzano" value="{{ old('manzano', $lis_social->manzano ?? '') }}" required>
+                                name="manzano" value="{{ old('manzano', $unidad_habitacional->manzano ?? '') }}" required>
 
                             @error('manzano')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -158,7 +152,7 @@
                         <div class="form-group">
                             <label for="lote" class="form-label">Lote</label>
                             <input type="text" class="form-control @error('lote') is-invalid @enderror" id="lote"
-                                name="lote" value="{{ old('lote', $lis_social->lote ?? '') }}" required>
+                                name="lote" value="{{ old('lote', $unidad_habitacional->lote ?? '') }}" required>
 
                             @error('lote')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -171,7 +165,7 @@
                             <label for="unidad_vecinal" class="form-label">Unidad Vecinal</label>
                             <input type="text" class="form-control @error('unidad_vecinal') is-invalid @enderror"
                                 id="unidad_vecinal" name="unidad_vecinal"
-                                value="{{ old('unidad_vecinal', $lis_social->unidad_vecinal ?? '') }}" required>
+                                value="{{ old('unidad_vecinal', $unidad_habitacional->unidad_vecinal ?? '') }}" required>
 
                             @error('unidad_vecinal')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -182,26 +176,70 @@
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="proceso_estado" class="form-label">Proceso Estado</label>
-                            <input type="text" class="form-control @error('proceso_estado') is-invalid @enderror"
-                                id="proceso_estado" name="proceso_estado"
-                                value="{{ old('proceso_estado', $lis_social->proceso_estado ?? '') }}" required>
-
-                            @error('proceso_estado')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <select class="form-input" name="proceso_estado" id="proceso_estado">
+                                <option value="BENEFICIARIO INICIAL"
+                                    {{ $unidad_habitacional->proceso_estado == 'BENEFICIARIO INICIAL' ? 'selected' : '' }}>
+                                    BENEFICIARIO INICIAL
+                                </option>
+                                <option value="PENDIENTE DE APLICACION DE LA LEY 850"
+                                    {{ $unidad_habitacional->proceso_estado == 'PENDIENTE DE APLICACION DE LA LEY 850' ? 'selected' : '' }}>
+                                    PENDIENTE DE APLICACION DE LA LEY 850
+                                </option>
+                                <option value="EN PROCESO DE SUSTITUCION"
+                                    {{ $unidad_habitacional->proceso_estado == 'EN PROCESO DE SUSTITUCION' ? 'selected' : '' }}>
+                                    EN PROCESO DE SUSTITUCION
+                                </option>
+                                <option value="EXCEPCIONALIDAD"
+                                    {{ $unidad_habitacional->proceso_estado == 'EXCEPCIONALIDAD' ? 'selected' : '' }}>
+                                    EXCEPCIONALIDAD
+                                </option>
+                                <option value="REASIGNACION"
+                                    {{ $unidad_habitacional->proceso_estado == 'REASIGNACION' ? 'selected' : '' }}>
+                                    REASIGNACION
+                                </option>
+                                <option value="SUSTITUCION"
+                                    {{ $unidad_habitacional->proceso_estado == 'SUSTITUCION' ? 'selected' : '' }}>
+                                    SUSTITUCION
+                                </option>
+                                <option value="CAMBIO DE TITULARIDAD"
+                                    {{ $unidad_habitacional->proceso_estado == 'CAMBIO DE TITULARIDAD' ? 'selected' : '' }}>
+                                    CAMBIO DE TITULARIDAD
+                                </option>
+                                <option value="CANCELADO"
+                                    {{ $unidad_habitacional->proceso_estado == 'CANCELADO' ? 'selected' : '' }}>
+                                    CANCELADO
+                                </option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label for="estado_social" class="form-label">Estado Social</label>
-                            <input type="text" class="form-control @error('estado_social') is-invalid @enderror"
-                                id="estado_social" name="estado_social"
-                                value="{{ old('estado_social', $lis_social->estado_social ?? '') }}" required>
 
-                            @error('estado_social')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <select class="form-input" name="estado_social" id="estado_social">
+                                <option value="CUMPLE FUNCION SOCIAL"
+                                    {{ $unidad_habitacional->estado_social == 'CUMPLE FUNCION SOCIAL' ? 'selected' : '' }}>
+                                    CUMPLE FUNCION SOCIAL
+                                </option>
+                                <option value="NO CUMPLE FUNCION SOCIAL"
+                                    {{ $unidad_habitacional->estado_social == 'NO CUMPLE FUNCION SOCIAL' ? 'selected' : '' }}>
+                                    NO CUMPLE FUNCION SOCIAL
+                                </option>
+                                <option value="REASIGNACION"
+                                    {{ $unidad_habitacional->estado_social == 'REASIGNACION' ? 'selected' : '' }}>
+                                    REASIGNACION
+                                </option>
+                                <option value="SUSTITUIDO"
+                                    {{ $unidad_habitacional->estado_social == 'SUSTITUIDO' ? 'selected' : '' }}>
+                                    SUSTITUIDO
+                                </option>
+                                <option value="CANCELADO"
+                                    {{ $unidad_habitacional->estado_social == 'CANCELADO' ? 'selected' : '' }}>
+                                    CANCELADO
+                                </option>
+                            </select>
+
                         </div>
                     </div>
 
@@ -210,7 +248,7 @@
                             <label for="fuente" class="form-label">Fuente</label>
                             <input type="text" class="form-control @error('fuente') is-invalid @enderror"
                                 id="fuente" name="fuente"
-                                value="{{ old('fuente', $lis_social->fuente ?? '') }}" required>
+                                value="{{ old('fuente', $unidad_habitacional->fuente ?? '') }}">
 
                             @error('fuente')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -223,7 +261,7 @@
                         <div class="form-group">
                             <label for="observaciones" class="form-label">Observaciones</label>
                             <textarea class="form-control @error('observaciones') is-invalid @enderror" id="observaciones" name="observaciones"
-                                rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones', $unidades->observaciones ?? '') }}
+                                rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones', $unidad_habitacional->observaciones ?? '') }}
                             </textarea>
                         </div>
                     </div>
@@ -239,7 +277,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <!-- Botón Anterior -->
-                <a href="{{ route('unidades_hab.index') }}" class="btn btn-warning">
+                <a href="{{ route('social_act.index') }}" class="btn btn-warning">
                     <i class="bi bi-arrow-left-circle"></i> Anterior
                 </a>
                 <!-- Botón Siguiente -->
@@ -251,4 +289,3 @@
 
     </div>
 @endsection
-

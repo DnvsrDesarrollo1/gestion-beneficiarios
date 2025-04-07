@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .custom-container {
-            max-width: 900px;
+            max-width: 1200px;
             /* Ancho máximo */
             margin: 0 auto;
             /* Centrar el contenedor */
@@ -35,7 +35,7 @@
 
         /* Estilo del select */
         .form-group select {
-            width: 600px;
+            width: 800px;
             /* Tamaño fijo del select */
             max-width: 100%;
             /* Asegura que no exceda el ancho del contenedor */
