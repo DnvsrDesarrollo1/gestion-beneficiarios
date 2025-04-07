@@ -73,10 +73,8 @@ class ProyectoController extends Controller
             return redirect()->route('proyectos.index')->with('error', 'Proyecto no encontrado.');
         }
 
-        $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
-        $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
-        return view('areas.proyecto.edit', compact('datos_proy', 'departamento', 'proyecto'));
+        return view('areas.proyecto.edit', compact('datos_proy'));
 
     }
 
@@ -85,15 +83,12 @@ class ProyectoController extends Controller
     {
         // Validación de datos
         $request->validate([
-            //'departamento_id' => 'required|exists:departamentos,departamento_id',
-            //'nombre_proy' => 'required|string|max:255',
-            'cant_uh' => 'required|integer',
-            'num_acta' => 'nullable|string|max:50',
+
             'estado_proy' => 'nullable|string|max:255',
             'modalidad' => 'nullable|string|max:255',
             'fecha_ini_obra' => 'nullable|date',
             'fecha_fin_obra' => 'nullable|date|after_or_equal:fecha_ini_obra',
-            'viviends_conclui' => 'nullable|integer',
+            'viviends_conclui' => 'nullable|string|max:255',
             'componente' => 'nullable|string|max:255',
             'provincia' => 'nullable|string|max:255',
             'municipio' => 'nullable|string|max:255',
@@ -103,27 +98,7 @@ class ProyectoController extends Controller
             'anio_relevamiento' => 'nullable|integer|min:1900|max:' . date('Y'),
         ]);
 
-        // Validación de datos
-       /* $request->validate([
-            'departamento_id',
-            'nombre_proy',
-            'cant_uh',
-            'num_acta',
-            'estado_proy',
-            'modalidad',
-            'fecha_ini_obra',
-            'fecha_fin_obra',
-            'viviends_conclui',
-            'componente',
-            'provincia',
-            'municipio',
-            'direccion',
-            'latitud',
-            'longitud',
-            'anio_relevamiento',
-        ]);*/
-
-        // Buscar el proyecto por ID
+      // Buscar el proyecto por ID
         $proyecto = DB::table('proyectos')->where('proyecto_id', $proyecto_id)->first();
 
         // Verificar si el proyecto existe
@@ -135,10 +110,7 @@ class ProyectoController extends Controller
         $actualizar= DB::table('proyectos')
             ->where('proyecto_id', $proyecto_id)
             ->update([
-                'departamento_id' => $request->departamento_id,
-                'nombre_proy' => $request->nombre_proy,
-                'cant_uh' => $request->cant_uh,
-                'num_acta' => $request->num_acta,
+
                 'estado_proy' => $request->estado_proy,
                 'modalidad' => $request->modalidad,
                 'fecha_ini_obra' => $request->fecha_ini_obra,

@@ -104,35 +104,19 @@
                         </div>
                     </div>
 
-
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
-                            <label for="departamento_id" class="form-label">Departamento</label>
-                            <select name="departamento_id" class="form-select">
-                                @foreach ($departamento as $departamentos)
-                                    <option value="{{ $departamentos->departamento_id }}"
-                                        {{ old('departamento_id', $unidad_habitacional->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
-                                        {{ $departamentos->departamento }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="departamento" class="form-label">Departamento:</label>
+                            <input type="text" class="form-control" id="departamento" name="departamento"
+                                value="{{ $unidad_habitacional->departamento }}" disabled>
                         </div>
                     </div>
 
-
-                    <!--Select Proyecto-->
                     <div class="col-8 col-md-8 col-lg-8">
                         <div class="form-group">
-                            <label for="proyecto_id" class="form-label">Proyecto:</label>
-                            <select name="proyecto_id" class="form-select">
-                                @foreach ($proyecto as $proyectos)
-                                    <option value="{{ $proyectos->proyecto_id }}"
-                                        {{ old('proyecto_id', $unidad_habitacional->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
-                                        {{ $proyectos->nombre_proy }}
-                                    </option>
-                                @endforeach
-                            </select>
-
+                            <label for="nombre_proy" class="form-label">Proyecto:</label>
+                            <input type="text" class="form-control" id="nombre_proy" name="nombre_proy"
+                                value="{{ $unidad_habitacional->nombre_proy }}" disabled>
                         </div>
                     </div>
 
@@ -140,7 +124,7 @@
                         <div class="form-group">
                             <label for="manzano" class="form-label">Manzano</label>
                             <input type="text" class="form-control @error('manzano') is-invalid @enderror" id="manzano"
-                                name="manzano" value="{{ old('manzano', $unidad_habitacional->manzano ?? '') }}" required>
+                                name="manzano" value="{{ old('manzano', $unidad_habitacional->manzano ?? '') }}" disabled>
 
                             @error('manzano')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -152,7 +136,7 @@
                         <div class="form-group">
                             <label for="lote" class="form-label">Lote</label>
                             <input type="text" class="form-control @error('lote') is-invalid @enderror" id="lote"
-                                name="lote" value="{{ old('lote', $unidad_habitacional->lote ?? '') }}" required>
+                                name="lote" value="{{ old('lote', $unidad_habitacional->lote ?? '') }}" disabled>
 
                             @error('lote')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -228,16 +212,9 @@
                                 </option>
                                 <option value="REASIGNACION"
                                     {{ $unidad_habitacional->estado_social == 'REASIGNACION' ? 'selected' : '' }}>
-                                    REASIGNACION
+                                    NO APLICA
                                 </option>
-                                <option value="SUSTITUIDO"
-                                    {{ $unidad_habitacional->estado_social == 'SUSTITUIDO' ? 'selected' : '' }}>
-                                    SUSTITUIDO
-                                </option>
-                                <option value="CANCELADO"
-                                    {{ $unidad_habitacional->estado_social == 'CANCELADO' ? 'selected' : '' }}>
-                                    CANCELADO
-                                </option>
+
                             </select>
 
                         </div>

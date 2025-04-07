@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .custom-container {
-            max-width: 1000px;
+            max-width: 1200px;
             /* Ancho máximo */
             margin: 0 auto;
             /* Centrar el contenedor */
@@ -95,31 +95,17 @@
                     <!--Select Departamento-->
                     <div class="col-4 col-md-4 col-lg-4">
                         <div class="form-group">
-                            <label for="departamento_id" class="form-label">Departamento</label>
-                            <select name="departamento_id" class="form-select">
-                                @foreach ($departamento as $departamentos)
-                                    <option value="{{ $departamentos->departamento_id }}"
-                                        {{ old('departamento_id', $datos_proy->departamento_id ?? '') == $departamentos->departamento_id ? 'selected' : '' }}>
-                                        {{ $departamentos->departamento }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="departamento" class="form-label">Departamento:</label>
+                            <input type="text" class="form-control" name="departamento"
+                                id="departamento" value="{{ old('departamento', $datos_proy->departamento) }}" disabled>
                         </div>
                     </div>
 
-                    <!--Select Proyecto-->
                     <div class="col-8 col-md-8 col-lg-8">
                         <div class="form-group">
-                            <label for="proyecto_id" class="form-label">Proyecto:</label>
-                            <select name="proyecto_id" class="form-select">
-                                @foreach ($proyecto as $proyectos)
-                                    <option value="{{ $proyectos->proyecto_id }}"
-                                        {{ old('proyecto_id', $datos_proy->proyecto_id ?? '') == $proyectos->proyecto_id ? 'selected' : '' }}>
-                                        {{ $proyectos->nombre_proy }}
-                                    </option>
-                                @endforeach
-                            </select>
-
+                            <label for="nombre_proy" class="form-label">Proyecto:</label>
+                            <input type="text" class="form-control" name="nombre_proy"
+                                id="nombre_proy" value="{{ old('nombre_proy', $datos_proy->nombre_proy) }}" disabled>
                         </div>
                     </div>
 
@@ -127,12 +113,16 @@
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label for="cant_uh" class="form-label">Nro de U.H:</label>
-                            <input type="text" class="form-control @error('cant_uh') is-invalid @enderror" name="cant_uh"
-                                id="cant_uh" value="{{ old('cant_uh', $datos_proy->cant_uh ?? '') }}" requerid>
+                            <input type="number" class="form-control" name="cant_uh"
+                                id="cant_uh" value="{{ old('cant_uh', $datos_proy->cant_uh) }}" disabled>
+                        </div>
+                    </div>
 
-                            @error('cant_uh')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <label for="num_acta" class="form-label">Nro de acta:</label>
+                            <input type="number" class="form-control" name="num_acta"
+                                id="num_acta" value="{{ old('num_acta', $datos_proy->num_acta) }}" disabled>
                         </div>
                     </div>
 
@@ -268,7 +258,7 @@
                     <!-- Longitud -->
                     <div class="col-3 col-md-3 col-lg-3">
                         <div class="form-group">
-                            <label for="longitud" class="form-label">Latitud:</label>
+                            <label for="longitud" class="form-label">Longitud:</label>
                             <input type="text" class="form-control @error('longitud') is-invalid @enderror"
                                 name="longitud" id="longitud"
                                 value="{{ old('longitud', $datos_proy->longitud ?? '') }}">

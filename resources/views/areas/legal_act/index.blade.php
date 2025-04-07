@@ -41,7 +41,8 @@
                         <td>{{ $unidad_habitacional->unidad_vecinal ?? '-' }}</td>
 
                         <td>
-
+                            <a href="{{ route('legal_act.edit', $unidad_habitacional->uh_asignada_id) }}"
+                                class="btn btn-warning">Editar</a>
 
 
                         </td>

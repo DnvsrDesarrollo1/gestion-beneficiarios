@@ -54,8 +54,8 @@ Route::resource('social_act', App\Http\Controllers\SocialUpdController::class)
 Route::resource('legal_act', App\Http\Controllers\LegalUpdController::class)
 ->names([
     'index' => 'legal_act.index',
-    //'edit' => 'legal_act.edit',
-    //'update' => 'legal_act.update',
+    'edit' => 'legal_act.edit',
+    'update' => 'legal_act.update',
     //'destroy' => 'beneficiario_act.destroy',
 ]);
 

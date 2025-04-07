@@ -70,14 +70,12 @@ class SocialUpdController extends Controller
             )
             ->first();
         // Traer departamentos y proyectos si son necesarios para selects
-        $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
-        $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
         if (!$unidad_habitacional) {
             return redirect()->route('social_act.index')->with('error', 'Unidad habitacional no encontrada.');
         }
 
-        return view('areas.social_act.edit', compact('unidad_habitacional', 'departamento', 'proyecto'));
+        return view('areas.social_act.edit', compact('unidad_habitacional'));
     }
 
 
