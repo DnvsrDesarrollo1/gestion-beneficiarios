@@ -8,7 +8,7 @@ class balance extends Model
 {
     protected $table = 'saldo_terreno';
     protected $primaryKey = 'saldotr_id';
-    protected $filiable = [
+    protected $fillable = [
         'proyecto_id',
         'monto_saldo',
         'cantidad_lotes',

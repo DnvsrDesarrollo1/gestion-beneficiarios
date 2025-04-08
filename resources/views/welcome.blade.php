@@ -83,6 +83,7 @@
                             <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Registro de Nuevo Beneficiario / Actualizar Datos</a></li>
                             <li><a class="dropdown-item" href="{{ route('social_act.index') }}">Estado Social del Beneficiario</a></li>
                             <li><a class="dropdown-item" href="{{ route('legal_act.index') }}">Informacion legal del Beneficiario</a></li>
+                            <li><a class="dropdown-item" href="{{ route('credito_act.index') }}">Cartera de Creditos del Beneficiario</a></li>
                         </ul>
                     </li>
 

@@ -8,7 +8,7 @@ class Spouse extends Model
 {
     protected $table = 'conyugues';
     protected $primaryKey = '';
-    protected $filiable = [
+    protected $fillable = [
         'beneficiario_id',
         'beneficiario_conyu_id',
         'cedula_identidad',

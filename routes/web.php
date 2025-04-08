@@ -59,6 +59,15 @@ Route::resource('legal_act', App\Http\Controllers\LegalUpdController::class)
     //'destroy' => 'beneficiario_act.destroy',
 ]);
 
+Route::resource('credito_act', App\Http\Controllers\CreditoUpdController::class)
+->names([
+    'index' => 'credito_act.index',
+    'edit' => 'credito_act.edit',
+    //'update' => 'legal_act.update',
+    //'destroy' => 'beneficiario_act.destroy',
+]);
+
+
 //---------------------------------------------------------------------------------------------------------------------
 
 //Route::put('/beneficiarios/update', [App\Http\Controllers\HomeBeneController::class, 'update'])->name('beneficiarios.update');

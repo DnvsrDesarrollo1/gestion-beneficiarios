@@ -12,6 +12,7 @@ class LegalUpdController extends Controller
     {
 
         $ci_beneficiario = $request->input('ci_beneficiario');
+        $folio = $request->input('folio');
 
         $lis_legal = DB::table('unidad_habitacional as uh')
             ->leftJoin('uh_asignada as uha', 'uh.unidad_habitacional_id', '=', 'uha.unidad_habitacional_id')
@@ -30,6 +31,7 @@ class LegalUpdController extends Controller
                 'uh.manzano',
                 'uh.lote',
                 'uh.unidad_vecinal',
+                'il.nro_folio_real',
                 'il.levanta_grav_dev_doc',
                 'il.observado_ley850',
                 'il.notificacion_intencion',
@@ -47,6 +49,11 @@ class LegalUpdController extends Controller
             ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
                 return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
             })
+
+            ->when($folio, function ($query, $folio) {
+                return $query->whereRaw("il.nro_folio_real::TEXT LIKE ?", ["%{$folio}%"]);
+            })
+
             ->paginate(10); // Para paginar los resultados
 
         //return $lis_legal;
@@ -75,6 +82,7 @@ class LegalUpdController extends Controller
                 'uh.manzano',
                 'uh.lote',
                 'uh.unidad_vecinal',
+                'il.nro_folio_real',
                 'il.levanta_grav_dev_doc',
                 'il.observado_ley850',
                 'il.notificacion_intencion',
@@ -136,6 +144,8 @@ class LegalUpdController extends Controller
                 'updated_at' => now(),
             ]);
 
-        return redirect()->route('modulo_legal.index')->with('success', 'Información legal actualizada correctamente.');
+        //return redirect()->route('legal_act.index')->with('success', 'Información legal actualizada correctamente.');
+        return redirect()->route('legal_act.edit', $uh_asignada_id)
+                ->with('success', 'Información legal actualizada correctamente.');
     }
 }

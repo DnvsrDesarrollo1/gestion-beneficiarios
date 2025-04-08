@@ -8,7 +8,7 @@ class Project extends Model
 {
     protected $table = 'proyectos';
     protected $primaryKey = 'proyecto_id';
-    protected $filiable = [
+    protected $fillable = [
         'departamento_id',
         'nombre_proy',
         'subprograma',

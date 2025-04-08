@@ -8,7 +8,7 @@ class Payments extends Model
 {
     protected $table = 'devolucion_pago';
     protected $primaryKey = 'devolucion_id';
-    protected $filiable = [
+    protected $fillable = [
         'uh_asignada_id',
         'cod_prestamo',
         'instructivo_devolucion',

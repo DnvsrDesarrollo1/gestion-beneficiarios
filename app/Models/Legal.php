@@ -8,7 +8,7 @@ class Legal extends Model
 {
     protected $table = 'infor_legal';
     protected $primaryKey = 'inforlegal_id';
-    protected $filiable =[
+    protected $fillable =[
         'uh_asignada_id',
         'manzano',
         'lote',
@@ -29,6 +29,8 @@ class Legal extends Model
         'observaciones3',
         'estado_reg',
         'usuario_reg',
-        'fecha_reg'
+        'fecha_reg',
+        'updated_at'
+
     ];
 }

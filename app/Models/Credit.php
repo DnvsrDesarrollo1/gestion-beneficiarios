@@ -8,7 +8,8 @@ class Credit extends Model
 {
     protected $table = 'creditos';
     protected $primaryKey = 'creditos_id';
-    protected $filiable = [
+
+    protected $fillable = [
         'uh_asignada_id',
         'cod_prestamo',
         'estado_cartera',
@@ -28,6 +29,5 @@ class Credit extends Model
         'tasa_interes',
         'observaciones',
         'fecha_reg'
-];
-
+    ];
 }

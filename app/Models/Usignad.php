@@ -8,7 +8,7 @@ class Usignad extends Model
 {
     protected $table = 'uh_asignada';
     protected $primaryKey = 'uh_asignada_id';
-    protected $filiable = [
+    protected $fillable = [
         'departamento_id',
         'proyecto_id',
         'unidad_habitacional_id',

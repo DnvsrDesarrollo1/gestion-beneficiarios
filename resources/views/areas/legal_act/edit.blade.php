@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +11,7 @@
             /* Ancho máximo */
             margin: 0 auto;
             /* Centrar el contenedor */
-            padding: 15px;
+            padding: 0px;
             /* Espaciado interno */
         }
 
@@ -21,7 +20,7 @@
             display: flex;
             flex-direction: column;
             /* Alinea verticalmente label y select */
-            margin-bottom: 15px;
+            margin-bottom: 7px;
             /* Espaciado entre campos */
         }
 
@@ -29,7 +28,7 @@
         .form-group label {
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 1px;
             /* Espaciado debajo del label */
         }
 
@@ -54,7 +53,7 @@
         }
 
         .form-input {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             /* Espacio debajo de cada input */
             flex: 1;
             /* Hace que los inputs se expandan para ocupar el espacio restante */
@@ -64,7 +63,7 @@
 @endsection
 @section('content')
     <div class="custom-container mt-4 p-4 bg-light border rounded shadow-md">
-        <div style="display: flex; justify-content: center; align-items: center; height: 10vh;" id="step1">
+        <div style="display: flex; justify-content: center; align-items: center; height: 7vh;" id="step1">
             <h5>Informacion Legal</h5>
         </div>
 
@@ -156,91 +155,146 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;" id="step1">
-                        <h5>Datos para elegir una opcion</h5>
+                    <!-- Opciones con radio buttons -->
+                    <div class="mb-4">
+                        <div style="display: flex; justify-content: center; align-items: center; height: 7vh;"
+                            id="step1">
+                            <h5>Datos para elegir una opcion</h5>
+                        </div>
+
+                        <table class="table table-bordered">
+                            @php
+                                $opciones = ['si' => 'Sí', 'no' => 'No', 'pendiente' => 'Pendiente'];
+                            @endphp
+
+                            <tr>
+                                <td>Levantamiento Gravamen y Dev. Documentos:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label>
+                                            <input type="radio" name="levanta_grav_dev_doc"
+                                                value="{{ $val }}"
+                                                {{ old('levanta_grav_dev_doc', $lis_legal->levanta_grav_dev_doc) === $val ? 'checked' : '' }}>
+                                            {{ $label }}
+                                        </label>
+                                    </td>
+                                @endforeach
+                            </tr>
+
+                            <tr>
+                                <td>Ley 850 Observado:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label><input type="radio" name="observado_ley850" value="{{ $val }}"
+                                                {{ old('observado_ley850', $lis_legal->observado_ley850) === $val ? 'checked' : '' }}>
+                                            {{ $label }}</label>
+                                    </td>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>Notificación con Intención:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label><input type="radio" name="notificacion_intencion"
+                                                value="{{ $val }}"
+                                                {{ old('notificacion_intencion', $lis_legal->notificacion_intencion) === $val ? 'checked' : '' }}>
+                                            {{ $label }}</label>
+                                    </td>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>Notificación Resolución Contractual:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label><input type="radio" name="notificacion_contractual"
+                                                value="{{ $val }}"
+                                                {{ old('notificacion_contractual', $lis_legal->notificacion_contractual) === $val ? 'checked' : '' }}>
+                                            {{ $label }}</label>
+                                    </td>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>Folio a Nombre de AEVIVIENDA:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label><input type="radio" name="folio_aevivienda" value="{{ $val }}"
+                                                {{ old('folio_aevivienda', $lis_legal->folio_aevivienda) === $val ? 'checked' : '' }}>
+                                            {{ $label }}</label>
+                                    </td>
+                                @endforeach
+                            </tr>
+
+                        </table>
                     </div>
 
-                    <table>
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="elab_min_cont_test" class="form-label">Elaboracion de Minuta/Resolucion
+                                Contractual/Testimonio:</label>
+                            <input type="text" class="form-control" id="elab_min_cont_test" name="elab_min_cont_test"
+                                value="{{ $lis_legal->elab_min_cont_test }}">
+                        </div>
+                    </div>
 
-                        <tr class="form group">
-                          <td>Levantamiento Gravamen y Dev. Documentos:</td>
-                          <td><label for="levanta_grav_dev_doc-si" class="form-label"><input type="radio" name="levanta_grav_dev_doc" value="si">Sí</label></td>
-                          <td><label for="levanta_grav_dev_doc-no"><input type="radio" name="levanta_grav_dev_doc" value="no">No</label></td>
-                          <td><label for="levanta_grav_dev_doc-pendiente"><input type="radio" name="levanta_grav_dev_doc" value="pendiente">Pendiente</label></td>
-                        </tr>
-                        <tr>
-                          <td>Ley 850 Observado:</td>
-                          <td><label for="observado_ley850-si" class="form-label"><input type="radio" name="observado_ley850" value="si">Si</label></td>
-                          <td><label for="observado_ley850-no"><input type="radio" name="observado_ley850" value="no">No</label></td>
-                          <td><label for="observado_ley850-pendiente"><input type="radio" name="observado_ley850" value="pendiente">Pendiente</label></td>
-                        </tr>
-                        <tr>
-                          <td>Notificación con Intención:</td>
-                          <td><label for="notificacion_intencion-si" class="form-label"><input type="radio" name="notificacion_intencion" value="si">Si</lavel></td>
-                            <td><label for="notificacion_intencion-no" class="form-label"><input type="radio" name="notificacion_intencion" value="no">No</lavel></td>
-                              <td><label for="notificacion_intencion-pendiente" class="form-label"><input type="radio" name="notificacion_intencion" value="pendiente">Pendiente</label></td>
-                            </tr>
+                    <div class="col-3 col-md-3 col-lg-12">
+                        <div class="form-group">
+                            <label for="observaciones2" class="form-label">Observaciones</label>
+                            <textarea class="form-control @error('observaciones2') is-invalid @enderror" id="observaciones2"
+                                name="observaciones2" rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones2', $lis_legal->observaciones2 ?? '') }}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <table class="table table-bordered">
+                            @php
+                                $opciones = ['si' => 'Sí', 'no' => 'No', 'pendiente' => 'Pendiente'];
+                            @endphp
                             <tr>
-                              <td>Notificación Resolución Contractual:</td>
-                              <td><label for="notificacion_contractual-si" class="form-label"><input type="radio" name="notificacion_contractual" value="si">Si</label></td>
-                              <td><label for="notificacion_contractual-no" class="form-label"><input type="radio" name="notificacion_contractual" value="no">No</label></td>
-                              <td><label for="notificacion_contractual-pendiente" class="form-label"><input type="radio" name="notificacion_contractual" value="pendiente">Pendiente</label></td>
+                                <td>Inicio de Recuperación o Sustitución:</td>
+                                @foreach ($opciones as $val => $label)
+                                    <td>
+                                        <label><input type="radio" name="inicio_reasig_sustit"
+                                                value="{{ $val }}"
+                                                {{ old('inicio_reasig_sustit', $lis_legal->inicio_reasig_sustit) === $val ? 'checked' : '' }}>
+                                            {{ $label }}</label>
+                                    </td>
+                                @endforeach
                             </tr>
-                            <tr>
-                              <td>Folio a Nombre de AEVIVIENDA:</td>
-                              <td><label for="folio_aevivienda-si" class="form-label"><input type="radio" name="folio_aevivienda" value="si">Si</label></td>
-                              <td><label for="folio_aevivienda-no" class="form-label"><input type="radio" name="folio_aevivienda" value="no">No</label></td>
-                              <td><label for="folio_aevivienda-pendiente" class="form-label"><input type="radio" name="folio_aevivienda" value="pendiente">Pendiente</lavel></td>
-                              </tr>
-                            </table>
-                            <div class="col-3 col-md-3 col-lg-5">
-                              <div class="form-group">
-                                <lavel class="form-label">Elaboracion de Minuta/Resolucion Contractual/Testimonio:</lavel>
-                                <input type="text" class="form-input" id="elab_min_cont_test" name="elab_min_cont_test" placeholder="" required>
-                              </div>
-                            </div>
+                        </table>
+                    </div>
 
-                            <div class="col-3 col-md-3 col-lg-12">
-                                <div class="form-group">
-                                    <label for="observaciones2" class="form-label">Observaciones</label>
-                                    <textarea class="form-control @error('observaciones2') is-invalid @enderror" id="observaciones2" name="observaciones2"
-                                        rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones2', $lis_legal->observaciones2 ?? '') }}
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="nuevo_beneficiario" class="form-label">Nombre Nuevo Beneficiario:</label>
+                            <input type="text" class="form-control" id="nuevo_beneficiario" name="nuevo_beneficiario"
+                                value="{{ $lis_legal->nuevo_beneficiario }}">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="ci_nuevo_benef" class="form-label">CI Nuevo Beneficiario:</label>
+                            <input type="text" class="form-control" id="ci_nuevo_benef" name="ci_nuevo_benef"
+                                value="{{ $lis_legal->ci_nuevo_benef }}">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="minuta_testimonio" class="form-label">Testimonio / Minuta / Folio:</label>
+                            <input type="text" class="form-control" id="minuta_testimonio" name="minuta_testimonio"
+                                value="{{ $lis_legal->minuta_testimonio }}">
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3 col-lg-12">
+                        <div class="form-group">
+                            <label for="observaciones3" class="form-label">Observaciones</label>
+                            <textarea class="form-control @error('observaciones3') is-invalid @enderror" id="observaciones3"
+                                name="observaciones3" rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones3', $lis_legal->observaciones3 ?? '') }}
                                     </textarea>
-                                </div>
-                            </div>
-
-
-                            <table class="form group">
-                              <tr>
-                                <td>Inicio de Recuperacion o Sustitucion:</td>
-                                <td><label for="inicio_reasig_sustit-si" class="form-label"><input type="radio" name="inicio_reasig_sustit" value="si">Si</lavel></td>
-                                  <td><label for="inicio_reasig_sustit-no" class="form-label"><input type="radio" name="inicio_reasig_sustit" value="no">No</lavel></td>
-                                    <td><label for="inicio_reasig_sustit-pendiente" class="form-label"><input type="radio" name="inicio_reasig_sustit" value="pendiente">Pendiente</lavel></td>
-                                    </tr>
-                                  </table>
-                                  <table class="form group">
-                                   <tr class="form group">
-                                     <td>Nombre Nuevo Beneficiario:</td>
-                                     <td><input type="text" class="form-input" id="nuevo_beneficiario" name="nuevo_beneficiario" placeholder="" requerid></td>
-                                   </tr>
-                                   <tr class="form group">
-                                    <td>CI Nuevo Beneficiario:</td>
-                                    <td> <input type="text" class="form-input" id="ci_nuevo_benef" name="ci_nuevo_benef" placeholder="" requerid></td>
-                                  </tr>
-                                  <tr class="form group">
-                                   <td>Testimonio / Minuta / Folio:</td>
-                                   <td> <input type="text" class="form-input" id="minuta_testimonio" name="minuta_testimonio" placeholder="" requerid></td>
-                                 </tr>
-
-                               </table>
-                               <div class="col-3 col-md-3 col-lg-12">
-                                <div class="form-group">
-                                    <label for="observaciones3" class="form-label">Observaciones</label>
-                                    <textarea class="form-control @error('observaciones3') is-invalid @enderror" id="observaciones3" name="observaciones3"
-                                        rows="1" cols="100" placeholder="Escribe tus observaciones aquí">{{ old('observaciones3', $lis_legal->observaciones3 ?? '') }}
-                                    </textarea>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -255,7 +309,7 @@
 
             <div class="d-flex justify-content-between mt-4">
                 <!-- Botón Anterior -->
-                <a href="{{ route('social_act.index') }}" class="btn btn-warning">
+                <a href="{{ route('legal_act.index') }}" class="btn btn-warning">
                     <i class="bi bi-arrow-left-circle"></i> Anterior
                 </a>
                 <!-- Botón Siguiente -->
