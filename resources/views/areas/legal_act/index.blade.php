@@ -12,7 +12,8 @@
                 <input type="text" name="folio" class="form-control" placeholder="Buscar por Nro Folio Real"
                     value="{{ request('folio') }}">
 
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="submit" class="btn text-white"
+                style="background: linear-gradient(135deg, #4d616e, #c2c209); border: none;">Buscar</button>
             </form>
         </div>
 
@@ -46,7 +47,7 @@
 
                         <td>
                             <a href="{{ route('legal_act.edit', $unidad_habitacional->uh_asignada_id) }}"
-                                class="btn btn-warning">Editar</a>
+                                class="btn text-white" style="background: linear-gradient(135deg, #6e694d, #08c908); border: none;" >Editar</a>
 
 
                         </td>

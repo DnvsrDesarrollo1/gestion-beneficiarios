@@ -28,44 +28,57 @@ Route::resource('beneficiario_act', App\Http\Controllers\BeneficiarioUpdControll
     ]);
 
 Route::resource('unidades_hab', App\Http\Controllers\UnidHabitacionalController::class)
-->names([
-    'index' => 'unidades_hab.index',
-    'edit' => 'unidades_hab.edit',
-    'update' => 'unidades_hab.update',
-    //'destroy' => 'beneficiario_act.destroy',
-]);
+    ->names([
+        'index' => 'unidades_hab.index',
+        'edit' => 'unidades_hab.edit',
+        'update' => 'unidades_hab.update',
+        //'destroy' => 'beneficiario_act.destroy',
+    ]);
 
 Route::resource('proyecto', App\Http\Controllers\ProyectoController::class)
-->names([
-    'index' => 'proyecto.index',
-    'edit' => 'proyecto.edit',
-    'update' => 'proyecto.update',
-    //'destroy' => 'beneficiario_act.destroy',
-]);
+    ->names([
+        'index' => 'proyecto.index',
+        'edit' => 'proyecto.edit',
+        'update' => 'proyecto.update',
+        //'destroy' => 'beneficiario_act.destroy',
+    ]);
 
 Route::resource('social_act', App\Http\Controllers\SocialUpdController::class)
-->names([
-    'index' => 'social_act.index',
-    'edit' => 'social_act.edit',
-    'update' => 'social_act.update',
-    //'destroy' => 'beneficiario_act.destroy',
-]);
+    ->names([
+        'index' => 'social_act.index',
+        'edit' => 'social_act.edit',
+        'update' => 'social_act.update',
+        //'destroy' => 'beneficiario_act.destroy',
+    ]);
 
 Route::resource('legal_act', App\Http\Controllers\LegalUpdController::class)
-->names([
-    'index' => 'legal_act.index',
-    'edit' => 'legal_act.edit',
-    'update' => 'legal_act.update',
-    //'destroy' => 'beneficiario_act.destroy',
-]);
+    ->names([
+        'index' => 'legal_act.index',
+        'edit' => 'legal_act.edit',
+        'update' => 'legal_act.update',
+        //'destroy' => 'beneficiario_act.destroy',
+    ]);
 
 Route::resource('credito_act', App\Http\Controllers\CreditoUpdController::class)
-->names([
-    'index' => 'credito_act.index',
-    'edit' => 'credito_act.edit',
-    //'update' => 'legal_act.update',
-    //'destroy' => 'beneficiario_act.destroy',
-]);
+    ->names([
+        'index' => 'credito_act.index',
+
+    ]);
+
+//Route::resources/views/areas/credito_act/detalle_pdf.blade.php
+
+/*Route::get('credito_act/detalle_pdf/{uh_asignada_id}', [App\Http\Controllers\CreditoUpdController::class, 'detalle'])
+    ->name('credito_act.detalle_pdf');*/
+
+Route::get('/credito_act/{uh_asignada_id}/detalle-pdf', [App\Http\Controllers\CreditoUpdController::class, 'verPDF'])
+    ->name('credito_act.detalle_pdf');
+Route::get('/credito_act/{uh_asignada_id}/descargar-pdf', [App\Http\Controllers\CreditoUpdController::class, 'descargarPDF'])
+    ->name('credito_act.descargar_pdf');
+
+Route::get('asignar_act', [App\Http\Controllers\AsignarController::class, 'index'])->name('asignar_act.index');
+
+
+
 
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -92,7 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
         'sociales' => 'social'
     ])
         ->names('socials');
-//Reportes
+    //Reportes
 
     Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'index'])->name('reporte');;
 
@@ -107,7 +120,6 @@ Route::group(['middleware' => 'auth'], function () {
         'creditos' => 'credito'
     ])
         ->names('extracred');
-
 });
 
 // -------------------------------------------------------------------------------------------------------------

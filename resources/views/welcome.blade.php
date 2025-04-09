@@ -81,6 +81,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"  href="{{ route('home') }}">Beneficiario</a></li>
                             <li><a class="dropdown-item" href="{{ route('beneficiario_act.index') }}">Registro de Nuevo Beneficiario / Actualizar Datos</a></li>
+                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Unidad Habitacional / Actualizar Datos</a></li>
                             <li><a class="dropdown-item" href="{{ route('social_act.index') }}">Estado Social del Beneficiario</a></li>
                             <li><a class="dropdown-item" href="{{ route('legal_act.index') }}">Informacion legal del Beneficiario</a></li>
                             <li><a class="dropdown-item" href="{{ route('credito_act.index') }}">Cartera de Creditos del Beneficiario</a></li>
@@ -104,7 +105,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"  href="#">Asignacion Habitacional</a></li>
-                            <li><a class="dropdown-item" href="{{ route('unidades_hab.index')}}">Crear nuevo beneficiario y actualizar datos</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
                             <li><a class="dropdown-item" href="">Menu item</a></li>
                         </ul>
                     </li>
