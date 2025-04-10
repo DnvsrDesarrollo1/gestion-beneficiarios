@@ -14,6 +14,10 @@ class Usignad extends Model
         'unidad_habitacional_id',
         'beneficiario_id',
         'observaciones',
+        'estado_reg',
+        'usuario_reg',
+        'created_at',
+        'updated_at'
 
     ];
     // Relación con Beneficiario (Un Beneficiario tiene una unidad asignada)
@@ -21,12 +25,6 @@ class Usignad extends Model
     {
         return $this->belongsTo(Beneficiary::class, 'beneficiario_id', 'beneficiario_id');
     }
-
-    // Relación con Unidad Habitacional
-    /*public function unit()
-    {
-        return $this->belongsTo(Unit::class, 'unidad_habitacional_id', 'unidad_habitacional_id');
-    }*/
 
     // Relación con Estado Social
     public function social()

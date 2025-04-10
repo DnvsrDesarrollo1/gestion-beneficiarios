@@ -27,11 +27,16 @@
                 <td>{{ $unidad->lote }}</td>
                 <td>{{ $unidad->unidad_vecinal }}</td>
                 <td>
-                   <!-- <a href="#" class="btn btn-primary btn-sm">Asignar</a>-->
+
+                   <a href="{{ route('asignar_act.formulario', $unidad->unidad_habitacional_id) }}" class="btn btn-primary btn-sm">Asignar</a>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <!--Paginacion-->
+    <div class="d-flex justify- content-center mt-3">
+        <div>{{$unidades->links()}}</div>
+    </div>
 </div>
 @endsection

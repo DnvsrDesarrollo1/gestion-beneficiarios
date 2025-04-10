@@ -104,7 +104,7 @@
                             Unidad Habitacional
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item"  href="#">Asignacion Habitacional</a></li>
+                            <li><a class="dropdown-item"  href="{{ route('asignar_act.index') }}">Asignacion Habitacional</a></li>
                             <li><a class="dropdown-item" href="#"></a></li>
                             <li><a class="dropdown-item" href="">Menu item</a></li>
                         </ul>
