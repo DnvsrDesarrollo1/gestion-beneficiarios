@@ -113,7 +113,6 @@ class BeneficiarioSearch extends Component
             $query->where('d.departamento_id', $this->departamentos);
         }
 
-
         if (!empty($this->proy)) {
             $query->where('p.proyecto_id', $this->proy);
         }

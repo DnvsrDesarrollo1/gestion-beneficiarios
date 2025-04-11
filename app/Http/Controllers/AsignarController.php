@@ -53,48 +53,6 @@ class AsignarController extends Controller
         return view('areas.asignar_act.index', compact('unidades'));
     }
 
-
-    /* public function asignar(Request $request)
-    {
-        dd($request->all());
-        //dump($request->all()); // 👈🏼 Revisa esto en tu navegador
-
-        // Validar los campos
-        $request->validate([
-            'unidad_habitacional_id' => 'required|exists:unidad_habitacional,unidad_habitacional_id',
-            'beneficiario_id' => 'required|exists:beneficiarios,beneficiario_id',
-
-        ]);
-
-        $unidad = DB::table('unidad_habitacional')
-            ->where('unidad_habitacional_id', $request->unidad_habitacional_id)
-            ->select('proyecto_id', 'departamento_id')
-            ->first();
-
-        if (!$unidad) {
-            return back()->withErrors(['unidad_habitacional_id' => 'Unidad no encontrada.']);
-        }
-
-        // Insertar el nuevo registro en la tabla `uh_asignada`
-        DB::table('uh_asignada')->insert([
-            'unidad_habitacional_id' => $request->unidad_habitacional_id,
-            'beneficiario_id' => $request->beneficiario_id,
-            //'proyecto_id' => $request->proyecto_id,
-            //'departamento_id' => $request->departamento_id,
-            'created_at' => now(),
-            'updated_at' => now(),
-
-
-        ]);
-
-        // Verifica si está insertando bien:
-        dd("Asignación exitosa");
-
-
-        return redirect()
-            ->route('asignar_act.formulario', ['id' => $request->unidad_habitacional_id])
-            ->with('success', 'Unidad habitacional asignada correctamente.');
-    }*/
     public function asignar(Request $request)
     {
         // Validar los campos requeridos
@@ -137,7 +95,6 @@ class AsignarController extends Controller
             ->leftJoin('uh_asignada as uha', 'uh.unidad_habitacional_id', '=', 'uha.unidad_habitacional_id')
             ->leftJoin('departamentos as d', 'uh.departamento_id', '=', 'd.departamento_id')
             ->leftJoin('proyectos as p', 'uh.proyecto_id', '=', 'p.proyecto_id')
-            //->whereNull('uha.beneficiario_id') // 🔥 Solo las NO asignadas
             ->where('uh.unidad_habitacional_id', $uh_asignada)
             ->select(
                 'uh.unidad_habitacional_id',
@@ -150,9 +107,7 @@ class AsignarController extends Controller
                 'p.nombre_proy'
             )
             ->first();
-            //$unidad->unidad_habitacional_id;
 
-        //$beneficiario = DB::table('beneficiarios')->get();
         $beneficiario = DB::table('beneficiarios as b')
             ->leftJoin('uh_asignada as uha', 'b.beneficiario_id', '=', 'uha.beneficiario_id')
             ->whereNull('uha.beneficiario_id') // Solo los que no están asignados

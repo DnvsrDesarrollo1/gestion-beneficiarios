@@ -4,6 +4,7 @@
     <div class="container">
         <h4 class="mb-4">Listado de Unidades Habitacionales Disponibles</h4>
 
+
         <div class="mb-3 no-print">
             <form method="GET" class="d-flex gap-2">
                 <input type="text" name="unid_habitacionaId" class="form-control"

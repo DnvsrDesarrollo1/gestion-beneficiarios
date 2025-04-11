@@ -70,12 +70,10 @@
                             </option>
                         @endforeach
                     </select>
-
-
                 </div>
             </div>
 
-            <!--Busqueda por proyecto-->
+            <!--Busqueda por Proyecto-->
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="proyecto_id" class="form-label fw-bold">Buscar por Proyecto:</label>

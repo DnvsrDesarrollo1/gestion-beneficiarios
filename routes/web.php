@@ -69,7 +69,7 @@ Route::get('/credito_act/{uh_asignada_id}/detalle-pdf', [App\Http\Controllers\Cr
     ->name('credito_act.detalle_pdf');
 Route::get('/credito_act/{uh_asignada_id}/descargar-pdf', [App\Http\Controllers\CreditoUpdController::class, 'descargarPDF'])
     ->name('credito_act.descargar_pdf');
-
+//Ruta para el modulo asignar una unidad_habitacional
 Route::get('asignar_act', [App\Http\Controllers\AsignarController::class, 'index'])->name('asignar_act.index');
 Route::post('asignar_act', [App\Http\Controllers\AsignarController::class, 'asignar'])->name('asignar_act.asignar');
 Route::get('/asignar_act/{id}', [App\Http\Controllers\AsignarController::class, 'formulario'])->name('asignar_act.formulario');
