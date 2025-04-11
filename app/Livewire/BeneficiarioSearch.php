@@ -22,7 +22,8 @@ class BeneficiarioSearch extends Component
     public $lote = '';
     public $unidad_habitacional = '';
     public $departamentos = '';
-    public $proyecto = '';
+    public $proy = '';
+    //public $proyectos = [];
     public $prestamo = '';
     public $folio = '';
 
@@ -54,6 +55,8 @@ class BeneficiarioSearch extends Component
                 'b2.cedula_identidad as cedula_conyugue',
                 'd.departamento AS departamento',
                 'p.nombre_proy AS proyecto',
+                //'proyecto_id',
+                //'departamento_id',
                 'uh.manzano',
                 'uh.lote',
                 'uha.uh_asignada_id',
@@ -65,6 +68,9 @@ class BeneficiarioSearch extends Component
 
             ->where('uha.estado_reg', 'U')
             ->where('b1.estado_reg', 'U');
+
+        $proyecto = DB::table('proyectos')->select('proyecto_id', 'nombre_proy')->get();
+        $departamento = DB::table('departamentos')->select('departamento_id', 'departamento')->get();
 
 
         if (!empty($this->nombre)) {
@@ -102,13 +108,16 @@ class BeneficiarioSearch extends Component
             $query->where('uh.unidad_habitacional_id', 'like', '%' . $this->unidad_habitacional . '%');
         }
 
+
         if (!empty($this->departamentos)) {
-            $query->whereRaw('LOWER(d.departamento) = LOWER(?)', [$this->departamentos]);
+            $query->where('d.departamento_id', $this->departamentos);
         }
 
-        if (!empty($this->proyecto)) {
-            $query->whereRaw('LOWER(p.nombre_proy) = LOWER(?)', [$this->proyecto]);
+
+        if (!empty($this->proy)) {
+            $query->where('p.proyecto_id', $this->proy);
         }
+
 
         if (!empty($this->prestamo)) {
             $query->where('cr.cod_prestamo', 'like', '%' . $this->prestamo . '%');
@@ -122,7 +131,7 @@ class BeneficiarioSearch extends Component
 
         $beneficiarios = $query->paginate(10);
 
-        return view('livewire.beneficiario-search', compact('beneficiarios'));
+        return view('livewire.beneficiario-search', compact('beneficiarios','proyecto', 'departamento'));
         //return $query;
 
 

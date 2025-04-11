@@ -18,24 +18,24 @@
         <form action="{{ route('asignar_act.asignar') }}" method="POST">
             @csrf
 
-            <div class="form-group">
-                <label for="unidad_habitacional_id">Unidad Habitacional</label>
-                <select name="unidad_habitacional_id" class="form-select" required>
-                    <option value="">Seleccione una unidad habitacional</option>
-                    @foreach ($unidades as $unidad)
-                    <option value="{{ $unidad->unidad_habitacional_id }}"
-                        data-proyecto="{{ $unidad->proyecto_id }}"
+            {{-- SELECT de unidad habitacional --}}
+            <select name="unidad_habitacional_id" class="form-select" required>
+                <option value="">Seleccione una unidad habitacional</option>
+                @foreach ($unidades as $unidad)
+                    <option value="{{ $unidad->unidad_habitacional_id }}" data-proyecto="{{ $unidad->proyecto_id }}"
                         data-departamento="{{ $unidad->departamento_id }}">
-                    {{ $unidad->departamento }} - {{ $unidad->manzano }} - {{ $unidad->lote }}
-                </option>
-                    @endforeach
-                </select>
+                        {{ $unidad->departamento }} - {{ $unidad->manzano }} - {{ $unidad->lote }}
+                    </option>
+                @endforeach
+            </select>
 
-                <!-- Campos ocultos -->
-                <input type="hidden" name="proyecto_id" value="">
-                <input type="hidden" name="departamento_id" value="">
+            {{-- MOSTRAR datos en pantalla --}}
+            <p>Proyecto ID: <span id="proyecto_id">-</span></p>
+            <p>Departamento ID: <span id="departamento_id">-</span></p>
 
-            </div>
+            {{-- ENVIAR datos al backend --}}
+            <input type="hidden" name="proyecto_id" id="proyecto_id_hidden">
+            <input type="hidden" name="departamento_id" id="departamento_id_hidden">
 
             <div class="form-group mt-3">
                 <label for="beneficiario_id">Beneficiario</label>
@@ -66,14 +66,25 @@
 @endsection
 
 @section('scripts')
-    <script>
-        document.querySelector('select[name="unidad_habitacional_id"]').addEventListener('change', function() {
-            var selectedOption = this.options[this.selectedIndex];
-            var proyecto_id = selectedOption.getAttribute('data-proyecto');
-            var departamento_id = selectedOption.getAttribute('data-departamento');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const unidadSelect = document.querySelector('select[name="unidad_habitacional_id"]');
+        const proyectoView = document.getElementById('proyecto_id_view');
+        const departamentoView = document.getElementById('departamento_id_view');
+        const inputProyecto = document.getElementById('proyecto_id_hidden');
+        const inputDepartamento = document.getElementById('departamento_id_hidden');
 
-            document.querySelector('input[name="proyecto_id"]').value = proyecto_id;
-            document.querySelector('input[name="departamento_id"]').value = departamento_id;
+        unidadSelect.addEventListener('change', function () {
+            const selected = this.selectedOptions[0];
+            const proyecto = selected.dataset.proyecto ?? '';
+            const departamento = selected.dataset.departamento ?? '';
+
+            proyectoView.textContent = proyecto || '-';
+            departamentoView.textContent = departamento || '-';
+
+            inputProyecto.value = proyecto;
+            inputDepartamento.value = departamento;
         });
-    </script>
+    });
+</script>
 @endsection
