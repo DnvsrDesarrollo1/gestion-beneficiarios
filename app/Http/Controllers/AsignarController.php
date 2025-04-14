@@ -110,7 +110,7 @@ class AsignarController extends Controller
 
         $beneficiario = DB::table('beneficiarios as b')
             ->leftJoin('uh_asignada as uha', 'b.beneficiario_id', '=', 'uha.beneficiario_id')
-            ->whereNull('uha.beneficiario_id') // Solo los que no están asignados
+            ->whereNull('uha.beneficiario_id') // Solo mostrara beneficiarios que no estan asignados
             ->select('b.*')
             ->get();
 

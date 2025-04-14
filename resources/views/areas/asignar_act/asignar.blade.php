@@ -30,8 +30,8 @@
             </select>
 
             {{-- MOSTRAR datos en pantalla --}}
-            <p>Proyecto ID: <span id="proyecto_id">-</span></p>
-            <p>Departamento ID: <span id="departamento_id">-</span></p>
+            <!--<p>Proyecto ID: <span id="proyecto_id">-</span></p>
+            <p>Departamento ID: <span id="departamento_id">-</span></p>-->
 
             {{-- ENVIAR datos al backend --}}
             <input type="hidden" name="proyecto_id" id="proyecto_id_hidden">
@@ -66,7 +66,7 @@
 @endsection
 
 @section('scripts')
-<script>
+<!--<script>
     document.addEventListener('DOMContentLoaded', function () {
         const unidadSelect = document.querySelector('select[name="unidad_habitacional_id"]');
         const proyectoView = document.getElementById('proyecto_id_view');
@@ -86,5 +86,5 @@
             inputDepartamento.value = departamento;
         });
     });
-</script>
+</script>-->
 @endsection

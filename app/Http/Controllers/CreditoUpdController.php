@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf; // Asegúrate de tener instalado barryvdh/larave
 
 class CreditoUpdController extends Controller
 {
-    //public function index(Request $request)
+
     public function index(Request $request)
     {
         $ci_beneficiario = $request->input('ci_beneficiario');
@@ -53,9 +53,9 @@ class CreditoUpdController extends Controller
                 'cr.tasa_interes',
                 'cr.observaciones'
             )
-            //->get();
+
             ->when($ci_beneficiario, function ($query, $ci_beneficiario) {
-                return $query->whereRaw("b1.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
+                return $query->whereRaw("b.cedula_identidad::TEXT LIKE ?", ["%{$ci_beneficiario}%"]);
             })
 
             ->when($cod_prestamo, function ($query, $cod_prestamo) {

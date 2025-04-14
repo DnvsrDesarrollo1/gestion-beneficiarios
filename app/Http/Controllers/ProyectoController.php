@@ -33,8 +33,9 @@ class ProyectoController extends Controller
 
             ->join('departamentos as d', 'p.departamento_id', '=', 'd.departamento_id')
             //->orderBy('proyecto_id', 'ASC')
+
             ->when($proy, function ($query, $proy) {
-                return $query->whereRaw('LOWER(p.proyecto_id) LIKE LOWER(?)', ['%' . $proy . '%']);
+                return $query->where('p.proyecto_id', (int)$proy);
             })
             ->paginate(10); // Paginación: muestra 10 resultados por página
 
