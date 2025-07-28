@@ -1,8 +1,64 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.convertapi.com/button.css">
+    <style>
+        @page {
+            size: letter landscape;
+        }
+
+        @media print {
+
+            header,
+            footer,
+            aside,
+            nav,
+            .card-footer,
+            .btn {
+                display: none;
+            }
+
+            .card-header,
+            .card-body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: #ffffff;
+                background-image: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .card {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .card:hover {
+                box-shadow: none;
+            }
+
+            .card-header {
+                background-color: #ffffff;
+            }
+
+            .card-body {
+                background-color: #ffffff;
+            }
+
+            .card-footer {
+                background-color: #ffffff;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
-    <div class="container text-center">
-        <div class="card">
+    <div class="container-fluid text-center">
+        <div class="card" id="invoice">
             <div class="card-header">
                 <h2>
                     <table class="table table-bordered">
@@ -118,149 +174,85 @@
                                                 @switch($beneficiario->estado_social_benef_final)
                                                     @case('CANCELADO')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve" fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
+                                                                </path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('NO CUMPLE LA FUNCION SOCIAL')
                                                         {{-- NO PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve" fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: #cf1717;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st0"
-                                                                        d="M153.225,256.568h57.062V98.544h-57.062c-36.544,0-67.206,24.836-76.241,58.53H0v40.973h76.988 C86.027,231.732,116.685,256.568,153.225,256.568z">
-                                                                    </path>
-                                                                    <path class="st0"
-                                                                        d="M512,157.074h-76.991c-9.032-33.694-39.69-58.53-76.234-58.53h-57.062v158.024h57.062 c36.54,0,67.194-24.836,76.23-58.522H512V157.074z">
-                                                                    </path>
-                                                                    <polygon class="st0"
-                                                                        points="151.441,348.564 89.272,348.564 89.272,366.262 89.272,383.962 151.441,383.962 151.441,413.456 218.754,366.262 151.441,319.07 ">
-                                                                    </polygon>
-                                                                    <polygon class="st0"
-                                                                        points="360.555,319.07 293.242,366.262 360.555,413.456 360.555,383.962 422.724,383.962 422.724,366.262 422.724,348.564 360.555,348.564 ">
-                                                                    </polygon>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path d="M7 17L16.8995 7.10051" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M7 7.00001L16.8995 16.8995" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('PENDIENTE DE REASIGNACION')
                                                         {{-- NO PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve" fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: #cf1717;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st0"
-                                                                        d="M153.225,256.568h57.062V98.544h-57.062c-36.544,0-67.206,24.836-76.241,58.53H0v40.973h76.988 C86.027,231.732,116.685,256.568,153.225,256.568z">
-                                                                    </path>
-                                                                    <path class="st0"
-                                                                        d="M512,157.074h-76.991c-9.032-33.694-39.69-58.53-76.234-58.53h-57.062v158.024h57.062 c36.54,0,67.194-24.836,76.23-58.522H512V157.074z">
-                                                                    </path>
-                                                                    <polygon class="st0"
-                                                                        points="151.441,348.564 89.272,348.564 89.272,366.262 89.272,383.962 151.441,383.962 151.441,413.456 218.754,366.262 151.441,319.07 ">
-                                                                    </polygon>
-                                                                    <polygon class="st0"
-                                                                        points="360.555,319.07 293.242,366.262 360.555,413.456 360.555,383.962 422.724,383.962 422.724,366.262 422.724,348.564 360.555,348.564 ">
-                                                                    </polygon>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path d="M7 17L16.8995 7.10051" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M7 7.00001L16.8995 16.8995" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('NO APLICA')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('CUMPLE LA FUNCION SOCIAL')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
@@ -304,97 +296,58 @@
                                                 @switch($beneficiario->proceso_estado_benef_final)
                                                     @case('EN PROCESO DE REASIGNACION')
                                                         {{-- NO PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: #cf1717;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st0"
-                                                                        d="M153.225,256.568h57.062V98.544h-57.062c-36.544,0-67.206,24.836-76.241,58.53H0v40.973h76.988 C86.027,231.732,116.685,256.568,153.225,256.568z">
-                                                                    </path>
-                                                                    <path class="st0"
-                                                                        d="M512,157.074h-76.991c-9.032-33.694-39.69-58.53-76.234-58.53h-57.062v158.024h57.062 c36.54,0,67.194-24.836,76.23-58.522H512V157.074z">
-                                                                    </path>
-                                                                    <polygon class="st0"
-                                                                        points="151.441,348.564 89.272,348.564 89.272,366.262 89.272,383.962 151.441,383.962 151.441,413.456 218.754,366.262 151.441,319.07 ">
-                                                                    </polygon>
-                                                                    <polygon class="st0"
-                                                                        points="360.555,319.07 293.242,366.262 360.555,413.456 360.555,383.962 422.724,383.962 422.724,366.262 422.724,348.564 360.555,348.564 ">
-                                                                    </polygon>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path d="M7 17L16.8995 7.10051" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M7 7.00001L16.8995 16.8995" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('EXCEPCIONALIDAD')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('BENEFICIARIO INICIAL')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('AEVIVIENDA')
                                                         {{-- VIEW --}}
-                                                        <svg fill="#eefd26" width="64px" height="64px"
+                                                        <svg fill="#eefd26" width="32px" height="32px"
                                                             viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
                                                             xmlns="http://www.w3.org/2000/svg" stroke="#eefd26">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -410,188 +363,136 @@
 
                                                     @case('CAMBIO DE TITULAR')
                                                         {{-- VIEW --}}
-                                                        <svg fill="#eefd26" width="64px" height="64px"
-                                                            viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
-                                                            xmlns="http://www.w3.org/2000/svg" stroke="#eefd26">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <path
-                                                                    d="M30 3.183l-28 0c-1.105 0-2 0.895-2 2v18c0 1.105 0.895 2 2 2h5c0.641 0 1-0.823 1-1v-0c0-0.182-0.34-1.013-1-1.013h-3.78c-0.668 0-1.21-0.542-1.21-1.21v-15.522c0-0.668 0.542-1.21 1.21-1.21l25.571-0.032c0.668 0 1.21 0.542 1.21 1.21v15.553c0 0.668-0.542 1.21-1.21 1.21h-12.599l2.375-2.154c0.292-0.279 0.387-0.732 0.095-1.011l-0.171-0.252c-0.293-0.279-0.765-0.279-1.058 0l-4.054 3.701c-0.006 0.005-0.011 0.007-0.017 0.012l-0.265 0.253c-0.146 0.139-0.219 0.323-0.218 0.507-0.001 0.184 0.072 0.368 0.218 0.509l0.265 0.253c0.005 0.005 0.011 0.006 0.017 0.011l3.992 3.61c0.292 0.279 0.765 0.279 1.058 0l0.171-0.252c0.292-0.279 0.197-0.733-0.095-1.012l-2.41-2.162h13.906c1.105 0 2-0.895 2-2v-18c0-1.104-0.895-2-2-2z">
-                                                                </path>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <circle cx="12" cy="12" r="9" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                                <path d="M12 6V12L16.5 16.5" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('REASIGNACION')
-                                                        {{-- NO PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        {{-- PASS --}}
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: #cf1717;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st0"
-                                                                        d="M153.225,256.568h57.062V98.544h-57.062c-36.544,0-67.206,24.836-76.241,58.53H0v40.973h76.988 C86.027,231.732,116.685,256.568,153.225,256.568z">
-                                                                    </path>
-                                                                    <path class="st0"
-                                                                        d="M512,157.074h-76.991c-9.032-33.694-39.69-58.53-76.234-58.53h-57.062v158.024h57.062 c36.54,0,67.194-24.836,76.23-58.522H512V157.074z">
-                                                                    </path>
-                                                                    <polygon class="st0"
-                                                                        points="151.441,348.564 89.272,348.564 89.272,366.262 89.272,383.962 151.441,383.962 151.441,413.456 218.754,366.262 151.441,319.07 ">
-                                                                    </polygon>
-                                                                    <polygon class="st0"
-                                                                        points="360.555,319.07 293.242,366.262 360.555,413.456 360.555,383.962 422.724,383.962 422.724,366.262 422.724,348.564 360.555,348.564 ">
-                                                                    </polygon>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('PENDIENTE DE REASIGNACION')
                                                         {{-- VIEW --}}
-                                                        <svg fill="#eefd26" width="64px" height="64px"
-                                                            viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
-                                                            xmlns="http://www.w3.org/2000/svg" stroke="#eefd26">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <path
-                                                                    d="M30 3.183l-28 0c-1.105 0-2 0.895-2 2v18c0 1.105 0.895 2 2 2h5c0.641 0 1-0.823 1-1v-0c0-0.182-0.34-1.013-1-1.013h-3.78c-0.668 0-1.21-0.542-1.21-1.21v-15.522c0-0.668 0.542-1.21 1.21-1.21l25.571-0.032c0.668 0 1.21 0.542 1.21 1.21v15.553c0 0.668-0.542 1.21-1.21 1.21h-12.599l2.375-2.154c0.292-0.279 0.387-0.732 0.095-1.011l-0.171-0.252c-0.293-0.279-0.765-0.279-1.058 0l-4.054 3.701c-0.006 0.005-0.011 0.007-0.017 0.012l-0.265 0.253c-0.146 0.139-0.219 0.323-0.218 0.507-0.001 0.184 0.072 0.368 0.218 0.509l0.265 0.253c0.005 0.005 0.011 0.006 0.017 0.011l3.992 3.61c0.292 0.279 0.765 0.279 1.058 0l0.171-0.252c0.292-0.279 0.197-0.733-0.095-1.012l-2.41-2.162h13.906c1.105 0 2-0.895 2-2v-18c0-1.104-0.895-2-2-2z">
-                                                                </path>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <circle cx="12" cy="12" r="9" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                                <path d="M12 6V12L16.5 16.5" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('EN PROCESO DE SUSTITUCION')
                                                         {{-- VIEW --}}
-                                                        <svg fill="#eefd26" width="64px" height="64px"
-                                                            viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
-                                                            xmlns="http://www.w3.org/2000/svg" stroke="#eefd26">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <path
-                                                                    d="M30 3.183l-28 0c-1.105 0-2 0.895-2 2v18c0 1.105 0.895 2 2 2h5c0.641 0 1-0.823 1-1v-0c0-0.182-0.34-1.013-1-1.013h-3.78c-0.668 0-1.21-0.542-1.21-1.21v-15.522c0-0.668 0.542-1.21 1.21-1.21l25.571-0.032c0.668 0 1.21 0.542 1.21 1.21v15.553c0 0.668-0.542 1.21-1.21 1.21h-12.599l2.375-2.154c0.292-0.279 0.387-0.732 0.095-1.011l-0.171-0.252c-0.293-0.279-0.765-0.279-1.058 0l-4.054 3.701c-0.006 0.005-0.011 0.007-0.017 0.012l-0.265 0.253c-0.146 0.139-0.219 0.323-0.218 0.507-0.001 0.184 0.072 0.368 0.218 0.509l0.265 0.253c0.005 0.005 0.011 0.006 0.017 0.011l3.992 3.61c0.292 0.279 0.765 0.279 1.058 0l0.171-0.252c0.292-0.279 0.197-0.733-0.095-1.012l-2.41-2.162h13.906c1.105 0 2-0.895 2-2v-18c0-1.104-0.895-2-2-2z">
-                                                                </path>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <circle cx="12" cy="12" r="9" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                                <path d="M12 6V12L16.5 16.5" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('BENEFICIARIO SEGUN FOLIO REAL')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('SUSTITUCION')
                                                         {{-- VIEW --}}
-                                                        <svg fill="#eefd26" width="64px" height="64px"
-                                                            viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
-                                                            xmlns="http://www.w3.org/2000/svg" stroke="#eefd26">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <path
-                                                                    d="M30 3.183l-28 0c-1.105 0-2 0.895-2 2v18c0 1.105 0.895 2 2 2h5c0.641 0 1-0.823 1-1v-0c0-0.182-0.34-1.013-1-1.013h-3.78c-0.668 0-1.21-0.542-1.21-1.21v-15.522c0-0.668 0.542-1.21 1.21-1.21l25.571-0.032c0.668 0 1.21 0.542 1.21 1.21v15.553c0 0.668-0.542 1.21-1.21 1.21h-12.599l2.375-2.154c0.292-0.279 0.387-0.732 0.095-1.011l-0.171-0.252c-0.293-0.279-0.765-0.279-1.058 0l-4.054 3.701c-0.006 0.005-0.011 0.007-0.017 0.012l-0.265 0.253c-0.146 0.139-0.219 0.323-0.218 0.507-0.001 0.184 0.072 0.368 0.218 0.509l0.265 0.253c0.005 0.005 0.011 0.006 0.017 0.011l3.992 3.61c0.292 0.279 0.765 0.279 1.058 0l0.171-0.252c0.292-0.279 0.197-0.733-0.095-1.012l-2.41-2.162h13.906c1.105 0 2-0.895 2-2v-18c0-1.104-0.895-2-2-2z">
-                                                                </path>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <circle cx="12" cy="12" r="9" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                                <path d="M12 6V12L16.5 16.5" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('CANCELADO')
                                                         {{-- PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st1 {
-                                                                        fill: #54c520;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st1"
-                                                                        d="M101.723,233.634H0v44.741h101.723c9.87,36.784,43.344,63.904,83.248,63.904h62.31V169.722h-62.31 C145.066,169.722,111.584,196.842,101.723,233.634z">
-                                                                    </path>
-                                                                    <path class="st1"
-                                                                        d="M512,233.634H410.269c-9.862-36.792-43.336-63.912-83.24-63.912H264.72v172.557h62.309 c39.896,0,73.369-27.12,83.24-63.904H512V233.634z">
-                                                                    </path>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path
+                                                                    d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                                                                    stroke="#000000" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
 
                                                     @case('PENDIENTE DE APLICACION DE LA LEY 850')
                                                         {{-- NO PASS --}}
-                                                        <svg height="64px" width="64px" version="1.1" id="_x32_"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            viewBox="-51.2 -51.2 614.40 614.40" xml:space="preserve"
-                                                            fill="#000000">
+                                                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
                                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
                                                                 stroke-linejoin="round"></g>
                                                             <g id="SVGRepo_iconCarrier">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: #cf1717;
-                                                                    }
-                                                                </style>
-                                                                <g>
-                                                                    <path class="st0"
-                                                                        d="M153.225,256.568h57.062V98.544h-57.062c-36.544,0-67.206,24.836-76.241,58.53H0v40.973h76.988 C86.027,231.732,116.685,256.568,153.225,256.568z">
-                                                                    </path>
-                                                                    <path class="st0"
-                                                                        d="M512,157.074h-76.991c-9.032-33.694-39.69-58.53-76.234-58.53h-57.062v158.024h57.062 c36.54,0,67.194-24.836,76.23-58.522H512V157.074z">
-                                                                    </path>
-                                                                    <polygon class="st0"
-                                                                        points="151.441,348.564 89.272,348.564 89.272,366.262 89.272,383.962 151.441,383.962 151.441,413.456 218.754,366.262 151.441,319.07 ">
-                                                                    </polygon>
-                                                                    <polygon class="st0"
-                                                                        points="360.555,319.07 293.242,366.262 360.555,413.456 360.555,383.962 422.724,383.962 422.724,366.262 422.724,348.564 360.555,348.564 ">
-                                                                    </polygon>
-                                                                </g>
+                                                                <rect width="24" height="24" fill="white"></rect>
+                                                                <path d="M7 17L16.8995 7.10051" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                <path d="M7 7.00001L16.8995 16.8995" stroke="#000000"
+                                                                    stroke-linecap="round" stroke-linejoin="round"></path>
                                                             </g>
                                                         </svg>
                                                     @break
@@ -754,10 +655,30 @@
                         </div>
                     </div>
                 </div>
+                <button button type="button" onclick="window.print();" class="btn btn-success">Imprimir</button>
+                <button id="download-button" class="btn btn-danger">Download as PDF</button>
                 <hr>
                 <button button type="button" onclick="window.open('', '_self', ''); window.close();"
                     class="btn btn-secondary">Cancelar</button>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const button = document.getElementById('download-button');
+
+        function generatePDF() {
+            // Choose the element that your content will be rendered to.
+            const element = document.getElementById('invoice');
+            // Choose the element and save the PDF for your user.
+            html2pdf().from(element).save();
+        }
+
+        button.addEventListener('click', generatePDF);
+    </script>
 @endsection

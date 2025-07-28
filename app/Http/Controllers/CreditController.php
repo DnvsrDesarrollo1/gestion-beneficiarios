@@ -58,12 +58,13 @@ class CreditController extends Controller
     {
         // Validación
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'departamento' => 'required',
-            'estado_cartera' => 'required',
-            'nombre_beneficiario' => 'required',
-            'ci' => 'required',
-            'total_activado' => 'required',
-            'monto_canceladoafecha' => 'required',
+            'departamento' => '',
+            'estado_cartera' => '',
+            'nombre_beneficiario' => '',
+            'ci' => '',
+            'total_activado' => '',
+            'monto_canceladoafecha' => '',
+            'observacion' => ''
         ]);
 
         if ($validator->fails()) {
@@ -82,11 +83,11 @@ class CreditController extends Controller
             $credito->update($validator->validated());
 
             return redirect()
-                ->route('credits.edit', $credito)
+                ->route('credits.edit', $credito->unid_hab_id)
                 ->with('success', 'El crédito ha sido actualizado exitosamente.');
         } catch (\Exception $e) {
             return redirect()
-                ->route('credits.edit', $credito)
+                ->route('credits.edit', $credito->unid_hab_id)
                 ->with('error', 'Hubo un problema al actualizar el crédito. Por favor, inténtalo de nuevo.')
                 ->with('code', $e->getMessage())
                 ->withInput();

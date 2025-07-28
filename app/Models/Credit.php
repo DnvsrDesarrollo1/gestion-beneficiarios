@@ -20,6 +20,7 @@ class Credit extends Model
         'ci',
         'total_activado',
         'monto_canceladoafecha',
+        'observacion',
         'user_id'
     ];
 

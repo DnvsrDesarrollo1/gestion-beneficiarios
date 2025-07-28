@@ -119,6 +119,14 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="observacion" class="form-label fw-bold">Observaciones</label>
+                            <textarea name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror">{{ old('observacion', $credito->observacion) }}
+                            </textarea>
+                            @error('observacion')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

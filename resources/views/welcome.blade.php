@@ -14,13 +14,16 @@
             <a class="btn btn-lg text-white" href="{{ route('home') }}" style="background-color: #173844; border-color: #4CAF50;">
                <i class="bi bi-list-ul"></i> Ir a lista de Beneficiarios
             </a>
-            <a class="btn btn-lg text-white" href="{{route('extracredito')}}" style="background-color: #173844; border-color: #4CAF50;">
-                <i class="bi bi-pencil-square"></i> Actualizar número de Teléfono / Celular
+
+            <a class="btn btn-lg text-white" href="{{ route('poseedor.index') }}" style="background-color: #173844; border-color: #4CAF50;">
+                <i class="bi bi-pencil-square"></i>Registro del telefono del Beneficiario y Registro Poseedor
             </a>
             <a class="btn btn-lg text-white" href="{{route('reporte')}}" style="background-color: #173844; border-color: #4CAF50;">
                 <i class="bi bi-pencil-square"></i> Reporte de Auditoria
             </a>
-
+            <a class="btn btn-lg text-white" href="{{ route('infproyecto') }}" style="background-color: #173844; border-color: #4CAF50;">
+                <i class="bi bi-pencil-square"></i>Resumen Integral del Beneficiario: Áreas Legal, Social y Créditos
+            </a>
         </div>
     </div>
 </div>
@@ -28,6 +31,4 @@
 @endsection
 
 
-@section('js')
-@endsection
 

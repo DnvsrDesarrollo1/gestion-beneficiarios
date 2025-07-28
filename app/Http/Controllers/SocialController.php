@@ -112,10 +112,8 @@ class SocialController extends Controller
             'observacion_benef_final' => '',
         ]);
 
-        $ref = \App\Models\Credit::where('unid_hab_id', $social->unid_hab_id)->first();
-
         if ($validator->fails()) {
-            return $validator->errors();
+            //return $validator->errors();
             return redirect()
                 ->route('socials.edit', $social->unid_hab_id)
                 ->withErrors($validator)

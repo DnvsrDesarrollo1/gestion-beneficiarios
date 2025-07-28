@@ -53,6 +53,12 @@ class Social extends Model
         'estado_social_benef_final',
         'proceso_estado_benef_final',
         'observacion_benef_final',
+        'porcentaje_avan_fis',
+        'telefono_titul',
+        'telefono_final',
+        'telefono_poseed',
+        'nombre_poseedor',
+        'ci_poseedor',
         'user_id',
         'alerta'
     ];
@@ -71,4 +77,11 @@ class Social extends Model
     {
         return $this->hasOne(Legal::class, 'unid_hab_id', 'unid_hab_id');
     }
+
+    public function poseedores()
+    {
+        return $this->hasMany(Social::class, 'user_id');
+    }
+
+
 }

@@ -42,12 +42,11 @@
 
     @foreach ($beneficiarios as $beneficiario)
         {{-- 0 --}}
-        <form action="{{ route('beneficiarios.update') }}" method="POST">
+
+        <form action="{{ route('beneficiarios.update', $beneficiario->id_soc) }}" method="POST">
             @csrf
             @method('PUT')
-
-            <input type="hidden" name="bei" value="{{ $beneficiario->beneficiario_id }}">
-
+            <input type="hidden" name="unid_hab_id" value="{{ $beneficiario->unid_hab_id }}">
 
             <div class="row g-3">
 
@@ -59,38 +58,44 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="nombres" class="form-label fw-bold">Beneficiario</label>
-                    <input type="text" class="form-control @error('nombres') is-invalid @enderror"
-                        id="nombres" name="nombres"
-                        value="{{ old('nombres', $beneficiario->nombres) }}" disabled>
+                    <label for="nombre_beneficiario_final" class="form-label fw-bold">Beneficiario</label>
+                    <input type="text" class="form-control @error('nombre_beneficiario_final') is-invalid @enderror"
+                        id="nombre_beneficiario_final" name="nombre_beneficiario_final"
+                        value="{{ old('nombre_beneficiario_final', $beneficiario->nombre_beneficiario_final) }}" disabled>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="cedula_identidad" class="form-label fw-bold">C.I.</label>
-                    <input type="text" class="form-control @error('cedula_identidad') is-invalid @enderror" id="cedula_identidad"
-                        name="cedula_identidad" value="{{ old('cedula_identidad', $beneficiario->cedula_identidad) }}" disabled>
+                    <label for="ci_beneficiario_final" class="form-label fw-bold">C.I.</label>
+                    <input type="text" class="form-control @error('ci_beneficiario_final') is-invalid @enderror" id="ci_beneficiario_final"
+                        name="ci_beneficiario_final" value="{{ old('ci_beneficiario_final', $beneficiario->ci_beneficiario_final) }}" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="fono" class="form-label fw-bold">Teléfono / Celular Creditos</label>
+
+                    <input
+                    type="text"
+                    name="fono"
+                    id="fono"
+                    class="form-control @error('fono') is-invalid @enderror"
+                    value="{{ old('fono', $beneficiario->fono) }}"
+                    placeholder="Ej: 78945612-71234567"
+                    pattern="^(\d{8,9})(-\d{8,9})*$"
+                    />
+
                 </div>
 
-                <!--<div class="col-md-6 mb-3">
-                    <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
-                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono"
-                        name="telefono" value="{{ old('telefono', $beneficiario->telefono) }}">
-                </div>-->
-
-
                 <div class="col-md-6 mb-3">
-                    <label for="telefono" class="form-label fw-bold">Teléfono / Celular</label>
-                    <input type="text" class="form-control @error('telefono') is-invalid @enderror"
-                    id="telefono"
-                    name="telefono"
-                    value="{{ old('telefono', $beneficiario->telefono) }}"
-                    pattern="[0-9]{8,9}"
-                    maxlength="9"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,9);"
-                    required>
-                    @error('telefono')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <label for="telefono_final" class="form-label fw-bold">Teléfono / Celular Social</label>
+
+                    <input
+                    type="text"
+                    name="telefono_final"
+                    id="telefono_final"
+                    class="form-control @error('telefono_final') is-invalid @enderror"
+                    value="{{ old('telefono_final', $beneficiario->telefono_final) }}"
+                    placeholder="Ej: 78945612-71234567"
+                    pattern="^(\d{8,9})(-\d{8,9})*$"
+                    />
                 </div>
 
             </div>

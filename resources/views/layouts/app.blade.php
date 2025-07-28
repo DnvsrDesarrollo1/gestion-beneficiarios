@@ -25,6 +25,7 @@
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     @livewireStyles
 
     @yield('css')
@@ -182,9 +183,9 @@
         @include('layouts.components.navbar')
 
         <main>
-            <div class="container pt-4 pb-4 bg-white border-start border-end border-body-tertiary border-3">
+            <div class="container-fluid pt-4 pb-4 bg-white border-start border-end border-body-tertiary border-3">
                 <div class="row justify-content-center">
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         <livewire:offline>
                             @yield('content')
                     </div>
@@ -202,6 +203,7 @@
         crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @livewireScripts
     @stack('scripts')
     @yield('js')

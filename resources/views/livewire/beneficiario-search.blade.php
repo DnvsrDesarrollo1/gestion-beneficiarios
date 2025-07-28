@@ -63,7 +63,7 @@
                             <td>{{ $beneficiario->ci_beneficiario_final }}</td>
                             <td>{{ $beneficiario->nombre_proyecto }}</td>
                             <td>{{ $beneficiario->credit->fono }}</td>
-                            <td>{{ $beneficiario->observacion_benef_final }}</td>
+                            <td class="text-sm">{{ $beneficiario->observacion_benef_final }}</td>
                             <td>
                                 {{ $beneficiario->manzano }}
                             </td>
