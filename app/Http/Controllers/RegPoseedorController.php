@@ -13,10 +13,15 @@ class RegPoseedorController extends Controller
     {
         $query = Social::select([
             'id_soc', // ¡Muy importante!
+            'proy_id',
             'departamento',
             'nombre_proyecto',
             'manzano',
             'lote',
+            'nombre_titular',
+            'ci_titular',
+            'nombre_conyugue',
+            'ci_conyugue',
             'nombre_beneficiario_final',
             'ci_beneficiario_final',
             'ext_ci_final',

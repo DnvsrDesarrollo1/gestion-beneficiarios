@@ -15,10 +15,10 @@ Route::fallback(function () {
 Route::apiResource('social', \App\Http\Controllers\Api\SocialController::class);
 Route::apiResource('legal', \App\Http\Controllers\Api\LegalController::class);
 Route::apiResource('credito', \App\Http\Controllers\Api\CreditController::class);
-Route::apiResource('/infproyecto', \App\Http\Controllers\Api\InfoProyectoController::class)->names([
-    'index' => 'api.infproyecto',
-
+Route::apiResource('/infoproyecto', \App\Http\Controllers\Api\InfoProyectoController::class)->names([
+    'index' => 'api.infoproyecto',
 ]);
+
 
 
 

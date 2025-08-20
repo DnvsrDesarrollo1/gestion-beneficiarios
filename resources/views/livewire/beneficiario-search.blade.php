@@ -6,7 +6,7 @@
             </span>
             <div class="form-floating flex-grow-1">
                 <input wire:model.live.debounce.300ms="search" type="text" class="form-control" id="searchInput"
-                    placeholder="Buscar beneficiarios">
+                    placeholder="Buscar beneficiarios" oninput="this.value = this.value.toUpperCase()">
                 <label for="searchInput">Buscar beneficiarios</label>
             </div>
             <div class="form-floating">

@@ -51,13 +51,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'index'])->name('reporte');
     //Query informacion de las 3 areas(legal, social y credito)
-    Route::get('/infproyecto', [App\Http\Controllers\InfoProyectoController::class, 'index'])->name('infproyecto');
+    Route::get('/infoproyecto', [App\Http\Controllers\InfoProyectoController::class, 'index'])->name('infoproyecto');
     //Exportar-CSV
     Route::get('/descargar-csv', [App\Http\Controllers\ExportController::class, 'exportCsvDirecto'])->name('exportCsvDirecto');
     Route::get('/get-proyectos', [App\Http\Controllers\InfoProyectoController::class, 'getProyectos'])->name('get.proyectos');
-
-
-
+    //Route::get('/descargar-excel', [App\Http\Controllers\ExportExcelController::class, 'exportExcelDirecto'])->name('exportExcelDirecto');
 
     Route::resource('extracred', App\Http\Controllers\SocExtcreController::class)->parameters([
         'creditos' => 'credito'

@@ -7,11 +7,11 @@
     <form method="GET" action="{{ route('poseedor.index') }}" class="mb-3 no-print w-100">
         <div class="row">
             <div class="col-md-3 mb-2">
-                <input type="text" name="nombre_beneficiario_final" class="form-control" placeholder="Buscar por Nombre"
+                <input type="text" name="nombre_beneficiario_final" class="form-control" placeholder="Buscar por Nombre Beneficiario Final"
                     value="{{ request('nombre_beneficiario_final') }}">
             </div>
             <div class="col-md-2 mb-2">
-                <input type="text" name="ci_beneficiario_final" class="form-control" placeholder="Buscar por C.I."
+                <input type="text" name="ci_beneficiario_final" class="form-control" placeholder="Buscar por C.I. Beneficiario Final"
                     value="{{ request('ci_beneficiario_final') }}">
             </div>
             <div class="col-md-2 mb-2">
@@ -59,36 +59,48 @@
         <table class="table table-bordered table-striped mt-3">
             <thead class="table-danger">
                 <tr>
-                    <th>DEPARTAMENTO</th>
-                    <th>PROYECTO</th>
-                    <th>MANZANO</th>
-                    <th>LOTE</th>
-                    <th>BENEFICIARIO</th>
-                    <th>CI</th>
-                    <th>EXT_CI</th>
-                    <th>TELEFONO BENEFICIARIO</th>
-                    <th>NOMBRES POSEEDOR</th>
-                    <th>CEDULA IDENTIDAD P.</th>
-                    <th>TELEFONO POSEEDOR</th>
-                    <th>OBSERVACIONES</th>
-                    <th>ACCIONES</th>
+                    <th style="font-size: 11px;">Nro</th>
+                    <th style="font-size: 11px;">DEPARTAMENTO</th>
+                    <th style="font-size: 11px;">Proy_id</th>
+                    <th style="font-size: 11px;">PROYECTO</th>
+                    <th style="font-size: 11px;">MANZANO</th>
+                    <th style="font-size: 11px;">LOTE</th>
+                    <th style="font-size: 11px;">BENEFICIARIO INICIAL</th>
+                    <th style="font-size: 11px;">C.I.</th>
+                    <th style="font-size: 11px;">CONYUGUE</th>
+                    <th style="font-size: 11px;">C.I.</th>
+                    <th style="font-size: 11px;">BENEFICIARIO FINAL</th>
+                    <th style="font-size: 11px;">C.I.</th>
+                    <th style="font-size: 11px;">EXT_CI</th>
+                    <th style="font-size: 11px;">TELEFONO BENEFICIARIO</th>
+                    <th style="font-size: 11px;">NOMBRES POSEEDOR</th>
+                    <th style="font-size: 11px;">CEDULA IDENTIDAD P.</th>
+                    <th style="font-size: 11px;">TELEFONO POSEEDOR</th>
+                    <th style="font-size: 11px;">OBSERVACIONES</th>
+                    <th style="font-size: 11px;">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($poseedores as $poseedor)
                     <tr>
-                        <td>{{ $poseedor->departamento }}</td>
-                        <td>{{ $poseedor->nombre_proyecto }}</td>
-                        <td>{{ $poseedor->manzano }}</td>
-                        <td>{{ $poseedor->lote }}</td>
-                        <td>{{ $poseedor->nombre_beneficiario_final }}</td>
-                        <td>{{ $poseedor->ci_beneficiario_final }}</td>
-                        <td>{{ $poseedor->ext_ci_final }}</td>
-                        <td>{{ $poseedor->telefono_final }}</td>
-                        <td>{{ $poseedor->nombre_poseedor }}</td>
-                        <td>{{ $poseedor->ci_poseedor }}</td>
-                        <td>{{ $poseedor->telefono_poseed }}</td>
-                        <td>{{ $poseedor->observacion_benef_final}}</td>
+                        <td style="font-size: 11px;">{{ $loop->iteration + ($poseedores->currentPage() - 1) * $poseedores->perPage() }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->departamento }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->proy_id }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->nombre_proyecto }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->manzano }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->lote }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->nombre_titular }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->ci_titular }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->nombre_conyugue }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->ci_conyugue }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->nombre_beneficiario_final }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->ci_beneficiario_final }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->ext_ci_final }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->telefono_final }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->nombre_poseedor }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->ci_poseedor }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->telefono_poseed }}</td>
+                        <td style="font-size: 11px;">{{ $poseedor->observacion_benef_final}}</td>
 
 
                         <td>
